@@ -1,0 +1,19 @@
+<main>
+    <div class="todosProdutos" id="single">
+      <span class="divisao">Meu Carrinho</span>
+      <div class="produto-single" *ngFor="let produtoCar of produtosCarrinho">
+  
+        <div class="produto-img">
+          <img class="img" [attr.src]="'http://localhost:3000/' + produtoCar.produto_imagem" alt="" />
+        </div>
+        <div class="id">codigo: {{produtoCar.id_produto}}</div>
+        <div class="produto-descricao">{{ produtoCar.descricao }}</div>
+        <div class="produto-preco">{{ produtoCar.preco | currency : "BRL" }}</div>
+        <span class="quantidade"></span>
+          <button class="produto-adicionar">Adicionar</button>
+          <button class="produto-remover">Remover</button>
+      </div>
+      <span class="subTotal">Subtotal R$ 0,00</span>
+    </div>
+  </main>
+  

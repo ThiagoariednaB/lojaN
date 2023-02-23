@@ -1,0 +1,14 @@
+<main>
+    <div class="produto-escolhido" id="single">
+      <div class="produto-single" *ngFor="let produto of produtos">
+        <a [routerLink]="['/home']">
+          <img class="imgP" [attr.src]="'http://localhost:3000/' + produto.produto_imagem" alt="img" />
+          <div class="produto-descricao">{{ produto.descricao }}</div>
+          <div class="produto-preco">{{produto.preco | currency : "BRL"}}</div>
+        </a>
+        <button class="produto-adicionar" >COMPRAR</button>
+      </div>
+  
+    </div>
+  </main>
+  

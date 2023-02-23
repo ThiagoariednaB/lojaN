@@ -1,0 +1,95 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Helvetica, sans-serif;
+    color: #323232;
+    border: none;
+    position: relative;
+  }
+  
+  input,
+  label{
+    display: block;
+    width: 100vw;
+  }
+  
+  input:focus,
+  label:focus{
+    outline: none;
+  }
+  
+  main {
+    padding-top: 20vh;
+    background-image: url('src/assets/img/fundoLogin1.jpg');
+    background-size: cover;
+    height: 715px;
+    overflow: hidden;
+  }
+  
+  .login{
+    width: 400px;
+    height: 510px;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 25px;
+  }
+  
+  .login h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.6rem;
+  }
+  
+  form{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  
+  
+  label{
+    font-weight: bold;
+    font-size: .8rem;
+  }
+  
+  input{
+    position: relative;
+    width: 345px;
+    border-bottom: 2px solid #323232;
+    padding: 10px;
+    font-size: .9rem;
+    margin-bottom: 40px;
+  }
+  
+  input:focus{
+    border-color: hsl(229, 100%, 45%);
+  }
+  
+  input[type='submit']{
+    background-color: hsl(229, 100%, 45%);
+    color: #fff;
+    top: 0px;
+    border: none;
+    border-radius: 20px;
+    height: 35px;
+    overflow-y: hidden;
+    cursor: pointer;
+  }
+  
+  #cadastrar {
+    top: -30px;
+    left: 50%;
+    transform: translate(-55%);
+  }
+  
+  #novasenha {
+    top: -5px;
+    display: flex;
+    left: 28%;
+    transform: translate(-49%);
+  }

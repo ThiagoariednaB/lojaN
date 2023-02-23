@@ -1,0 +1,445 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Oswald&family=Yanone+Kaffeesatz:wght@500&display=swap');
+
+header {
+  background: linear-gradient(rgb(29, 29, 29), 12%, rgb(49, 58, 64), rgb(29, 29, 29));
+  position: fixed;
+  display: flex;
+  width: 100vw;
+  height: 50px;
+  margin: 0%;
+  padding: 0%;
+  top: 0%;
+  left: 0%;
+  border-bottom: 1.5px solid rgb(255, 255, 255);
+  justify-content: center;
+  z-index: 2;
+  overflow: visible;
+  box-shadow: 0px 5px 30px 5px #ffbb00;
+}
+
+#ativar {
+  display: none;
+}
+
+.menu {
+  position: absolute;
+  display: block;
+  left: 0;
+  width: 65px;
+  height: 50px;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.menu2 {
+  position: absolute;
+  left: 0;
+  width: 65px;
+  height: 50px;
+  z-index: 0;
+}
+
+.line1 {
+  transition: 0.3s;
+  border-radius: 150px;
+  position: relative;
+  display: block;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  top: 15px;
+  left: 8px;
+  width: 48px;
+  height: 4px;
+  background-color: #ffbb00;
+}
+
+.line2 {
+  transition: 1s;
+  border-radius: 150px;
+  position: relative;
+  display: block;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  top: 23px;
+  left: 8px;
+  width: 48px;
+  height: 4px;
+  background-color: #ffbb00;
+}
+
+.line3 {
+  transition: 0.3s;
+  border-radius: 150px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  top: 30px;
+  left: 8px;
+  width: 48px;
+  height: 4px;
+  background-color: #ffbb00;
+}
+
+#ativar:checked~.menu2 .line1 {
+  top: 25px;
+  transition: 0.3s;
+  transform: rotate(40deg)
+}
+
+#ativar:checked~.menu2 .line2 {
+  display: none;
+  transition: 0.3s;
+}
+
+#ativar:checked~.menu2 .line3 {
+  top: 21px;
+  transition: 0.3s;
+  transform: rotate(-40deg)
+}
+
+.atalhos {
+  position: absolute;
+  top: 51px;
+  left: 0;
+  width: 0px;
+  height: 100vh;
+  background: linear-gradient(180deg, rgb(53, 53, 53), rgb(0, 0, 0), rgb(53, 53, 53));
+  text-align: center;
+  color: aliceblue;
+  z-index: 1;
+  transition: 0.3s;
+}
+
+#ativar:checked~.atalhos {
+  width: 240px;
+  transition: 0.3s;
+}
+
+.categorias {
+  height: 10vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.li {
+  text-align: left;
+  letter-spacing: 3px;
+  line-height: 5vh;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  text-indent: 20px;
+  cursor: pointer;
+}
+
+.li .ul1:hover {
+  color: #ffbb00;
+}
+
+.li .ul2:hover {
+  color: #ffbb00;
+}
+
+.li .ul3:hover {
+  color: #ffbb00;
+}
+
+.li .ul4:hover {
+  color: #ffbb00;
+}
+
+.li .ul5:hover {
+  color: #ffbb00;
+}
+
+.li .ul6:hover {
+  color: #ffbb00;
+}
+
+.li .ul7:hover {
+  color: #ffbb00;
+}
+
+.logo {
+  position: fixed;
+  margin: 0px;
+  padding: 0px;
+  left: 7%;
+  overflow: hidden;
+}
+
+#LogoFundo {
+  position: absolute;
+  width: 9rem;
+  top: -3rem;
+  display: flex;
+}
+
+.logo #Raio {
+  position: relative;
+  display: flex;
+  height: 150px;
+  width: 170px;
+  top: -50px;
+  left: -8px;
+  animation: zoom 2s ease infinite;
+}
+
+@keyframes zoom {
+  0% {
+    transform: scale(120%);
+  }
+
+  25% {
+    transform: scale(155%);
+  }
+
+  50% {
+    transform: scale(130%);
+  }
+
+  75% {
+    transform: scale(145%);
+  }
+
+  100% {
+    transform: scale(120%);
+  }
+}
+
+#lupa {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  top: 20px;
+  width: 30px;
+  height: 26px;
+  right: 120px;
+  cursor: pointer;
+  color: #ffffff;
+  text-decoration: none;
+  z-index: 1;
+}
+
+#lupa:hover {
+  border-collapse: 2px;
+  border-bottom: 3px solid rgb(255, 230, 0);
+}
+
+.pesquisa {
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  top: 12px;
+  width: 30vw;
+  height: 0px;
+  border: none;
+  transition: 0.4s;
+  border-radius: 150px;
+  padding-left: 20px;
+}
+
+#ativaPesquisa {
+  display: none;
+  border: transparent;
+}
+
+#ativaPesquisa:checked~.pesquisa {
+  height: 30px;
+  transition: 0.3s;
+}
+
+#busca:focus, input:focus {
+  box-shadow: 0 0 0 0;
+  outline: 0;
+}
+
+.login {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  top: 20px;
+  width: 30px;
+  height: 26px;
+  right: 70px;
+  cursor: pointer;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.login:hover {
+  border-collapse: 2px;
+  border-bottom: 3px solid rgb(255, 230, 0);
+}
+
+.carrinho {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  top: 20px;
+  width: 30px;
+  height: 26px;
+  right: 25px;
+  cursor: pointer;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.carrinho:hover {
+  border-bottom: 3px solid rgb(255, 230, 0);
+}
+
+.compra {
+  position: absolute;
+  background-color: #fff;
+  top: 50px;
+  width: 0vw;
+  right: 0;
+  height: 100vh;
+  transition: 0.4s;
+}
+
+
+.carrinho:hover+.compra {
+  transition: 0.4s;
+  top: 50px;
+  width: 20vw;
+  height: 100vh;
+  z-index: -3;
+}
+
+.compra:hover {
+  transition: 0.4s;
+  top: 50px;
+  width: 20vw;
+  height: 100vh;
+  z-index: -3;
+}
+
+.compra #itens {
+  display: inline-block;
+  width: 100%;
+  text-align: left;
+  padding: 50px 20px 10px 20px;
+  margin: 0px 0px 10px 10px;
+  font-size: 1.3rem;
+  border-bottom: 1px solid rgb(255, 221, 0);
+}
+
+.compra #itens p {
+  position: relative;
+  color: #000;
+  display: flex;
+  height: 65px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.compra #itens p .prod {
+  width: 100px;
+  height: 75px;
+}
+
+.compra #itens p .dadosProduto3 {
+  position: relative;
+  display: inline-flex;
+  justify-content: space-around;
+  height: 50px;
+  width: 60px;
+}
+
+.compra #itens p a {
+  position: relative;
+  display: inline-flex;
+  justify-content: space-around;
+  top: 10px;
+  height: 30px;
+  width: 30px;
+}
+
+.compra #itens p r {
+  position: relative;
+  display: inline-flex;
+  justify-content: space-around;
+  top: 10px;
+  height: 30px;
+  width: 30px;
+}
+
+@media screen and (max-width: 500px) {
+
+  .logo {
+  display: none;
+  }
+
+  .carrinho:hover+.compra {
+    transition: 0.4s;
+    top: 50px;
+    width: 300px;
+    height: 100vh;
+    z-index: -3;
+  }
+
+  .compra:hover {
+    transition: 0.4s;
+    top: 50px;
+    width: 20vw;
+    height: 100vh;
+    z-index: -3;
+  }
+
+  #lupa {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    top: 20px;
+    width: 30px;
+    height: 26px;
+    right: 120px;
+    cursor: pointer;
+    color: #000000;
+    text-decoration: none;
+    z-index: 2;
+  }
+
+  #lupa:hover {
+    border-collapse: 2px;
+    border-bottom: none;
+  }
+
+  .pesquisa {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    top: 15px;
+    width: 3vw;
+    height: 30px;
+    border: none;
+    transition: 0.4s;
+    border-radius: 150px;
+    padding-left: 20px;
+    right: 120px;
+  }
+
+  .pesquisa::placeholder{
+    color: rgba(255, 0, 0, 0);
+  }
+
+  #ativaPesquisa {
+    display: none;
+  }
+
+  #ativaPesquisa:checked~.pesquisa {
+    width: 47vw;
+    height: 30px;
+    transition: 0.3s;
+  }
+  #ativaPesquisa:checked~::placeholder{
+    text-indent: 0%;
+    color: rgb(97, 97, 97);
+  }
+}

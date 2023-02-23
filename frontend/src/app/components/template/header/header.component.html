@@ -1,0 +1,55 @@
+<header>
+
+    <input type="checkbox" id="ativar" />
+    <label for="ativar">
+      <div class="menu"></div>
+    </label>
+  
+    <div class="menu2">
+      <div class="line1"></div>
+      <div class="line2"></div>
+      <div class="line3"></div>
+    </div>
+  
+  
+    <div class="atalhos">
+      <span class="categorias">CATEGORIAS</span>
+  
+      <li class="li">
+        <ul class="ul1">{{ "CAIXA DE SOM" }}</ul>
+        <ul class="ul2">{{ "FONE DE OUVIDO" }}</ul>
+        <ul class="ul3">{{ "INFOMATICA" }}</ul>
+        <ul class="ul4">{{ "CAPINHAS" }}</ul>
+        <ul class="ul5">{{ "PELICULAS" }}</ul>
+        <ul class="ul6">{{ "CARREGADORES" }}</ul>
+        <ul class="ul7">{{ "SUPORTES" }}</ul>
+      </li>
+    </div>
+    <a [routerLink]="['/home']">
+      <div class="logo">
+        <img src="assets/img/LogoFundo.png" alt="Ello Cell" id="LogoFundo" />
+        <img src="assets/img/logoRaio.png" alt="Raio" id="Raio" />
+      </div>
+    </a>
+    <input type="checkbox" id="ativaPesquisa" />
+    <label for="ativaPesquisa">
+      <span class="material-symbols-outlined" id="lupa">search</span>
+    </label>
+  
+    <input type="text" class="pesquisa" id="busca" placeholder="Digite o nome do produto">
+  
+    <a class="login" [routerLink]="['/login']">
+      <span class="material-symbols-outlined" id="login">person</span>
+    </a>
+    <a class="carrinho" [routerLink]="['/carrinho']">
+      <span class="material-symbols-outlined" id="carrinho">shopping_cart</span>
+    </a>
+  
+    <div class="compra">
+      <div id="itens">Meu Carrinho: </div>
+      <div class="produtos">
+  
+      </div>
+    </div>
+  </header>
+  

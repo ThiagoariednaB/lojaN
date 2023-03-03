@@ -6,30 +6,30 @@
         <input type="radio" name="radio-btn" id="radio2" />
         <input type="radio" name="radio-btn" id="radio3" />
         <input type="radio" name="radio-btn" id="radio4" />
-  
+
         <div class="slide first">
           <img src="assets/img/5.jpg" alt="" />
         </div>
-  
+
         <div class="slide">
           <img src="assets/img/11.jpg" alt="" />
         </div>
-  
+
         <div class="slide">
           <img src="assets/img/5.jpg" alt="" />
         </div>
-  
+
         <div class="slide">
           <img src="assets/img/5.jpg" alt="" />
         </div>
-  
+
         <div class="navauto">
           <div class="auto-btn1"></div>
           <div class="auto-btn2"></div>
           <div class="auto-btn3"></div>
           <div class="auto-btn4"></div>
         </div>
-  
+
         <div class="navegar">
           <label class="manual-btn" for="radio1"></label>
           <label class="manual-btn" for="radio2"></label>
@@ -38,13 +38,13 @@
         </div>
       </div>
     </div>
-  
+
     <!--fim da div slider-->
-  
+
     <span class="nomeProduto">Novidades</span>
-  
+
     <!--inicio do cards de produtos-->
-  
+
     <div class="carrossel1">
       <div class="protutos-carrossel1" [ngStyle]="{ 'left': left + 'px' , 'width': width + 'px' }">
         <div class="card1" id="card1" *ngFor="let card1 of cards">
@@ -61,24 +61,24 @@
     <button class="manual-bt2" id="bt-4">
       <img src="assets/img/direita.png" id="img" />
     </button>
-  
+
     <!--fim do cards-->
-  
+
     <span class="QuantprodutosLoja">
       {{ getQuantidade() + " PRODUTOS ENCONTRADOS" }}
       <span class="porPagina">Por Pagina: </span>
       <select name="itensPagina" id="itensPagina">
-        <option value="p1" selected>12</option>
-        <option value="p2">24</option>
-        <option value="p3">36</option>
-        <option value="p4">48</option>
+        <option value="p1" selected>15</option>
+        <option value="p2">30</option>
+        <option value="p3">45</option>
+        <option value="p4">60</option>
       </select>
     </span>
-  
+
     <!--inicio da div todosProdutos-->
     <div class="todosProdutos" id="single">
       <div class="produto-single" *ngFor="let produto of produtos">
-        <a [routerLink]="['/produto', this.produto.id_produto]">
+        <a [routerLink]="['/product', this.produto.id_produto]">
           <div class="produto-img">
             <img class="img" [attr.src]="'http://localhost:3000/' + produto.produto_imagem" alt="img" />
           </div>
@@ -92,7 +92,7 @@
       </div>
     </div>
     <!--fim da div todosProdutos-->
-  
+
     <!--paginação de produtos-->
     <section id="paginacao">
       <div class="pagination">
@@ -105,4 +105,4 @@
     </section>
     <!--paginação de produtos-->
   </main>
-  
+

@@ -5,6 +5,7 @@ const app = express()
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 
+const rotaCategorias = require('./routes/categorias')
 const rotaProdutos = require('./routes/produtos')
 const rotaPedidos = require('./routes/pedidos')
 const rotaUsuarios = require('./routes/usuarios')
@@ -25,6 +26,7 @@ app.use((req, res, next) => {
   next()
 })
 
+app.use('/categorias', rotaCategorias)
 app.use('/produtos', rotaProdutos)
 app.use('/pedidos', rotaPedidos)
 app.use('/usuarios', rotaUsuarios)

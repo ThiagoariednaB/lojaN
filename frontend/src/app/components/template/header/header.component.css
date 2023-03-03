@@ -136,6 +136,7 @@ header {
   margin-top: 20px;
   text-indent: 20px;
   cursor: pointer;
+  color: white;
 }
 
 .li .ul1:hover {
@@ -164,6 +165,12 @@ header {
 
 .li .ul7:hover {
   color: #ffbb00;
+}
+
+.category {
+  display: flex;
+  position: relative;
+  color: white;
 }
 
 .logo {

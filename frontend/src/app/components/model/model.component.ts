@@ -8,4 +8,11 @@ export class produtos {
   public preco: number = 0
   public produto_imagem: string = ''
   public quantidade: number = 0
+  public categoria:  string = ''
+}
+
+export class categorias {
+  public response: any
+  public id_categoria: number = 0
+  public categoria:  string = ''
 }

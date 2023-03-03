@@ -11,7 +11,7 @@ import { LayoutComponent } from './components/layout/layout.component'
 import { HomeComponent } from './components/views/home/home.component'
 import { LoginComponent } from './components/views/login/login.component'
 import { ProductComponent } from './components/views/product/product.component'
-import { ShopComponent } from './components/views/shop/shop.component'
+import { ShopComponent } from './components/views/shop/shop.component';
 
 
 

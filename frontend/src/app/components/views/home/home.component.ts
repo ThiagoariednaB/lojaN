@@ -1,3 +1,4 @@
+import { categorias } from './../../model/model.component';
 import { Component, OnInit } from '@angular/core';
 import * as _ from 'lodash';
 import { produtos } from '../../model/model.component';
@@ -20,6 +21,8 @@ export class HomeComponent implements OnInit {
   paginaCarrossel: number = 0;
   left: number = 0;
   width: number = 1260;
+  totalProdutos: number = 62;
+  categorias: [] = [];
 
   constructor(public productService: ProductService) { }
 
@@ -29,7 +32,7 @@ export class HomeComponent implements OnInit {
   }
 
   getQuantidade = () => {
-    return this.produtos.length;
+    return this.produto.length;
   }
 
   adicionar = ($event: any) => {
@@ -60,11 +63,10 @@ export class HomeComponent implements OnInit {
     /*-----------------------------------------------------------------------ESTADOS INICIAL DAS PAGINAS AO SEREM CRIADAS------------------------------------------------------*/
     const state: any = {
       pagina: 1,
-      itensPerPage: 12,
-      totalDePaginas: Math.ceil(100 / 12),
-      maxVisibleButtons: 5,
-      totalProdutos: 100,
-
+      itensPerPage: 15,
+      totalDePaginas: Math.ceil(this.totalProdutos / 15),
+      maxVisibleButtons: 3,
+      totalProdutos: this.totalProdutos,
 
       paginaCarrossel: 1,
       itensPerPageCarrossel: 4,
@@ -77,6 +79,7 @@ export class HomeComponent implements OnInit {
         this.produtos = data['response'].produtos.slice(listProducts.start, listProducts.end);
         this.produto = data['response'].produtos
         this.produtoid= data['response'].produtos
+        this.categorias = data['response'].categorias
         this.cards = data['response'].produtos.slice(listProducts.startCarrossel1, listProducts.endCarrossel1);
       });
       return get;
@@ -292,7 +295,7 @@ export class HomeComponent implements OnInit {
         state.itensPerPage = optionValue.text;
         this.start = 0;
         this.end = this.start + state.itensPerPage;
-        state.totalDePaginas = Math.ceil(100 / state.itensPerPage)
+        state.totalDePaginas = Math.ceil(state.totalProdutos / state.itensPerPage)
         baseBd.up()
         buttonsPaginate.update();
         return state.totalDePaginas
@@ -332,11 +335,13 @@ export class HomeComponent implements OnInit {
           maxLeft = 1,
             maxRight = maxVisibleButtons
         }
-        if (maxRight > state.totalDePaginas) {
+        if (maxRight >= state.totalDePaginas) {
           maxLeft = state.totalDePaginas - (maxVisibleButtons - 1)
           maxRight = state.totalDePaginas
           if (maxLeft < 1) maxLeft = 1
         }
+
+
         return { maxLeft, maxRight }
       }
     }
@@ -365,4 +370,5 @@ export class HomeComponent implements OnInit {
     };
     init();
   }
+
 }

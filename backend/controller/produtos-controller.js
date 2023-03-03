@@ -21,7 +21,7 @@ exports.getProdutos = (req, res, next) => {
               un: prod.un,
               preco: prod.preco,
               produto_imagem: prod.produto_imagem,
-              quantidade: prod.quantidade
+              categoria: prod.categoria,
             }
           })
         }
@@ -118,13 +118,17 @@ exports.patchProdutos = (req, res, next) => {
               un              =?,
               preco           =?,
               produto_imagem  =?,
+              id_categoria    =?,
+              categoria       =?,
         WHERE id_produto      =?`,
       [
         req.body.descricao,
         req.body.un,
         req.body.preco,
         req.file.path,
-        req.body.id_produto
+        req.body.id_produto,
+        req.body.id_categoria,
+        req.body.categoria,
       ],
       (error, resultado, field) => {
         conn.release()
@@ -144,6 +148,8 @@ exports.patchProdutos = (req, res, next) => {
             un: req.body.un,
             preco: req.body.preco,
             produto_imagem: req.file.path,
+            id_categoria: req.body.id_categoria,
+            categoria: req.body.categoria,
             request: {
               tipo: 'PATCH',
               descricao: 'Altera um produto',

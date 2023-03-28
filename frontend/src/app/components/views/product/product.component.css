@@ -4,14 +4,14 @@ main{
     padding: 0;
     margin: 0;
   }
-  
+
   .produto-escolhido{
     position: relative;
     width: 100vw;
     height:700px;
     background-color: blue;
   }
-  
+
   .produto-single {
     /*Container com todos os dados do produto*/
     position: relative;
@@ -32,7 +32,7 @@ main{
     box-shadow: #343434 0px 10px 30px 0px;
     overflow-y: hidden;
   }
-  
+
   .produto-descricao {
     /*Personaliza a descricao dos produtos*/
     position: absolute;
@@ -46,7 +46,7 @@ main{
     color: rgb(92, 92, 92);
     font-weight: bold;
   }
-  
+
   .produto-preco {
     /*Personaliza a preco dos produtos*/
     position: absolute;
@@ -60,14 +60,14 @@ main{
     color: rgb(92, 92, 92);
     font-weight: bold;
   }
-  
+
   .produto-de-para{
     position: absolute;
     left: 10px;
     bottom: 75px;
     color: rgb(92, 92, 92);
   }
-  
+
   .produto-adicionar {
     position: absolute;
     background-color: #008ddf;
@@ -75,14 +75,14 @@ main{
     width: 200px;
     height: 40px;
     right: 20px;
-    bottom: 70px;
+    bottom: 100px;
     border-radius: 10px;
     padding-top: 8px;
     font-size: 25px;
     color: rgb(92, 92, 92);
     font-weight: bold;
   }
-  
+
   .produto-remover {
     position: absolute;
     background-color: #008ddf;
@@ -97,17 +97,17 @@ main{
     color: rgb(92, 92, 92);
     font-weight: bold;
   }
-  
+
   .produto-adicionar:active {
     box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
     transform: scale(0.9);
   }
-  
+
   .produto-remover:active {
     box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
     transform: scale(0.9);
   }
-  
+
   .comprar-produto{
     position: absolute;
     background-color: #008ddf;
@@ -122,7 +122,7 @@ main{
     color: rgb(92, 92, 92);
     font-weight: bold;
   }
-  
+
   .produto-quantidade{
     position: absolute;
     width: 150px;
@@ -131,7 +131,7 @@ main{
     bottom: 0px;
     left: 5px;
   }
-  
+
   .imgP{
     /*Personaliza a foto dos produtos*/
     border-radius: 08px;
@@ -142,7 +142,7 @@ main{
     left: -7px;
     display: flex;
   }
-  
+
   .img1{
     width: 100px;
     height: 100px;
@@ -153,7 +153,7 @@ main{
     border: solid 0.2px rgb(182, 189, 190);
     background-color: aliceblue;
   }
-  
+
   .img2{
     width: 100px;
     height: 100px;
@@ -164,7 +164,7 @@ main{
     border: solid 0.2px rgb(182, 189, 190);
     background-color: aliceblue;
   }
-  
+
   .img3{
     width: 100px;
     height: 100px;
@@ -175,7 +175,7 @@ main{
     border: solid 0.2px rgb(182, 189, 190);
     background-color: aliceblue;
   }
-  
+
   .borda{
     position: absolute;
     top: 425px;
@@ -183,7 +183,7 @@ main{
     box-shadow: 0px 90px 30px 77px rgb(255, 225, 0);
     border-bottom: solid rgb(255, 225, 0) 1.5px;
   }
-  
+
   .descricao-produto{
     position: absolute;
     width: 30%;
@@ -192,5 +192,13 @@ main{
     left: 700px;
     color: white;
   }
-  
-  
+
+  .descricaoProduto{
+    position: relative;
+    width: 90%;
+    height: 100px;
+    top: 520px;
+    left: 10px;
+    color: rgb(61, 61, 61);
+  }
+

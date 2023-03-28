@@ -9,6 +9,7 @@ export class produtos {
   public produto_imagem: string = ''
   public quantidade: number = 0
   public categoria:  string = ''
+  public descricaoProduto: string = ''
 }
 
 export class categorias {

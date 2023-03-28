@@ -22,6 +22,7 @@ exports.getProdutos = (req, res, next) => {
               preco: prod.preco,
               produto_imagem: prod.produto_imagem,
               categoria: prod.categoria,
+              descricaoProduto: prod.descricaoProduto,
             }
           })
         }
@@ -59,6 +60,7 @@ exports.getProdutosId = (req, res, next) => {
               preco: prod.preco,
               produto_imagem: prod.produto_imagem,
               quantidade: prod.quantidade,
+              descricaoProduto: prod.descricaoProduto,
               request: {
                 tipo: 'GET',
                 descricao: 'Retorna um produto e seus detalhes',

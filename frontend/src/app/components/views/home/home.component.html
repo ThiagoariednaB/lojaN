@@ -68,10 +68,10 @@
       {{ getQuantidade() + " PRODUTOS ENCONTRADOS" }}
       <span class="porPagina">Por Pagina: </span>
       <select name="itensPagina" id="itensPagina">
-        <option value="p1" selected>15</option>
-        <option value="p2">30</option>
-        <option value="p3">45</option>
-        <option value="p4">60</option>
+        <option value="p1" selected>12</option>
+        <option value="p2">24</option>
+        <option value="p3">36</option>
+        <option value="p4">48</option>
       </select>
     </span>
 
@@ -82,6 +82,7 @@
           <div class="produto-img">
             <img class="img" [attr.src]="'http://localhost:3000/' + produto.produto_imagem" alt="img" />
           </div>
+          <span class="divisao"></span>
           <span class="produto-id" name="id">id: {{ produto.id_produto }}</span>
           <div class="produto-descricao">{{ produto.descricao }}</div>
           <div class="produto-preco">{{ produto.preco | currency : "BRL" }}</div>

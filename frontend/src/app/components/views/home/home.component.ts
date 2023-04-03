@@ -63,8 +63,8 @@ export class HomeComponent implements OnInit {
     /*-----------------------------------------------------------------------ESTADOS INICIAL DAS PAGINAS AO SEREM CRIADAS------------------------------------------------------*/
     const state: any = {
       pagina: 1,
-      itensPerPage: 15,
-      totalDePaginas: Math.ceil(this.totalProdutos / 15),
+      itensPerPage: 12,
+      totalDePaginas: Math.ceil(this.totalProdutos / 12),
       maxVisibleButtons: 3,
       totalProdutos: this.totalProdutos,
 

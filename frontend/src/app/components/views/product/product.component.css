@@ -9,7 +9,7 @@ main{
     position: relative;
     width: 100vw;
     height:700px;
-    background-color: blue;
+    background-color: #ffffff;
   }
 
   .produto-single {
@@ -22,14 +22,12 @@ main{
     height: 600px;
     margin: 40px;
     border-radius: 10px;
-    border: 1px solid white;
     justify-content: space-between;
     background-color: #ffffff;
     overflow: hidden;
     transition: 0.3s;
     color: #000;
     cursor: pointer;
-    box-shadow: #343434 0px 10px 30px 0px;
     overflow-y: hidden;
   }
 

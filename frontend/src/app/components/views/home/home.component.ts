@@ -85,6 +85,7 @@ export class HomeComponent implements OnInit {
       return get;
     };
 
+    console.log(this.produtos)
     /*-----------------------------------------------------------------------CAPTURA OS ELEMENTOS DA DOM-----------------------------------------------------------------------*/
     const html: any = {
       get(element: any) {

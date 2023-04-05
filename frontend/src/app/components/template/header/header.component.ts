@@ -9,7 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  categorias:categorias [] = []
+  categorias:produtos [] = []
 
   constructor(public productService: ProductService) { }
 
@@ -18,34 +18,15 @@ export class HeaderComponent implements OnInit {
   }
 
   funcao = () => {
-    const get: any = (): ((data: categorias) => any) => {
-      this.productService.getCategory().subscribe((data: categorias) => {
-        this.categorias = data['response'].categorias
+    const get: any = (): ((data: produtos) => any) => {
+      this.productService.getProducts().subscribe((data: produtos) => {
+        this.categorias = data['response'].produtos
       });
       return get;
     };
 
-
-
-    const html: any = {
-      get(element: any) {
-        return document.querySelector(element);
-      }
-    };
-
-    const baseBd: any = {
-      create(data: categorias) {
-        const div = document.createElement('div');
-        div.classList.add('data');
-        div.innerHTML = data['response'].categorias
-      },
-      up() {
-        html.get('.ul1').innerHTML = '';
-        html.get('.ul1').innerHTML = get();
-      },
-    };
     console.log(this.categorias)
-    
+
 
   }
 }

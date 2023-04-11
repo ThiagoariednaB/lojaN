@@ -9,24 +9,22 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  categorias:produtos [] = []
+  categorias:categorias [] = []
 
   constructor(public productService: ProductService) { }
 
   ngOnInit(): void {
-    this.funcao()
+    this.funcao();
   }
 
   funcao = () => {
-    const get: any = (): ((data: produtos) => any) => {
-      this.productService.getProducts().subscribe((data: produtos) => {
-        this.categorias = data['response'].produtos
+    const get: any = (): ((data: categorias) => any) => {
+      this.productService.getCategory().subscribe((data: categorias) => {
+        this.categorias = data['response'].categoria
       });
       return get;
     };
 
-    console.log(this.categorias)
-
-
+    get();
   }
 }

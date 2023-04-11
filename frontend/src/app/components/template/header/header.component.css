@@ -143,30 +143,6 @@ header {
   color: #ffbb00;
 }
 
-.li .ul2:hover {
-  color: #ffbb00;
-}
-
-.li .ul3:hover {
-  color: #ffbb00;
-}
-
-.li .ul4:hover {
-  color: #ffbb00;
-}
-
-.li .ul5:hover {
-  color: #ffbb00;
-}
-
-.li .ul6:hover {
-  color: #ffbb00;
-}
-
-.li .ul7:hover {
-  color: #ffbb00;
-}
-
 .category {
   display: flex;
   position: relative;
@@ -229,7 +205,7 @@ header {
   height: 26px;
   right: 120px;
   cursor: pointer;
-  color: #ffffff;
+  color: #1f1f1f;
   text-decoration: none;
   z-index: 1;
 }
@@ -239,12 +215,17 @@ header {
   border-bottom: 3px solid rgb(255, 230, 0);
 }
 
+.pesquisa::-webkit-input-placeholder{
+  color: transparent;
+}
+
 .pesquisa {
   position: absolute;
   background-color: rgb(255, 255, 255);
-  top: 12px;
-  width: 30vw;
-  height: 0px;
+  right: 120px;
+  top: 15px;
+  width: 12px;
+  height: 30px;
   border: none;
   transition: 0.4s;
   border-radius: 150px;
@@ -256,9 +237,24 @@ header {
   border: transparent;
 }
 
+#ativaPesquisa:checked~#lupa{
+  color: #ffbb00;
+}
+
 #ativaPesquisa:checked~.pesquisa {
+  right: 25%;
+  justify-content: center;
+  transform: translate(-25%);
+  width: 30vw;
   height: 30px;
   transition: 0.3s;
+}
+
+#ativaPesquisa:checked~.pesquisa::-webkit-input-placeholder {
+  width: 30vw;
+  height: 30px;
+  transition: 0.6s;
+  color: #353535;
 }
 
 #busca:focus, input:focus {

@@ -10,8 +10,6 @@ import * as _ from 'lodash';
 })
 
 export class ProductService {
-  produto: produtos[] = []
-  categoria: categorias[] = []
 
   SERVER_URL = 'http://localhost:3000'
 

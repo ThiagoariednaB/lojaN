@@ -85,7 +85,7 @@ export class HomeComponent implements OnInit {
       return get;
     };
 
-    console.log(this.produtos)
+
     /*-----------------------------------------------------------------------CAPTURA OS ELEMENTOS DA DOM-----------------------------------------------------------------------*/
     const html: any = {
       get(element: any) {
@@ -118,6 +118,17 @@ export class HomeComponent implements OnInit {
         return produto.descricao.toLowerCase().includes(busca) || produto.descricao.toUpperCase().includes(busca);
       });
       if (busca == '') {
+        get();
+      }
+    };
+
+    const filtroCategoria: any = (e: Event): void => {
+      const target = e.target as HTMLSelectElement;
+      const filtroCategoria = target.value;
+      this.produtos = this.produto.filter((produto) => {
+        return produto.categoria.toLowerCase().includes(filtroCategoria) || produto.categoria.toUpperCase().includes(filtroCategoria);
+      });
+      if (filtroCategoria == '') {
         get();
       }
     };

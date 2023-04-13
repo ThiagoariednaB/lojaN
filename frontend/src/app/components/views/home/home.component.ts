@@ -1,7 +1,6 @@
-import { categorias } from './../../model/model.component';
+import { categorias, produtos } from '../../model/model.component';
 import { Component, OnInit } from '@angular/core';
 import * as _ from 'lodash';
-import { produtos } from '../../model/model.component';
 import { ProductService } from '../../service/product.service';
 
 @Component({
@@ -22,7 +21,7 @@ export class HomeComponent implements OnInit {
   left: number = 0;
   width: number = 1260;
   totalProdutos: number = 62;
-  categorias: [] = [];
+  categoria: categorias[] = [];
 
   constructor(public productService: ProductService) { }
 
@@ -79,12 +78,19 @@ export class HomeComponent implements OnInit {
         this.produtos = data['response'].produtos.slice(listProducts.start, listProducts.end);
         this.produto = data['response'].produtos
         this.produtoid= data['response'].produtos
-        this.categorias = data['response'].categorias
         this.cards = data['response'].produtos.slice(listProducts.startCarrossel1, listProducts.endCarrossel1);
       });
       return get;
     };
 
+    const getCategory: any = (): ((data: categorias) => any) => {
+      this.productService.getCategory().subscribe((data: categorias) => {
+        this.categoria = data['response'].categoria
+      });
+      return getCategory;
+    };
+
+    getCategory();
 
     /*-----------------------------------------------------------------------CAPTURA OS ELEMENTOS DA DOM-----------------------------------------------------------------------*/
     const html: any = {
@@ -118,17 +124,6 @@ export class HomeComponent implements OnInit {
         return produto.descricao.toLowerCase().includes(busca) || produto.descricao.toUpperCase().includes(busca);
       });
       if (busca == '') {
-        get();
-      }
-    };
-
-    const filtroCategoria: any = (e: Event): void => {
-      const target = e.target as HTMLSelectElement;
-      const filtroCategoria = target.value;
-      this.produtos = this.produto.filter((produto) => {
-        return produto.categoria.toLowerCase().includes(filtroCategoria) || produto.categoria.toUpperCase().includes(filtroCategoria);
-      });
-      if (filtroCategoria == '') {
         get();
       }
     };
@@ -169,6 +164,19 @@ export class HomeComponent implements OnInit {
       listEventBusca() {
         html.get('#busca').addEventListener('keyup', _.debounce(busca, 800));
         html.get('#busca').addEventListener('keyup', get())
+      },
+      listEventCategoria() {
+        html.get('.atalhos').addEventListener('click', ($event: any) => {
+          const target = $event.target as categorias
+          const buscaCat = target.textContent
+        /*this.categoria = this.categoria.filter((categoria: categorias) => {
+            return categoria.categoria.toUpperCase().includes(buscaCat);
+          });*/
+
+
+
+          console.log('CATEGORIAS: ' + buscaCat)
+        });
       }
     };
 
@@ -226,7 +234,6 @@ export class HomeComponent implements OnInit {
         } else if (state.paginaCarrossel < 1) {
           state.paginaCarrossel++;
         }
-        console.log('pagina anterior: ' + state.paginaCarrossel)
       },
       nextPageCar() {
         if (state.paginaCarrossel < state.totalDePaginasCarrossel) {
@@ -236,7 +243,6 @@ export class HomeComponent implements OnInit {
         } else if (state.paginaCarrossel > state.totalDePaginasCarrossel) {
           state.paginaCarrossel--;
         }
-        console.log('pagina proxima: ' + state.paginaCarrossel)
       }
     };
 
@@ -378,6 +384,7 @@ export class HomeComponent implements OnInit {
       buttonsPaginate.update();
       events.listEventPagination();
       events.listEventBusca();
+      events.listEventCategoria();
       get();
     };
     init();

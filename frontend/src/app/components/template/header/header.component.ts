@@ -9,12 +9,19 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  categorias:categorias [] = []
+  categorias: categorias[] = []
 
   constructor(public productService: ProductService) { }
 
   ngOnInit(): void {
     this.funcao();
+  }
+
+  adicionar = ($event: any) => {
+    const target = $event.target as categorias
+    const categoria = target.textContent
+    this.categorias = categoria
+    console.log('categorias:' + this.categorias[categoria].categoria)
   }
 
   funcao = () => {
@@ -26,5 +33,6 @@ export class HeaderComponent implements OnInit {
     };
 
     get();
+
   }
 }

@@ -87,18 +87,22 @@ main::-webkit-scrollbar{
 
 #radio2:checked~.first {
   margin-left: -25%;
+  touch-action: pan-y;
 }
 
 #radio3:checked~.first {
   margin-left: -50%;
+  touch-action: pan-y;
 }
 
 #radio4:checked~.first {
   margin-left: -75%;
+  touch-action: pan-y;
 }
 
 .slide.first {
   height: 300px;
+  touch-action: pan-y;
 }
 
 .navauto div {

@@ -16,4 +16,5 @@ export class categorias {
   public response: any
   public id_categoria: number = 0
   public categoria:  string = ''
+  textContent: any
 }

@@ -1,109 +1,110 @@
 <main>
-    <!--inicio da div slider-->
-    <div class="slider">
-      <div class="sliders">
-        <input type="radio" name="radio-btn" id="radio1" />
-        <input type="radio" name="radio-btn" id="radio2" />
-        <input type="radio" name="radio-btn" id="radio3" />
-        <input type="radio" name="radio-btn" id="radio4" />
+  <!--inicio da div slider-->
+  <div class="slider">
+    <div class="sliders">
+      <input type="radio" name="radio-btn" id="radio1" />
+      <input type="radio" name="radio-btn" id="radio2" />
+      <input type="radio" name="radio-btn" id="radio3" />
+      <input type="radio" name="radio-btn" id="radio4" />
 
-        <div class="slide first">
-          <img src="assets/img/5.jpg" alt="" />
-        </div>
+      <div class="slide first">
+        <img src="assets/img/5.jpg" alt="" />
+      </div>
 
-        <div class="slide">
-          <img src="assets/img/11.jpg" alt="" />
-        </div>
+      <div class="slide">
+        <img src="assets/img/11.jpg" alt="" />
+      </div>
 
-        <div class="slide">
-          <img src="assets/img/5.jpg" alt="" />
-        </div>
+      <div class="slide">
+        <img src="assets/img/5.jpg" alt="" />
+      </div>
 
-        <div class="slide">
-          <img src="assets/img/5.jpg" alt="" />
-        </div>
+      <div class="slide">
+        <img src="assets/img/5.jpg" alt="" />
+      </div>
 
-        <div class="navauto">
-          <div class="auto-btn1"></div>
-          <div class="auto-btn2"></div>
-          <div class="auto-btn3"></div>
-          <div class="auto-btn4"></div>
-        </div>
+      <div class="navauto">
+        <div class="auto-btn1"></div>
+        <div class="auto-btn2"></div>
+        <div class="auto-btn3"></div>
+        <div class="auto-btn4"></div>
+      </div>
 
-        <div class="navegar">
-          <label class="manual-btn" for="radio1"></label>
-          <label class="manual-btn" for="radio2"></label>
-          <label class="manual-btn" for="radio3"></label>
-          <label class="manual-btn" for="radio4"></label>
-        </div>
+      <div class="navegar">
+        <label class="manual-btn" for="radio1"></label>
+        <label class="manual-btn" for="radio2"></label>
+        <label class="manual-btn" for="radio3"></label>
+        <label class="manual-btn" for="radio4"></label>
       </div>
     </div>
+  </div>
 
-    <!--fim da div slider-->
+  <!--fim da div slider-->
 
-    <span class="nomeProduto">Novidades</span>
+  <span class="nomeProduto">Novidades</span>
 
-    <!--inicio do cards de produtos-->
+  <!--inicio do cards de produtos-->
 
-    <div class="carrossel1">
-      <div class="protutos-carrossel1" [ngStyle]="{ 'left': left + 'px' , 'width': width + 'px' }">
-        <div class="card1" id="card1" *ngFor="let card1 of cards">
+  <div class="carrossel1">
+    <div class="protutos-carrossel1" [ngStyle]="{ 'left': left + 'px' , 'width': width + 'px' }">
+      <div class="card1" id="card1" *ngFor="let card1 of cards">
+        <a [routerLink]="['/product', this.card1.id_produto]">
           <span class="produto-img"><img [attr.src]="'http://localhost:3000/' + card1.produto_imagem" alt="" /></span>
           <span class="produto-id">id: {{ card1.id_produto }}</span>
           <span class="produto-descricao">{{ card1.descricao }}</span>
           <span class="produto-preco">{{ card1.preco }}</span>
-        </div>
-      </div>
-    </div>
-    <button class="manual-bt1" id="bt-1">
-      <img src="assets/img/esquerda.png" id="img" />
-    </button>
-    <button class="manual-bt2" id="bt-4">
-      <img src="assets/img/direita.png" id="img" />
-    </button>
-
-    <!--fim do cards-->
-
-    <span class="QuantprodutosLoja">
-      {{ getQuantidade() + " PRODUTOS ENCONTRADOS" }}
-      <span class="porPagina">Por Pagina: </span>
-      <select name="itensPagina" id="itensPagina">
-        <option value="p1" selected>12</option>
-        <option value="p2">24</option>
-        <option value="p3">36</option>
-        <option value="p4">48</option>
-      </select>
-    </span>
-
-    <!--inicio da div todosProdutos-->
-    <div class="todosProdutos" id="single">
-      <div class="produto-single" *ngFor="let produto of produtos">
-        <a [routerLink]="['/product', this.produto.id_produto]">
-          <div class="produto-img">
-            <img class="img" [attr.src]="'http://localhost:3000/' + produto.produto_imagem" alt="img" />
-          </div>
-          <span class="divisao"></span>
-          <span class="produto-id" name="id">id: {{ produto.id_produto }}</span>
-          <div class="produto-descricao">{{ produto.descricao }}</div>
-          <div class="produto-preco">{{ produto.preco | currency : "BRL" }}</div>
-          <span class="produto-quantidade">Estoque: {{ produto.quantidade }}</span>
         </a>
-        <button class="produto-adicionar" (click)="adicionar($event)">{{produto.id_produto-1}}</button>
-        <button class="produto-remover" (click)="remover($event)">{{produto.id_produto-1}}</button>
       </div>
     </div>
-    <!--fim da div todosProdutos-->
+  </div>
+  <button class="manual-bt1" id="bt-1">
+    <img src="assets/img/esquerda.png" id="img" />
+  </button>
+  <button class="manual-bt2" id="bt-4">
+    <img src="assets/img/direita.png" id="img" />
+  </button>
 
-    <!--paginação de produtos-->
-    <section id="paginacao">
-      <div class="pagination">
-        <button class="inicio" id="button">&#171;</button>
-        <button class="anterior" id="button">&lt;</button>
-        <div class="numeros" id="button2"></div>
-        <button class="proximo" id="button">&gt;</button>
-        <button class="final" id="button">&#187;</button>
-      </div>
-    </section>
-    <!--paginação de produtos-->
-  </main>
+  <!--fim do cards-->
 
+  <span class="QuantprodutosLoja">
+    {{ getQuantidade() + " PRODUTOS ENCONTRADOS" }}
+    <span class="porPagina">Por Pagina: </span>
+    <select name="itensPagina" id="itensPagina">
+      <option value="p1" selected>12</option>
+      <option value="p2">24</option>
+      <option value="p3">36</option>
+      <option value="p4">48</option>
+    </select>
+  </span>
+
+  <!--inicio da div todosProdutos-->
+  <div class="todosProdutos" id="single">
+    <div class="produto-single" *ngFor="let produto of produtos">
+      <a [routerLink]="['/product', this.produto.id_produto]">
+        <div class="produto-img">
+          <img class="img" [attr.src]="'http://localhost:3000/' + produto.produto_imagem" alt="img" />
+        </div>
+        <span class="divisao"></span>
+        <span class="produto-id" name="id">id: {{ produto.id_produto }}</span>
+        <div class="produto-descricao">{{ produto.descricao }}</div>
+        <div class="produto-preco">{{ produto.preco | currency : "BRL" }}</div>
+        <span class="produto-quantidade">Estoque: {{ produto.quantidade }}</span>
+      </a>
+      <button class="produto-adicionar" (click)="adicionar($event)">{{produto.id_produto-1}}</button>
+      <button class="produto-remover" (click)="remover($event)">{{produto.id_produto-1}}</button>
+    </div>
+  </div>
+  <!--fim da div todosProdutos-->
+
+  <!--paginação de produtos-->
+  <section id="paginacao">
+    <div class="pagination">
+      <button class="inicio" id="button">&#171;</button>
+      <button class="anterior" id="button">&lt;</button>
+      <div class="numeros" id="button2"></div>
+      <button class="proximo" id="button">&gt;</button>
+      <button class="final" id="button">&#187;</button>
+    </div>
+  </section>
+  <!--paginação de produtos-->
+</main>

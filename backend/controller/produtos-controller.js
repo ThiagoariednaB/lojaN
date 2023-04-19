@@ -59,6 +59,7 @@ exports.getProdutosId = (req, res, next) => {
               un: prod.un,
               preco: prod.preco,
               produto_imagem: prod.produto_imagem,
+              categoria: prod.categoria,
               quantidade: prod.quantidade,
               descricaoProduto: prod.descricaoProduto,
               request: {

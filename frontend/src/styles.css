@@ -4,25 +4,25 @@
     padding: 0%;
     overflow-x: hidden;
   }
-  
+
   html, body {
     height: 100%;
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
   }
-  
+
   button {
     cursor: pointer;
   }
-  
+
   body::-webkit-scrollbar {
     width: 0px;
   }
-  
+
   .logo{
     cursor: pointer;
   }
-  
+
   #butto {
     position: relative;
     display: flex;
@@ -49,24 +49,30 @@
     transition: 0.7s;
     color: white;
   }
-  
+
   #butto:active {
     transition: 0.3s;
     transform: scale(0.8);
   }
-  
+
   #butto::before
-  
+
   .list {
     display: block;
     align-items: center;
     justify-content: center;
     margin-top: 8px;
   }
-  
+
   #paginacao .pagination {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 70px;
+  }
+
+  a {
+    text-decoration: none;
+    color: aliceblue;
+    white-space: nowrap
   }

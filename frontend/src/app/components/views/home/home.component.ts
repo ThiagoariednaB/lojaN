@@ -1,5 +1,5 @@
 import { categorias, produtos } from '../../model/model.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as _ from 'lodash';
 import { ProductService } from '../../service/product.service';
 
@@ -55,11 +55,11 @@ export class HomeComponent implements OnInit {
       '\nquantidade: ' + this.produto[id].quantidade-- +
       '\npreço: ' + this.produto[id].preco +
       '\nimagem: ' + this.produto[id].produto_imagem)
-      //console.log(this.produto)
+    //console.log(this.produto)
   }
 
   funcao = () => {
-    /*-----------------------------------------------------------------------ESTADOS INICIAL DAS PAGINAS AO SEREM CRIADAS------------------------------------------------------*/
+    /*-------------------------------------------------ESTADOS INICIAL DAS PAGINAS AO SEREM CRIADAS------------------------------------------------------*/
     const state: any = {
       pagina: 1,
       itensPerPage: 12,
@@ -72,12 +72,12 @@ export class HomeComponent implements OnInit {
       totalDePaginasCarrossel: Math.ceil(16 / 4),
     };
 
-    /*-----------------------------------------------------------------------FAZ UM GET NO BANCO DE DADOS----------------------------------------------------------------------*/
+    /*--------------------------------------------------FAZ UM GET NO BANCO DE DADOS----------------------------------------------------------------------*/
     const get: any = (): ((data: produtos) => any) => {
       this.productService.getProducts().subscribe((data: produtos) => {
         this.produtos = data['response'].produtos.slice(listProducts.start, listProducts.end);
         this.produto = data['response'].produtos
-        this.produtoid= data['response'].produtos
+        //this.produtoid = data['response'].produtos
         this.cards = data['response'].produtos.slice(listProducts.startCarrossel1, listProducts.endCarrossel1);
       });
       return get;
@@ -92,14 +92,14 @@ export class HomeComponent implements OnInit {
 
     getCategory();
 
-    /*-----------------------------------------------------------------------CAPTURA OS ELEMENTOS DA DOM-----------------------------------------------------------------------*/
+    /*--------------------------------------------------CAPTURA OS ELEMENTOS DA DOM-----------------------------------------------------------------------*/
     const html: any = {
       get(element: any) {
         return document.querySelector(element);
       }
     };
 
-    /*-----------------------------------------------------------------------CARREGA OS ELEMENTOS NA DOM-----------------------------------------------------------------------*/
+    /*---------------------------------------------------CARREGA OS ELEMENTOS NA DOM-----------------------------------------------------------------------*/
     const baseBd: any = {
       create(data: produtos) {
         const div = document.createElement('div');
@@ -111,17 +111,18 @@ export class HomeComponent implements OnInit {
         html.get('.produto-id').innerHTML = get();
         html.get('.produto-descricao').innerHTML = get();
         html.get('.produto-quantidade').innerHTML = get();
+        html.get('.produto-categoria').innerHTML = get();
         html.get('.produto-preco').innerHTML = get();
         html.get('.produto-img').innerHTML = get();
       },
     };
 
-    /*-----------------------------------------------------------------------FAZ UMA BUSCA NOS PRODUTOS CARREGADOS NA PAGINAÇÃO EM TODAS AS ABAS-------------------------------*/
+    /*---------------------------------------------------FAZ UMA BUSCA NOS PRODUTOS CARREGADOS NA PAGINAÇÃO EM TODAS AS ABAS-------------------------------*/
     const busca: any = (e: Event): void => {
       const target = e.target as HTMLInputElement;
       const busca = target.value;
       this.produtos = this.produto.filter((produto) => {
-        return produto.descricao.toLowerCase().includes(busca) || produto.descricao.toUpperCase().includes(busca);
+        return produto.descricao.toLowerCase().includes(busca) || produto.descricao.toUpperCase().includes(busca) || produto.categoria.toLocaleUpperCase().includes(busca);
       });
       if (busca == '') {
         get();
@@ -155,7 +156,6 @@ export class HomeComponent implements OnInit {
           paginasControl.nextPageCar();
           baseBd.up();
         });
-
         html.get('#itensPagina').addEventListener('change', () => {
           listProducts.whenList();
           baseBd.up();
@@ -167,11 +167,9 @@ export class HomeComponent implements OnInit {
       },
       listEventCategoria() {
         html.get('.atalhos').addEventListener('click', ($event: any) => {
-          const target = $event.target as categorias
-          const buscaCat = target.textContent
-        /*this.categoria = this.categoria.filter((categoria: categorias) => {
-            return categoria.categoria.toUpperCase().includes(buscaCat);
-          });*/
+          const target = $event.target as categorias;
+          const buscaCat = target.textContent;
+          busca
 
 
 
@@ -358,8 +356,6 @@ export class HomeComponent implements OnInit {
           maxRight = state.totalDePaginas
           if (maxLeft < 1) maxLeft = 1
         }
-
-
         return { maxLeft, maxRight }
       }
     }

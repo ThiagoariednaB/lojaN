@@ -5,21 +5,22 @@ import { HomeComponent } from './components/views/home/home.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { ProductComponent } from './components/views/product/product.component';
 import { ShopComponent } from './components/views/shop/shop.component'
+import { CategoryComponent } from './components/views/category/category.component';
 
 const routes: Routes = [
   {
-    path: '', redirectTo: 'home', pathMatch: 'full'
-  },{
+    path: '', redirectTo: 'home', pathMatch: 'full',
+  }, {
     path: '', component: LayoutComponent,
     children: [
       {
         path: 'home', component: HomeComponent
       },
       {
-        path: 'product/:id_produto', component: ProductComponent
+        path: 'category', component: CategoryComponent
       },
       {
-        path: 'product', component: ProductComponent
+        path: 'product/:id_produto', component: ProductComponent
       },
       {
         path: 'shop', component: ShopComponent

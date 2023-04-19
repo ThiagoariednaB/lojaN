@@ -16,7 +16,9 @@
     <span class="categorias">CATEGORIAS</span>
 
     <li class="li" *ngFor="let categoria of categorias">
-      <ul class="ul1">{{ categoria.categoria }}</ul>
+      <a [routerLink]="['/category', 1]">
+        <ul class="ul1">{{ categoria.categoria }}</ul>
+      </a>
     </li>
 
   </div>

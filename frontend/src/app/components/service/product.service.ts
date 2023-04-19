@@ -15,12 +15,12 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  public getCategory(): Observable<categorias> {
-    return this.http.get<categorias>(`${this.SERVER_URL}/categorias`)
-  }
-
   public getProducts(): Observable<produtos> {
     return this.http.get<produtos>(`${this.SERVER_URL}/produtos`)
+  }
+
+  public getCategory(): Observable<categorias> {
+    return this.http.get<categorias>(`${this.SERVER_URL}/categorias`)
   }
 
   public getProductsid(id: number): Observable<produtos> {

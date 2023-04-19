@@ -12,6 +12,7 @@ import { HomeComponent } from './components/views/home/home.component'
 import { LoginComponent } from './components/views/login/login.component'
 import { ProductComponent } from './components/views/product/product.component'
 import { ShopComponent } from './components/views/shop/shop.component';
+import { CategoryComponent } from './components/views/category/category.component';
 
 
 
@@ -28,6 +29,7 @@ import { ShopComponent } from './components/views/shop/shop.component';
     LoginComponent,
     ShopComponent,
     ProductComponent,
+    CategoryComponent,
   ],
   imports: [
     BrowserModule,

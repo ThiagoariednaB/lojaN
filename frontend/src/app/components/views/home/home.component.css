@@ -12,6 +12,7 @@ main {
 
 main::-webkit-scrollbar{
   display: none;
+
 }
 
 .slider {
@@ -102,7 +103,7 @@ main::-webkit-scrollbar{
 
 .slide.first {
   height: 300px;
-  touch-action: pan-y;
+  touch-action: pan-x;
 }
 
 .navauto div {

@@ -11,38 +11,32 @@ import { ProductService } from '../../service/product.service';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  produtosid: produtos[] = []
-  id: number = 0
-  insc: Subscription = new Subscription;
+  produtosId: produtos[] = []
+  id: number = 1
+  ids: any
+  inscricaoEscutador: Subscription = new Subscription;
 
   constructor(private productService: ProductService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.carregaInnerHTML()
-
+    this.carregaDOM()
   }
 
   ngOnDestroy() {
-    this.insc.unsubscribe()
-    this.carregaInnerHTML()
+    this.inscricaoEscutador.unsubscribe()
   }
 
-  carregaInnerHTML() {
+  carregaDOM() {
+    this.inscricaoEscutador = this.route.params.subscribe((produtos: any) => {
+      this.id = produtos['id_produto']
 
-    this.insc = this.route.params.subscribe((params: any) => {
-      this.id = params['id_produto']
+      const getId: any = (): ((data: produtos) => any) => {
+        this.productService.getProductsid(this.id).subscribe((data: produtos) => {
+          this.produtosId = data['produtos']
+        });
+        return getId
+      };
+      getId()
     })
-
-    const getId: any = () => {
-      this.productService.getProductsid(this.id).subscribe((data: produtos) => {
-       this.produtosid = data['produtos']
-      });
-      return getId
-    };
-    getId()
-    //window.location.replace(getId(produtos) || 'http://localhost:4200/product/6')
-    console.log(this.id)
   }
-
-
 }

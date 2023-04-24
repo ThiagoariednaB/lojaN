@@ -2,6 +2,7 @@ import { categorias, produtos } from '../../model/model.component';
 import { Component, OnInit, Input } from '@angular/core';
 import * as _ from 'lodash';
 import { ProductService } from '../../service/product.service';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -23,7 +24,7 @@ export class HomeComponent implements OnInit {
   totalProdutos: number = 62;
   categoria: categorias[] = [];
 
-  constructor(public productService: ProductService) { }
+  constructor(public productService: ProductService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.getQuantidade();
@@ -77,7 +78,6 @@ export class HomeComponent implements OnInit {
       this.productService.getProducts().subscribe((data: produtos) => {
         this.produtos = data['response'].produtos.slice(listProducts.start, listProducts.end);
         this.produto = data['response'].produtos
-        //this.produtoid = data['response'].produtos
         this.cards = data['response'].produtos.slice(listProducts.startCarrossel1, listProducts.endCarrossel1);
       });
       return get;
@@ -111,7 +111,6 @@ export class HomeComponent implements OnInit {
         html.get('.produto-id').innerHTML = get();
         html.get('.produto-descricao').innerHTML = get();
         html.get('.produto-quantidade').innerHTML = get();
-        html.get('.produto-categoria').innerHTML = get();
         html.get('.produto-preco').innerHTML = get();
         html.get('.produto-img').innerHTML = get();
       },
@@ -170,11 +169,14 @@ export class HomeComponent implements OnInit {
           const target = $event.target as categorias;
           const buscaCat = target.textContent;
           busca
-
-
-
           console.log('CATEGORIAS: ' + buscaCat)
         });
+      },
+      getId() {
+        html.get('.todosProdutos').addEventListener('click', () => {
+
+        })
+
       }
     };
 
@@ -381,6 +383,7 @@ export class HomeComponent implements OnInit {
       events.listEventPagination();
       events.listEventBusca();
       events.listEventCategoria();
+      events.getId();
       get();
     };
     init();

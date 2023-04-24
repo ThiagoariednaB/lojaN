@@ -1,6 +1,6 @@
 <main>
   <div class="produto-escolhido" id="single">
-    <div class="produto-single" *ngFor="let produto of produtosid">
+    <div class="produto-single" *ngFor="let produto of produtosId">
       <img class="imgP" [attr.src]="'http://localhost:3000/' + produto.produto_imagem" alt="img" />
       <span class="produto-id">id: {{ this.produto.id_produto }}</span>
       <div class="produto-descricao">{{ this.produto.descricao }}</div>

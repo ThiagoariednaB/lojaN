@@ -66,6 +66,13 @@ main{
     color: rgb(92, 92, 92);
   }
 
+  .produto-id{
+    position: absolute;
+    top: 420px;
+    color: #000;
+    z-index: 10;
+  }
+
   .produto-adicionar {
     position: absolute;
     background-color: #008ddf;

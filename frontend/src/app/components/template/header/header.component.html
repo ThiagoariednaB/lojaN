@@ -1,39 +1,37 @@
 <header>
-
-  <input type="checkbox" id="ativar" />
-  <label for="ativar">
-    <div class="menu"></div>
-  </label>
+  <span class="menuAtivo" [ngStyle]="{ 'z-index': this.zindexMenuAtivo }"></span>
+  <span class="menuInativo" [ngStyle]="{ 'z-index': this.zindexMenuInativo }"></span>
 
   <div class="menu2">
-    <div class="line1"></div>
-    <div class="line2"></div>
-    <div class="line3"></div>
+    <div class="line1" [ngStyle]="{ 'top': this.top1 + 'px' , 'transition': transition + 's' , 'transform': transform1 , 'width': width1 + 'px'}"></div>
+    <div class="line2" [ngStyle]="{ 'display': this.display , 'transition': transition + 's' }"></div>
+    <div class="line3" [ngStyle]="{ 'top': this.top3 + 'px' , 'transition': transition + 's' , 'transform': transform3 , 'width': width3 + 'px'}">
+    </div>
   </div>
 
-
-  <div class="atalhos">
+  <div class="atalhos" [ngStyle]="{ 'width': this.width4 + 'px' }">
     <span class="categorias">CATEGORIAS</span>
+    <ul class="li" *ngFor="let categoria of categorias">
 
-    <li class="li" *ngFor="let categoria of categorias">
-      <a [routerLink]="['/category', 1]">
-        <ul class="ul1">{{ categoria.categoria }}</ul>
-      </a>
-    </li>
+        <li class="ul1" [routerLink]="['/categoria']" routerLinkActive="router-link-active" >{{ categoria.categoria }}</li>
 
+    </ul>
   </div>
+
+  <span class="atalhosFundo" [ngStyle]="{ 'width': this.width5 + '%' , 'z-index': this.zindex , 'background-color': this.fundo , 'opacity': this.opacity }"></span>
+
   <a [routerLink]="['/home']">
     <div class="logo">
       <img src="assets/img/LogoFundo.png" alt="Ello Cell" id="LogoFundo" />
       <img src="assets/img/logoRaio.png" alt="Raio" id="Raio" />
     </div>
   </a>
-  <input type="checkbox" id="ativaPesquisa" />
-  <label for="ativaPesquisa">
-    <span class="material-symbols-outlined" id="lupa">search</span>
-  </label>
 
-  <input type="text" class="pesquisa" id="busca" placeholder="Digite o nome do produto">
+  <span class="material-symbols-outlined" id="lupas" [ngStyle]="{'z-index': zindexMenuAtivo }"></span>
+  <span class="material-symbols-outlined" id="lupa" [ngStyle]="{'z-index': zindexMenuInativo  , 'color': this.color }">search</span>
+
+  <input type="text" class="pesquisa" id="busca" placeholder="Digite o nome do produto"
+    [ngStyle]="{ 'width': this.width6 + '%' , 'background-color': backgroundcolor , 'transition': transition + 's' , 'border': border }">
 
   <a class="login" [routerLink]="['/login']">
     <span class="material-symbols-outlined" id="login">person</span>
@@ -44,8 +42,6 @@
 
   <div class="compra">
     <div id="itens">Meu Carrinho: </div>
-    <div class="produtos">
-
-    </div>
+    <div class="produtos"></div>
   </div>
 </header>

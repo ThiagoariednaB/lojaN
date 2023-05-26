@@ -13,6 +13,7 @@ import { LoginComponent } from './components/views/login/login.component'
 import { ProductComponent } from './components/views/product/product.component'
 import { ShopComponent } from './components/views/shop/shop.component';
 import { CategoryComponent } from './components/views/category/category.component';
+import { ProdutosComponent } from './components/views/produtos/produtos.component'
 
 
 
@@ -30,6 +31,7 @@ import { CategoryComponent } from './components/views/category/category.componen
     ShopComponent,
     ProductComponent,
     CategoryComponent,
+    ProdutosComponent,
   ],
   imports: [
     BrowserModule,

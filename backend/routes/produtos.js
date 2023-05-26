@@ -24,7 +24,7 @@ const ProdutosController = require('../controller/produtos-controller')
 const upload = multer({ storage: storage, limits: { fileSize: 1024 * 1024 * 5 }})
 
 
-//RETORNA TODOS OS PRODUTOS
+//RETORNA OS PRODUTOS PAGINADOS
 router.get('/', ProdutosController.getProdutos)
 
 //RETORNA UM PRODUTO

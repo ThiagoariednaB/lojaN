@@ -6,6 +6,7 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { ProductComponent } from './components/views/product/product.component';
 import { ShopComponent } from './components/views/shop/shop.component'
 import { CategoryComponent } from './components/views/category/category.component';
+import { ProdutosComponent } from './components/views/produtos/produtos.component';
 
 const routes: Routes = [
   {
@@ -17,22 +18,26 @@ const routes: Routes = [
         path: 'home', component: HomeComponent
       },
       {
-        path: 'category', component: CategoryComponent
+        path: 'produtos/:id_produto', component: ProdutosComponent
       },
       {
-        path: 'product/:id_produto', component: ProductComponent
+        path: 'categoria', component: CategoryComponent
       },
       {
         path: 'shop', component: ShopComponent
       },
       {
         path: 'login', component: LoginComponent
+      },
+      {
+        path: '**', component: HomeComponent
       }
     ]
   }
 ];
 
 @NgModule({
+  declarations: [],
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })

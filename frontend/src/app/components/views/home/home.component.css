@@ -6,311 +6,18 @@ main {
   display: block;
   top: 7vh;
   width: 100vw;
-  height: 300vh;
-  margin-bottom: 50px;
+  height: 2300px;
+  margin-bottom: 10px;
 }
 
 main::-webkit-scrollbar{
   display: none;
-
-}
-
-.slider {
-  background-color: rgb(255, 255, 255);
-  position: relative;
-  width: 100vw;
-  height: 300px;
-}
-
-.sliders {
-  display: flex;
-  width: 400%;
-  height: 300px;
-}
-
-#radio1 {
-  display: none;
-}
-
-#radio2 {
-  display: none;
-}
-
-#radio3 {
-  display: none;
-}
-
-#radio4 {
-  display: none;
-}
-
-.slide {
-  width: 25%;
-  position: relative;
-  transition: 1.4s;
-}
-
-.slide img {
-  display: flex;
-  width: 100vw;
-  height: 285px;
-}
-
-.navegar {
-  position: absolute;
-  display: flex;
-  bottom: 36px;
-  left: 50%;
-  justify-content: center;
-  transform: translate(-50%);
-}
-
-.manual-btn {
-  border: 2px solid rgb(205, 206, 207);
-  padding: 10px;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: 1s;
-}
-
-.manual-btn:not(:last-child) {
-  margin-right: 40px;
-}
-
-.manual-btn:hover {
-  background-color: #fff;
-  transition: 0.4s;
-}
-
-#radio1:checked~.first {
-  margin-left: 0;
-}
-
-#radio2:checked~.first {
-  margin-left: -25%;
-  touch-action: pan-y;
-}
-
-#radio3:checked~.first {
-  margin-left: -50%;
-  touch-action: pan-y;
-}
-
-#radio4:checked~.first {
-  margin-left: -75%;
-  touch-action: pan-y;
-}
-
-.slide.first {
-  height: 300px;
-  touch-action: pan-x;
-}
-
-.navauto div {
-  border: 2px solid rgb(255, 255, 255);
-  padding: 10px;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: 1s;
-}
-
-.navauto {
-  position: absolute;
-  display: flex;
-  bottom: 36px;
-  left: 50%;
-  justify-content: center;
-  transform: translate(-50%);
-}
-
-.navauto div:not(:last-child) {
-  margin-right: 40px;
-}
-
-#radio1:checked~.navauto .auto-btn1 {
-  background-color: rgb(255, 255, 255);
-}
-
-#radio2:checked~.navauto .auto-btn2 {
-  background-color: rgb(255, 255, 255);
-}
-
-#radio3:checked~.navauto .auto-btn3 {
-  background-color: rgb(255, 255, 255);
-}
-
-#radio4:checked~.navauto .auto-btn4 {
-  background-color: rgb(255, 255, 255);
-}
-
-.nomeProduto {
-  position: relative;
-  width: 100vw;
-  height: 40px;
-  top: -5px;
-  background-color: rgb(255, 255, 255);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  box-shadow: rgb(255, 255, 255) 0px -7px 15px 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 30px;
-  font-weight: 500;
-}
-
-/*-----------------------------------------CARROSSEL DE PRODUTOS---------------------------------------------*/
-
-.manual-bt1 {
-  border: transparent;
-  position: absolute;
-  width: 100px;
-  height: 200px;
-  top: 435px;
-  padding: 10px;
-  border-radius: 20px;
-  left: 2vw;
-  cursor: pointer;
-  transition: 1s;
-  background-color: transparent;
-}
-
-.manual-bt2 {
-  border: transparent;
-  position: absolute;
-  width: 100px;
-  height: 200px;
-  top: 435px;
-  padding: 10px;
-  border-radius: 20px;
-  right: 2vw;
-  cursor: pointer;
-  transition: 1s;
-  background-color: transparent;
-}
-
-#img{
-  width: 60%;
-  height: 80%;
-}
-
-.manual-bt1:hover, .manual-bt2:hover{
-  background-color: rgb(255, 234, 0);
-  transition: 0.9s;
-}
-
-.manual-bt1:active, .manual-bt2:active{
-  transform: scale(0.7);
-}
-
-.carrossel1 {
-  position: relative;
-  display: flex;
-  left: 50%;
-  justify-content: center;
-  transform: translate(-50%);
-  width: 80vw;
-  height: 400px;
-}
-
-.protutos-carrossel1, .protutos-carrossel2, .protutos-carrossel3, .protutos-carrossel4 {
-  position: absolute;
-  display: flex;
-  box-sizing: border-box;
-  width: 80vw;
-  height: 400px;
-  transition: 1.3s;
-}
-
-.card1 {
-  /*Container com todos os dados do produto*/
-  position: relative;
-  display: flex;
-  flex: none;
-  width: 220px;
-  height: 290px;
-  margin: 50.8px;
-  margin-left: 0.4px;
-  margin-top: 50px;
-  border-radius: 10px;
-  justify-content: space-between;
-  background-color: #ffffff;
-  color: rgb(89, 88, 88);
-  cursor: pointer;
-  border: 2px solid transparent;
-  box-shadow: #343434 0px 0.3px 10px 2px;
-  transition: 1.6s;
-  z-index: 5;
-}
-
-.card1:hover{
-  border: 2px solid #0040e2;
-  box-shadow: #0040e2 0px 0.3px 10px 2px;
-}
-
-#card1 {
-  margin-left: 40px;
-}
-
-
-/*-----------------------------------------CARROSSEL DE PRODUTOS---------------------------------------------*/
-
-.QuantprodutosLoja {
-  position: relative;
-  display: flex;
-  width: 80vw;
-  height: 50px;
-  left: 10vw;
-  color: rgb(255, 255, 255);
-  top: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #272727;
-  border: transparent;
-  border-radius: 4px;
-  border-bottom: 1px solid #0090e4;
-  box-shadow: 0px 15px 20px 1px rgb(0, 0, 255);
-}
-
-#itensPagina{
-  cursor: pointer;
-  position: absolute;
-  display: flex;
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  height: 45px;
-  width: 60px;
-  right: 0px;
-  background-color: #272727;
-  color: #ffffff;
-  border: transparent;
-}
-
-.porPagina{
-  cursor: pointer;
-  position: absolute;
-  display: flex;
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  right: 80px;
-}
-
-#itensPagina:focus, input:focus {
-  box-shadow: 0 0 0 0;
-  outline: 0;
-}
-
-option{
-  background-color: #1d1d1d;
 }
 
 .todosProdutos {
   /*Inicio da grade de produtos*/
   width: 90vw;
-  height: 155vh;
+  height: 1474px;
   position: relative;
   display: flex;
   top: 100px;
@@ -322,7 +29,7 @@ option{
   overflow-y: auto;
   color: white;
   z-index: 1;
-  padding-bottom: 50px;
+  padding-bottom: 10px;
 }
 
 .todosProdutos::-webkit-scrollbar {
@@ -356,7 +63,6 @@ option{
 }
 
 .produto-img img {
-  /*Personaliza a foto dos produtos*/
   border-radius: 08px;
   position: absolute;
   max-width: 100%;
@@ -395,7 +101,6 @@ a {
 }
 
 .produto-descricao {
-  /*Personaliza a descricao dos produtos*/
   position: absolute;
   max-width: 100%;
   max-height: 50%;
@@ -405,7 +110,6 @@ a {
 }
 
 .produto-preco {
-  /*Personaliza a preco dos produtos*/
   position: absolute;
   max-width: 100%;
   max-height: 50%;
@@ -456,7 +160,7 @@ a {
   height: 30px;
   text-align: justify;
   bottom: 0px;
-  left: 5px;
+  left: 15px;
 }
 
 .search-container {
@@ -473,17 +177,213 @@ a {
   z-index: 2;
 }
 
-#paginacao {
+.nomeProduto {
+  position: relative;
+  width: 100vw;
+  height: 40px;
+  top: 5px;
+  background-color: rgb(255, 255, 255);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: rgb(255, 255, 255) 0px -7px 15px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.produto-estoque {
+  position: absolute;
+  width: 150px;
+  height: 30px;
+  text-align: justify;
+  bottom: 0px;
+  left: 15px;
+  font-size: 10px;
+}
+
+.manual-bt1 {
+  border: transparent;
+  position: absolute;
+  width: 100px;
+  height: 200px;
+  top: 130px;
+  padding: 10px;
+  border-radius: 20px;
+  left: 2vw;
+  cursor: pointer;
+  transition: 1s;
+  background-color: transparent;
+}
+
+.manual-bt2 {
+  border: transparent;
+  position: absolute;
+  width: 100px;
+  height: 200px;
+  top: 130px;
+  padding: 10px;
+  border-radius: 20px;
+  right: 2vw;
+  cursor: pointer;
+  transition: 1s;
+  background-color: transparent;
+}
+
+#img{
+  width: 60%;
+  height: 80%;
+}
+
+.manual-bt1:hover, .manual-bt2:hover{
+  background-color: rgb(255, 234, 0);
+  transition: 0.9s;
+}
+
+.manual-bt1:active, .manual-bt2:active{
+  transform: scale(0.7);
+}
+
+.carrossel1 {
   position: relative;
   display: flex;
-  bottom: -50px;
   left: 50%;
   justify-content: center;
   transform: translate(-50%);
-  width: 450px;
-  height: 75px;
+  width: 80vw;
+  height: 400px;
+}
+
+.protutos-carrossel1, .protutos-carrossel2, .protutos-carrossel3, .protutos-carrossel4 {
+  position: absolute;
+  display: flex;
+  box-sizing: border-box;
+  width: 80vw;
+  height: 400px;
+  transition: 1.8s;
+}
+
+.card1 {
+  position: relative;
+  display: flex;
+  flex: none;
+  width: 220px;
+  height: 290px;
+  margin: 50.8px;
+  margin-left: 0.4px;
+  margin-top: 50px;
+  border-radius: 10px;
+  justify-content: space-between;
+  background-color: #ffffff;
+  color: rgb(89, 88, 88);
+  cursor: pointer;
+  border: 2px solid transparent;
+  box-shadow: #343434 0px 0.3px 10px 2px;
+  transition: 1.6s;
+  z-index: 5;
+}
+
+.card1:hover{
+  border: 2px solid #0040e2;
+  box-shadow: #0040e2 0px 0.3px 10px 2px;
+}
+
+#card1 {
+  margin-left: 40px;
+}
+
+.QuantprodutosLoja {
+  position: relative;
+  display: flex;
+  width: 80vw;
+  height: 55px;
+  left: 10vw;
+  color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  background-color: #272727;
+  border: transparent;
+  border-radius: 4px;
+  border-bottom: 1px solid #0090e4;
+  box-shadow: 0px 15px 20px 1px rgb(0, 0, 255);
+}
+
+.QuantprodutosLoja2 {
+  position: absolute;
+  display: flex;
+  width: 100vw;
+  height: 55px;
+  color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  background-color: #272727;
+  border: transparent;
+  border-radius: 4px;
+  border-bottom: 1px solid #008cff;
+  box-shadow: 0px 15px 2px 10px rgb(0, 0, 255);
+  z-index: 0;
+  bottom: 41px;
+}
+
+#paginacao {
+  position: absolute;
+  display: flex;
+  left: 67%;
+  justify-content: center;
+  width: 25vw;
+  height: 55px;
   border-radius: 150px;
-  z-index: 2;
+  z-index: 3;
+}
+
+#itensPagina{
+  cursor: pointer;
+  position: absolute;
+  display: flex;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  height: 45px;
+  width: 55px;
+  right: 0px;
+  right: 35%;
+  background-color: #272727;
+  color: #ffffff;
+  border: transparent;
+  font-size: 20px;
+  top: 8px;
+}
+
+.prod{
+  display: flex;
+  position: relative;
+  left: 15px;
+  font-size: 20px;
+}
+
+.porPagina{
+  cursor: pointer;
+  position: absolute;
+  display: flex;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  height: 25px;
+  right: 44%;
+  font-size: 20px;
+  top: 18px;
+}
+
+#itensPagina:focus, input:focus {
+  box-shadow: 0 0 0 0;
+  outline: 0;
+}
+
+option{
+  background-color: #1d1d1d;
 }
 
 #button {
@@ -496,8 +396,8 @@ a {
   font-family: 'Roboto', sans-serif;
   margin-left: 5px;
   margin-right: 5px;
-  width: 100px;
-  height: 30px;
+  width: 4vw;
+  height: 35px;
   border-radius: 250px;
   color: #9f9f9f;
   border: solid wheat 0.5px;
@@ -518,8 +418,8 @@ a {
   font-family: 'Roboto', sans-serif;
   margin-left: 5px;
   margin-right: 5px;
-  width: 620px;
-  height: 45px;
+  width: 20vw;
+  height: 37px;
   border-radius: 250px;
   color: #9f9f9f;
   border: solid wheat 0.5px;
@@ -553,8 +453,5 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 70px;
+  height: 50px;
 }
-
-
-

@@ -1,12 +1,36 @@
+const { query } = require('express')
 const mysql = require('../mysql').pool
+const { error } = require('server/router')
 
-exports.getProdutos = (req, res, next) => {
+/*exports.getProdutos = (req, res, next) => {
+  mysql.execute("SELECT * FROM produtos;").then((result) => {
+    const response = {
+      quantidade: result.length,
+      produtos: result.map(prod => {
+        return {
+          id_produto: prod.id_produto,
+          descricao: prod.descricao,
+          un: prod.un,
+          preco: prod.preco,
+          produto_imagem: prod.produto_imagem,
+          categoria: prod.categoria,
+          descricaoProduto: prod.descricaoProduto,
+        }
+      })
+    }
+    return res.status(200).send(response)
+  }).catch((error) => {
+    return res.status(500).send({ error: error })
+  })
+}*/
+
+exports.getProdutosT = (req, res, next) => {
   mysql.getConnection((error, conn) => {
     if (error) {
       return res.status(500).send({ error: error })
     }
     conn.query(
-      `SELECT * FROM mydb.produtos limit ${0,12}`,
+      `SELECT count("id_produto") FROM mydb.produtos`,
       (error, resultado, field) => {
         conn.release()
 
@@ -14,6 +38,33 @@ exports.getProdutos = (req, res, next) => {
           return res.status(500).send({ error: error })
         }
         const response = {
+          produtos: resultado.map(prod => {
+            return {
+              id_produto: prod.id_produto
+            }
+          })
+        }
+        return res.status(200).send({ response })
+      }
+    )
+  })
+}
+
+exports.getProdutos = (req, res, next) => {
+  mysql.getConnection((error, conn) => {
+    if (error) {
+      return res.status(500).send({ error: error })
+    }
+    conn.query(
+      `SELECT * FROM mydb.produtos  limit ?  offset ?`, (query, [parseInt(req.query.limit), parseInt(req.query.offset)]),
+      (error, resultado, field) => {
+        conn.release()
+
+        if (error) {
+          return res.status(500).send({ error: error })
+        }
+        const response = {
+          quantidade: resultado.length,
           produtos: resultado.map(prod => {
             return {
               id_produto: prod.id_produto,
@@ -65,7 +116,7 @@ exports.getProdutosId = (req, res, next) => {
               request: {
                 tipo: 'GET',
                 descricao: 'Retorna um produto e seus detalhes',
-                url: 'http://localhost:3000/produtos'
+                url: 'http://localhost:3000/produtos/id_produto'
               }
             }
           })

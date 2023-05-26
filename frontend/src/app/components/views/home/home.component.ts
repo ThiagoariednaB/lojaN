@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import * as _ from 'lodash';
 import { ProductService } from '../../service/product.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { pairwise } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -11,20 +12,21 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   produtos: produtos[] = [];
-  cards: produtos[] = [];
-  quantidade: produtos[] = [];
-  produto: produtos[] = [];
-  car: produtos[] = [];
-  produtoid: produtos[] = []
+  produtosT: produtos[] = [];
+  page: number = 0;
+  totalProdutos: number = 62;
 
-  pagina: number = 0;
-  paginaCarrossel: number = 0;
+  cards: produtos[] = [];
   left: number = 0;
   width: number = 1260;
-  totalProdutos: number = 62;
   categoria: categorias[] = [];
+  private _pager: number = 0;
+  limite: number = 0
+  offsete: number = 0
 
-  constructor(public productService: ProductService, private route: ActivatedRoute) { }
+  constructor(public productService: ProductService, private route: ActivatedRoute) {
+
+  }
 
   ngOnInit() {
     this.getQuantidade();
@@ -32,74 +34,43 @@ export class HomeComponent implements OnInit {
   }
 
   getQuantidade = () => {
-    return this.produto.length;
-  }
-
-  adicionar = ($event: any) => {
-    const target = $event.target as produtos
-    const id = target.textContent
-    this.car = id
-    console.log('adicionado ao carrinho:' +
-      '\nid: ' + this.produto[id].id_produto +
-      '\ndescrição: ' + this.produto[id].descricao +
-      '\nquantidade: ' + this.produto[id].quantidade++ +
-      '\npreço: ' + this.produto[id].preco +
-      '\nimagem: ' + this.produto[id].produto_imagem)
-  }
-
-  remover($event: any): void {
-    const target = $event.target as produtos
-    const id = target.textContent
-    console.log('removido do carrinho:' +
-      '\nid: ' + this.produto[id].id_produto +
-      '\ndescrição: ' + this.produto[id].descricao +
-      '\nquantidade: ' + this.produto[id].quantidade-- +
-      '\npreço: ' + this.produto[id].preco +
-      '\nimagem: ' + this.produto[id].produto_imagem)
-    //console.log(this.produto)
+    return this.produtos.length;
   }
 
   funcao = () => {
-    /*-------------------------------------------------ESTADOS INICIAL DAS PAGINAS AO SEREM CRIADAS------------------------------------------------------*/
-    const state: any = {
-      pagina: 1,
-      itensPerPage: 12,
-      totalDePaginas: Math.ceil(this.totalProdutos / 12),
-      maxVisibleButtons: 3,
-      totalProdutos: this.totalProdutos,
 
-      paginaCarrossel: 1,
-      itensPerPageCarrossel: 4,
-      totalDePaginasCarrossel: Math.ceil(16 / 4),
+    const sort: any = {
+      aleatorio: [0, 4, 8, 12, 16, 20, 24, 28, 32, 36]
+    }
+
+    const state: any = {
+      maxVisibleButtons: 3,
+      limit: 15,
+      offset: 0,
+      limite: 4,
+      offsete: sort.aleatorio[Math.floor(Math.random() * sort.aleatorio.length)],
+      pageC: 1,
     };
 
-    /*--------------------------------------------------FAZ UM GET NO BANCO DE DADOS----------------------------------------------------------------------*/
     const get: any = (): ((data: produtos) => any) => {
-      this.productService.getProducts().subscribe((data: produtos) => {
-        this.produtos = data['response'].produtos.slice(listProducts.start, listProducts.end);
-        this.produto = data['response'].produtos
-        this.cards = data['response'].produtos.slice(listProducts.startCarrossel1, listProducts.endCarrossel1);
+      /*this.productService.getProdutoT().subscribe((data: produtos) => {
+        this.produtosT = data['response'].produtos;
+      });*/
+      this.productService.getProdutos(listProducts.limit, paginasControl.offset).subscribe((data: produtos) => {
+        this.produtos = data['response'].produtos;
+      });
+      this.productService.getProdutsCar(state.limite, state.offsete).subscribe((data: produtos) => {
+        this.cards = data['response'].produtos;
       });
       return get;
     };
 
-    const getCategory: any = (): ((data: categorias) => any) => {
-      this.productService.getCategory().subscribe((data: categorias) => {
-        this.categoria = data['response'].categoria
-      });
-      return getCategory;
-    };
-
-    getCategory();
-
-    /*--------------------------------------------------CAPTURA OS ELEMENTOS DA DOM-----------------------------------------------------------------------*/
     const html: any = {
       get(element: any) {
         return document.querySelector(element);
       }
     };
 
-    /*---------------------------------------------------CARREGA OS ELEMENTOS NA DOM-----------------------------------------------------------------------*/
     const baseBd: any = {
       create(data: produtos) {
         const div = document.createElement('div');
@@ -116,213 +87,195 @@ export class HomeComponent implements OnInit {
       },
     };
 
-    /*---------------------------------------------------FAZ UMA BUSCA NOS PRODUTOS CARREGADOS NA PAGINAÇÃO EM TODAS AS ABAS-------------------------------*/
     const busca: any = (e: Event): void => {
       const target = e.target as HTMLInputElement;
       const busca = target.value;
-      this.produtos = this.produto.filter((produto) => {
-        return produto.descricao.toLowerCase().includes(busca) || produto.descricao.toUpperCase().includes(busca) || produto.categoria.toLocaleUpperCase().includes(busca);
+      this.produtos = this.produtos.filter((produtos) => {
+        return produtos.descricao.toLowerCase().includes(busca) || produtos.descricao.toUpperCase().includes(busca) || produtos.categoria.toLocaleUpperCase().includes(busca);
       });
       if (busca == '') {
         get();
       }
     };
 
-    /*-----------------------------------------------------------------------1 ESCUTA E CRIA OS EVENTOS-----------------------------------------------------------------------------------*/
+    const buscar: any = ($event: { target: categorias; }): void => {
+      const target = $event.target as categorias;
+      const buscac = target.textContent;
+      console.log(buscac)
+      this.produtos = this.produtos.filter((categoria) => {
+        return categoria.categoria.toLocaleUpperCase().includes(buscac);
+      });
+      if (buscac == '') {
+        get();
+      }
+    };
+
+
     const events: any = {
       listEventPagination() {
         html.get('.inicio').addEventListener('click', () => {
+          buttonsPaginate.update()
           paginasControl.goToPage(1);
-          listProducts.initList();
-          baseBd.up();
+          listProducts.initList()
         });
         html.get('.final').addEventListener('click', () => {
-          paginasControl.goToPage(state.totalDePaginas);
+          buttonsPaginate.update()
+          paginasControl.goToPage(paginasControl.totalPager);
           listProducts.finalList();
-          baseBd.up();
         });
         html.get('.anterior').addEventListener('click', () => {
+          buttonsPaginate.update()
           paginasControl.prevPage();
         });
         html.get('.proximo').addEventListener('click', () => {
+          buttonsPaginate.update()
           paginasControl.nextPage();
-        });
-        html.get('#bt-1').addEventListener('click', () => {
-          paginasControl.prevPageCar();
-          baseBd.up();
-        });
-        html.get('#bt-4').addEventListener('click', () => {
-          paginasControl.nextPageCar();
-          baseBd.up();
         });
         html.get('#itensPagina').addEventListener('change', () => {
           listProducts.whenList();
-          baseBd.up();
+          buttonsPaginate.updade()
         });
+        html.get('#bt-1').addEventListener('click', () => {
+          paginasControl.prevPageCar();
+        });
+        html.get('#bt-4').addEventListener('click', () => {
+          paginasControl.nextPageCar();
+        });
+
       },
       listEventBusca() {
         html.get('#busca').addEventListener('keyup', _.debounce(busca, 800));
         html.get('#busca').addEventListener('keyup', get())
-      },
-      listEventCategoria() {
-        html.get('.atalhos').addEventListener('click', ($event: any) => {
-          const target = $event.target as categorias;
-          const buscaCat = target.textContent;
-          busca
-          console.log('CATEGORIAS: ' + buscaCat)
-        });
-      },
-      getId() {
-        html.get('.todosProdutos').addEventListener('click', () => {
-
-        })
-
+        html.get('.atalhos').addEventListener('click', _.debounce(buscar, 800));
+        html.get('.atalhos').addEventListener('click', get())
       }
     };
 
-    /*-----------------------------------------------------------------------APOS O EVENTO FAZ O CONTROLE DO NUMERO DA PAGINA-----------------------------------------------------------------------*/
     const paginasControl: any = {
-      _pagina: 1,
-      get pagina() {
-        return this._pagina;
-      },
-      set pagina(value) {
-        this._pagina = value;
-      },
+      totalPager: Math.ceil(this.totalProdutos / state.limit) + 1,
+      offset: (this._pager) * state.limit,
+      _pager: 1,
+      pageC: 1,
+
+      get pager() { return this._pager },
+      set pager(value) { this._pager = value },
+
       prevPage() {
-        listProducts.prevList();
-        baseBd.up();
-        state.pagina--;
-        this.pagina--;
-        buttonsPaginate.update()
-        if (state.pagina < 1) {
-          state.pagina++;
-          this.pagina++;
+        --this._pager;
+        listProducts.prevList()
+        if (this._pager < 1) {
+          ++this._pager
         }
+        buttonsPaginate.update()
       },
       nextPage() {
-        listProducts.nextList();
-        baseBd.up()
-        state.pagina++;
-        this.pagina++;
-        buttonsPaginate.update()
-        if (state.pagina > state.totalDePaginas) {
-          state.pagina--;
-          this.pagina--;
+        ++this._pager;
+        listProducts.nextList()
+        if (this._pager > (this.totalPager - 1)) {
+          --this._pager
         }
+        buttonsPaginate.update()
       },
-      goToPage(pagina: number) {
-        if (pagina < 0) {
-          state.pagina++;
-          this.pagina++;
+      goToPage(_pager: number) {
+        if (this._pager < 1) {
+          ++this._pager
         }
-
-        state.pagina = +pagina;
-        this.pagina = +pagina;
+        this._pager = +_pager
+        if (this._pager > paginasControl.totalPager - 1) {
+          --this._pager
+        }
         buttonsPaginate.update()
-
-        if (pagina > state.totalDePaginas) {
-          state.pagina--;
-          this.pagina--;
-        }
       },
       prevPageCar() {
-        if (state.paginaCarrossel > 1) {
-          state.paginaCarrossel--;
-          first();
-          listProducts.prevListCar()
-        } else if (state.paginaCarrossel < 1) {
-          state.paginaCarrossel++;
+        --this.pageC
+        listProducts.prevListCar()
+        if (this.pageC < 1) {
+          ++this.pageC
         }
+        console.log(this.pageC)
       },
       nextPageCar() {
-        if (state.paginaCarrossel < state.totalDePaginasCarrossel) {
-          state.paginaCarrossel++;
-          second();
-          listProducts.nextListCar()
-        } else if (state.paginaCarrossel > state.totalDePaginasCarrossel) {
-          state.paginaCarrossel--;
+        ++this.pageC
+        listProducts.nextListCar()
+        if (this.pageC > 4) {
+          --this.pageC
         }
       }
-    };
+    }
 
-    /*-----------------------------------------------------------------------CRIA A LISTA DE COMANDO PARA ATUALIZAR AS PAGINAS----------------------------------------------*/
     const listProducts: any = {
-      pagina: state.pagina,
-      start: this.pagina * state.itensPerPage,
-      end: state.itensPerPage,
-
-      paginaCarrossel: state.paginaCarrossel,
-      startCarrossel1: this.paginaCarrossel * state.itensPerPageCarrossel,
-      endCarrossel1: state.itensPerPageCarrossel,
+      limit: state.limit,
+      totalProdutos: this.totalProdutos,
+      first: state.first,
 
       prevList() {
-        if (state.pagina > 1) {
-          this.start = this.start - state.itensPerPage;
-          this.end = this.start + state.itensPerPage;
+        if (paginasControl._pager > 0) {
+          paginasControl.offset = (paginasControl._pager - 1) * listProducts.limit
+          baseBd.up()
         }
       },
       nextList() {
-        if (state.pagina < state.totalDePaginas) {
-          this.start = this.start + state.itensPerPage;
-          this.end = this.start + state.itensPerPage;
+        if (paginasControl._pager < (paginasControl.totalPager)) {
+          paginasControl.offset = (paginasControl._pager - 1) * listProducts.limit
+          baseBd.up()
         }
       },
       initList() {
-        if (state.pagina > 0) {
-          this.start = listProducts.start - listProducts.start;
-          this.end = this.start + state.itensPerPage;
+        if (paginasControl._pager > 0) {
+          paginasControl.offset = 0
+          baseBd.up()
         }
       },
       finalList() {
-        if (state.pagina <= state.totalDePaginas) {
-          this.start = state.itensPerPage * (state.totalDePaginas - 1);
-          this.end = this.start + state.itensPerPage;
+        if (paginasControl._pager < (paginasControl.totalPager + 1)) {
+          paginasControl.offset = (listProducts.limit * paginasControl.totalPager) - (listProducts.limit * 2)
+          baseBd.up()
         }
       },
-      goToList(pagina: number) {
-        if (pagina < 0) {
-          pagina++;
+      goToList(pager: number) {
+        if (pager < 1) {
+          pager++;
         }
-        if (pagina == 1) {
-          this.start = (pagina * 0);
-          this.end = this.start + state.itensPerPage;
-        } else if (pagina < (state.totalDePaginas) + 1) {
-          this.start = ((pagina - 1) * state.itensPerPage);
-          this.end = this.start + state.itensPerPage;
+        if (pager == 1) {
+          paginasControl.offset = (paginasControl._pager - 1) * listProducts.limit
+        } else if (pager < (paginasControl.totalPager)) {
+          paginasControl.offset = ((pager - 1) * listProducts.limit);
+          baseBd.up()
         }
-        if (pagina > state.totalDePaginas) {
-          pagina--;
-        }
-      },
-      prevListCar() {
-        if (state.paginaCarrossel > 0) {
-          this.startCarrossel1 = 0;
-          this.endCarrossel1 = this.endCarrossel1 += state.itensPerPageCarrossel;
-        }
-      },
-      nextListCar() {
-        if (state.paginaCarrossel < (state.totalDePaginasCarrossel) + 1) {
-          this.startCarrossel1 = 0;
-          this.endCarrossel1 = state.itensPerPageCarrossel += state.itensPerPageCarrossel;
+        if (pager > paginasControl.totalPager) {
+          pager--;
         }
       },
       whenList() {
         const select: any = document.querySelector('#itensPagina');
         const optionValue = select.options[select.selectedIndex];
-        state.itensPerPage = optionValue.text;
-        this.start = 0;
-        this.end = this.start + state.itensPerPage;
-        state.totalDePaginas = Math.ceil(state.totalProdutos / state.itensPerPage)
-        baseBd.up()
+        listProducts.limit = optionValue.text;
+        paginasControl.totalPager = Math.ceil(listProducts.totalProdutos / listProducts.limit) + 1
         buttonsPaginate.update();
-        return state.totalDePaginas
+        baseBd.up()
+        return paginasControl.totalPager
+      },
+      prevListCar() {
+        if (paginasControl.pageC > 0) {
+          first()
+          setTimeout(function () {
+            state.limite -= 4
+            baseBd.up()
+          }, 3300)
+        }
+      },
+      nextListCar() {
+        if (paginasControl.pageC < 5) {
+          setTimeout(function () {
+            second()
+          }, 200)
+          state.limite += 4
+          baseBd.up()
+        }
       }
     };
 
-    /*-----------------------------------------------------------------------CRIA OS BOTOES DE NAVEGAÇÃO NAS PAGINAS----------------------------------------------*/
     const buttonsPaginate: any = {
-
       element: html.get('.pagination .numeros'),
       create(number: string) {
         const button = document.createElement('button')
@@ -347,23 +300,21 @@ export class HomeComponent implements OnInit {
       },
       calculateMaxVisible() {
         const { maxVisibleButtons } = state;
-        let maxLeft = (paginasControl.pagina - Math.floor(maxVisibleButtons / 2))
-        let maxRight = (paginasControl.pagina + Math.floor(maxVisibleButtons / 2))
+        if (paginasControl._pager > paginasControl.totalPager) { }
+        let maxLeft = (paginasControl._pager - Math.floor(maxVisibleButtons / 2))
+        let maxRight = (paginasControl._pager + Math.floor(maxVisibleButtons / 2))
         if (maxLeft < 1) {
           maxLeft = 1,
             maxRight = maxVisibleButtons
         }
-        if (maxRight >= state.totalDePaginas) {
-          maxLeft = state.totalDePaginas - (maxVisibleButtons - 1)
-          maxRight = state.totalDePaginas
+        if (maxRight > paginasControl.totalPager - 1) {
+          maxLeft = paginasControl.totalPager - (maxVisibleButtons - 1)
+          maxRight = paginasControl.totalPager - 1
           if (maxLeft < 1) maxLeft = 1
         }
         return { maxLeft, maxRight }
       }
     }
-
-
-    /*-----------------------------------------------------------------------FAZ O INCREMENTO DE DECREMENTO NOS SLIDES DO CARROSSEL--------------------------------------------*/
 
     const first = () => {
       this.left += 1260;
@@ -375,18 +326,14 @@ export class HomeComponent implements OnInit {
       this.width += 1260;
     };
 
-
-
-    /*-----------------------------------------------------------------------INICIA OS EVENTOS E OS GETs-----------------------------------------------------------------------*/
     const init = () => {
       buttonsPaginate.update();
       events.listEventPagination();
       events.listEventBusca();
-      events.listEventCategoria();
-      events.getId();
       get();
     };
     init();
   }
-
 }
+
+

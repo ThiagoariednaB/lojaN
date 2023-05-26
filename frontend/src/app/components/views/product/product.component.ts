@@ -16,7 +16,7 @@ export class ProductComponent implements OnInit {
   ids: any
   inscricaoEscutador: Subscription = new Subscription;
 
-  constructor(private productService: ProductService, private route: ActivatedRoute) { }
+  constructor(private productService: ProductService, private route: ActivatedRoute) {  }
 
   ngOnInit() {
     this.carregaDOM()
@@ -29,7 +29,7 @@ export class ProductComponent implements OnInit {
   carregaDOM() {
     this.inscricaoEscutador = this.route.params.subscribe((produtos: any) => {
       this.id = produtos['id_produto']
-
+    })
       const getId: any = (): ((data: produtos) => any) => {
         this.productService.getProductsid(this.id).subscribe((data: produtos) => {
           this.produtosId = data['produtos']
@@ -37,6 +37,6 @@ export class ProductComponent implements OnInit {
         return getId
       };
       getId()
-    })
+
   }
 }

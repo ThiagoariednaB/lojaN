@@ -1,0 +1,24 @@
+<main>
+  <span class="QuantprodutosLoja">
+    <span class="prod">{{ getQuantidade() + " Produtos" }}</span>
+  </span>
+
+  <!--inicio da div todosProdutos-->
+  <div class="todosProdutos" id="single">
+    <div class="produto-single" *ngFor="let produto of produtos">
+        <div class="produto-img">
+          <img class="img" [attr.src]="'http://localhost:3000/' + produto.produto_imagem" alt="img" />
+        </div>
+        <span class="divisao"></span>
+        <span class="produto-id" name="id">id: {{ produto.id_produto }}</span>
+        <div class="produto-descricao">{{ produto.descricao }}</div>
+        <div class="produto-preco">{{ produto.preco | currency : "BRL" }}</div>
+        <span class="produto-quantidade">Estoque: {{ produto.quantidade }}</span>
+      <button class="produto-adicionar">{{' + '}}</button>
+      <button class="produto-remover">{{' - '}}</button>
+      <!--<button class="produto-adicionar" (click)="adicionar($event)">{{produto.id_produto-1}}</button>-->
+      <!--<button class="produto-remover" (click)="remover($event)">{{produto.id_produto-1}}</button>-->
+    </div>
+  </div>
+  <!--fim da div todosProdutos-->
+</main>

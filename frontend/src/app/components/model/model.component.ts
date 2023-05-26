@@ -10,6 +10,9 @@ export class produtos {
   public quantidade: number = 0
   public categoria:  string = ''
   public descricaoProduto: string = ''
+  public estoque: number = 0
+  static id_produto: any
+  static categorias: any
 }
 
 export class categorias {

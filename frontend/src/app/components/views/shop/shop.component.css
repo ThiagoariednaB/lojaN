@@ -1,119 +1,271 @@
-main {
-    /*Personaliza a area main*/
-    position: relative;
-    display: block;
+.app {
+position: absolute;
+top: 5vh;
+width: 80vw;
+height: 30vh;
+background-color: blue;
+}
+
+.compra {
+  position: fixed;
+  background-color: #888888;
+  width: 2vw;
+  top: 50px;
+  right: 0;
+  height: 2363px;
+  transition: 0.4s;
+  z-index: 1;
+  overflow-x: hidden;
+}
+
+.compra::-webkit-scrollbar {
+  width: 0px;
+  overflow: hidden;
+}
+
+.carrinho:hover+.compra {
+  transition: 0.4s;
+  top: 50px;
+  width: 30vw;
+  height: 2363px;
+}
+
+.compra:hover {
+  transition: 0.4s;
+  top: 50px;
+  width: 30vw;
+  height: 2363px;
+}
+
+.compra #itens {
+  display: inline-block;
+  width: 100%;
+  text-align: left;
+  padding: 50px 20px 10px 20px;
+  margin: 0px 0px 10px 10px;
+  font-size: 1.3rem;
+  border-bottom: 1px solid rgb(255, 221, 0);
+}
+
+.compra #itens p {
+  position: relative;
+  color: #000;
+  display: flex;
+  height: 65px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.compra #itens p .prod {
+  width: 100px;
+  height: 75px;
+}
+
+.compra #itens p .dadosProduto3 {
+  position: relative;
+  display: inline-flex;
+  justify-content: space-around;
+  height: 50px;
+  width: 60px;
+}
+
+.compra #itens p a {
+  position: relative;
+  display: inline-flex;
+  justify-content: space-around;
+  top: 10px;
+  height: 30px;
+  width: 30px;
+}
+
+.compra #itens p r {
+  position: relative;
+  display: inline-flex;
+  justify-content: space-around;
+  top: 10px;
+  height: 30px;
+  width: 30px;
+}
+
+.produto-single {
+  /*Container com todos os dados do produto*/
+  position: relative;
+  display: flex;
+  top: 5px;
+  width: 28vw;
+  height: 160px;
+  margin: 15px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  border-radius: 10px;
+  justify-content: space-between;
+  background-color: #ffffff;
+  overflow: hidden;
+  transition: 0.3s;
+  color: #000;
+  cursor: pointer;
+  border: 1px solid blue;
+}
+
+.produto-img img {
+border-radius: 08px;
+position: absolute;
+max-width: 100%;
+max-height: 94%;
+top: 5px;
+left: 5px;
+display: flex;
+transition: 0.8s;
+}
+
+.divisao {
+  position: absolute;
+  left: 2px;
+  top: 225px;
+  width: 100%;
+  height: 10px;
+  border-bottom: 1px solid rgb(251, 0, 0);
+}
+
+.produto-id{
+  position: absolute;
+  max-width: 100%;
+  max-height: 50%;
+  left: 170px;
+  top: 30px;
+  display: block;
+}
+
+.produto-descricao {
+  position: absolute;
+  max-width: 100%;
+  max-height: 50%;
+  left: 170px;
+  top: 50px;
+  display: block;
+}
+
+.produto-preco {
+  position: absolute;
+  max-width: 100%;
+  max-height: 50%;
+  left: 170px;
+  top: 100px;
+  font-size: 50px;
+  display: block;
+}
+a {
+  color: #2a2a2a;
+}
+
+.produto-adicionar {
+  position: absolute;
+  background-color: rgb(0, 119, 255);
+  text-align: center;
+  width: 30px;
+  height: 60px;
+  right: 10px;
+  top: 10px;
+  border-radius: 10%;
+  font-size: 25px;
+}
+
+
+
+.produto-remover {
+  position: absolute;
+  background-color: rgb(0, 119, 255);
+  text-align: center;
+  width: 30px;
+  height: 60px;
+  right: 10px;
+  top: 80px;
+  border-radius: 10%;
+  font-size: 25px;
+}
+
+.produto-quantidade {
+  position: absolute;
+  width: 150px;
+  height: 30px;
+  text-align: justify;
+  top: 80px;
+  left: 170px;
+}
+
+@media screen and (max-width: 500px) {
+
+  .logo {
+  display: none;
+  }
+
+  .carrinho:hover+.compra {
+    transition: 0.4s;
     top: 50px;
-    width: 100vw;
-    height: 1000px;
+    width: 300px;
+    height: 100vh;
+    z-index: -3;
+  }
+
+  .compra:hover {
+    transition: 0.4s;
+    top: 50px;
+    width: 20vw;
+    height: 100vh;
+    z-index: -3;
+  }
+
+  #lupa {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    top: 20px;
+    width: 30px;
+    height: 26px;
+    right: 120px;
+    cursor: pointer;
+    color: #000000;
+    text-decoration: none;
+    z-index: 2;
+  }
+
+  #lupa:hover {
+    border-collapse: 2px;
+    border-bottom: none;
+  }
+
+  .pesquisa {
+    position: absolute;
     background-color: rgb(255, 255, 255);
-  }
-  
-  .todosProdutos{
-    border: solid 0.5px;
-    position: relative;
-    width: 100vw;
-    height: 1000px;
-  }
-  
-  .divisao{
-    top: 70px;
-    position: absolute;
-    width: 80vw;
-    left: 170px;
-    border-bottom: solid 6px rgb(123, 125, 92);
-    font-size: 25px;
-    padding-bottom: 10px;
-    color: rgb(123, 125, 92);
-  }
-  
-  .subTotal{
-    position: absolute;
-    top: 70px;
-    right: 140px;
-    font-size: 25px;
+    top: 15px;
+    width: 3vw;
     height: 30px;
-    color: rgb(123, 125, 92);
+    border: none;
+    transition: 0.4s;
+    border-radius: 150px;
+    padding-left: 20px;
+    right: 120px;
   }
-  
-  .produto-single{
-    position: relative;
-    display: flex;
-    width: 80vw;
-    height: 155px;
-    left: 150px;
-    top: 150px;
-    border: solid 0.5px;
-    margin: 20px;
+
+  .pesquisa::placeholder{
+    color: rgba(255, 0, 0, 0);
   }
-  
-  .produto-img img{
-    width: 150px;
-    height: 150px;
+
+  #ativaPesquisa {
+    display: none;
   }
-  
-  .produto-descricao{
-    position: absolute;
-    left: 170px;
-    top: 50px;
-    height: 25px;
-    font-size: 20px;
-    color: rgb(123, 125, 92);
+
+  #ativaPesquisa:checked~.pesquisa {
+    width: 47vw;
+    height: 30px;
+    transition: 0.3s;
   }
-  
-  .produto-preco{
-    position: absolute;
-    top: 70px;
-    right: 10px;
-    font-size: 20px;
-    height: 25px;
-    color: rgb(123, 125, 92);
+  #ativaPesquisa:checked~::placeholder{
+    text-indent: 0%;
+    color: rgb(97, 97, 97);
   }
-  
-  .produto-adicionar {
-    position: absolute;
-    top: 70px;
-    right: 150px;
-    font-size: 20px;
-    height: 25px;
-    border: solid 0.5px;
-    width: 95px;
-    height: 25px;
-    border-radius: 5px;
-    background-color: antiquewhite;
-    color: rgb(123, 125, 92);
-    text-align: center;
-    cursor: pointer;
-  }
-  
-  .produto-adicionar:active{
-    transform: scale(0.9);
-  }
-  
-  .produto-remover{
-    position: absolute;
-    top: 70px;
-    right: 250px;
-    font-size: 20px;
-    height: 25px;
-    border: solid 0.5px;
-    width: 95px;
-    height: 25px;
-    border-radius: 5px;
-    background-color: antiquewhite;
-    color: rgb(123, 125, 92);
-    text-align: center;
-    cursor: pointer;
-  }
-  
-  .produto-remover:active{
-    transform: scale(0.9);
-  }
-  
-  .id
-  {
-    display: flex;
-    position: absolute;
-    left: 170px;
-    bottom: 15px;
-  }
-  
+
+
+
+
+}

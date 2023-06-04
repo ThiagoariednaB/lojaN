@@ -1,7 +1,7 @@
 import { ProductService } from './../../service/product.service';
 import { produtos, categorias } from './../../model/model.component';
 import { Component, OnInit, Input } from '@angular/core';
-import { add } from 'lodash';
+import { CarrinhoService } from '../../service/carrinho.service'
 
 @Component({
   selector: 'app-header',
@@ -10,7 +10,7 @@ import { add } from 'lodash';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public productService: ProductService) { }
+  constructor(public CarrinhoService: CarrinhoService, public ProductService: ProductService) { }
 
   ngOnInit(): void {
     this.funcao();
@@ -47,7 +47,7 @@ export class HeaderComponent implements OnInit {
 
   funcao = () => {
     const get: any = (): ((data: categorias) => any) => {
-      this.productService.getCategory().subscribe((data: categorias) => {
+      this.ProductService.getCategory().subscribe((data: categorias) => {
         this.categorias = data['response'].categoria
       });
       return get;
@@ -159,4 +159,7 @@ export class HeaderComponent implements OnInit {
     events.ativo()
     events.inativo()
   }
+
+
+
 }

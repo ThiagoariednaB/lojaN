@@ -1,5 +1,5 @@
 <main>
-   <span class="nomeProduto">Novidades</span>
+  <span class="nomeProduto">Novidades</span>
 
   <!--inicio do cards de produtos-->
 
@@ -10,7 +10,7 @@
           <span class="produto-img"><img [attr.src]="'http://localhost:3000/' + card1.produto_imagem" alt="" /></span>
           <span class="produto-descricao">{{ card1.descricao }}</span>
           <span class="produto-id">{{card1.id_produto}}</span>
-          <span class="produto-preco">{{ card1.preco | currency : "BRL"  }}</span>
+          <span class="produto-preco">{{ card1.preco | currency : "BRL" }}</span>
           <span class="produto-estoque">ESTOQUE: {{ card1.estoque }}</span>
         </a>
       </div>
@@ -26,10 +26,11 @@
   <!--fim do cards-->
 
   <span class="QuantprodutosLoja">
-    <span class="prod">{{ getQuantidade() + " Produtos" }}</span>
+    <span class="prod">{{ getQuantidade() }}</span>
   </span>
 
   <!--inicio da div todosProdutos-->
+
   <div class="todosProdutos" id="single">
     <div class="produto-single" *ngFor="let produto of produtos">
       <a [routerLink]="['/produtos', this.produto.id_produto]">
@@ -42,23 +43,21 @@
         <div class="produto-preco">{{ produto.preco | currency : "BRL" }}</div>
         <span class="produto-quantidade">Estoque: {{ produto.quantidade }}</span>
       </a>
-      <button class="produto-adicionar">{{' + '}}</button>
-      <button class="produto-remover">{{' - '}}</button>
-      <!--<button class="produto-adicionar" (click)="adicionar($event)">{{produto.id_produto-1}}</button>-->
-      <!--<button class="produto-remover" (click)="remover($event)">{{produto.id_produto-1}}</button>-->
+      <button class="produto-adicionar" (click)="homeAdd( produto['id_produto'] )"> + </button>
+      <button class="produto-remover" (click)="remover( produto['id_produto'] )"> - </button>
     </div>
   </div>
   <!--fim da div todosProdutos-->
 
-    <span class="QuantprodutosLoja2">
+  <span class="QuantprodutosLoja2">
 
     <span class="prod">{{ getQuantidade() + " Produtos" }}</span>
     <span class="porPagina">Por Pagina: </span>
     <select name="itensPagina" id="itensPagina">
-      <option value="p1" selected>15</option>
-      <option value="p2">30</option>
-      <option value="p3">45</option>
-      <option value="p4">60</option>
+      <option value="p1" selected>16</option>
+      <option value="p2">32</option>
+      <option value="p3">48</option>
+      <option value="p4">64</option>
     </select>
 
     <!--paginação de produtos-->
@@ -66,12 +65,11 @@
       <div class="pagination">
         <button class="inicio" id="button">&#171;</button>
         <button class="anterior" id="button">&lt;</button>
-        <div class="numeros" id="button2"></div>
+        <div class="numeros" id="button2" ></div>
         <button class="proximo" id="button">&gt;</button>
         <button class="final" id="button">&#187;</button>
       </div>
     </section>
     <!--paginação de produtos-->
   </span>
-
 </main>

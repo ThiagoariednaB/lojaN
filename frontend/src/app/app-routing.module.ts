@@ -3,8 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/views/login/login.component';
 import { HomeComponent } from './components/views/home/home.component';
 import { LayoutComponent } from './components/layout/layout.component';
-import { ProductComponent } from './components/views/product/product.component';
-import { ShopComponent } from './components/views/shop/shop.component'
 import { CategoryComponent } from './components/views/category/category.component';
 import { ProdutosComponent } from './components/views/produtos/produtos.component';
 
@@ -22,9 +20,6 @@ const routes: Routes = [
       },
       {
         path: 'categoria', component: CategoryComponent
-      },
-      {
-        path: 'shop', component: ShopComponent
       },
       {
         path: 'login', component: LoginComponent

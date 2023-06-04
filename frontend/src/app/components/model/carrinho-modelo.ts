@@ -1,4 +1,14 @@
-export class produtos {
+import { produtos } from "./model.component";
+
+export class carrinho1 {
+constructor(public produtos: produtos, public quantidade: number = 1){}
+
+value(): number {
+  return this.produtos.preco * this.quantidade
+}
+}
+
+export class carrinho2 {
   public produtos: any
   public textContent: any
   public response: any
@@ -11,16 +21,6 @@ export class produtos {
   public categoria:  string = ''
   public descricaoProduto: string = ''
   public estoque: number = 0
-  static id_produto: number
+  static id_produto: any
   static categorias: any
 }
-
-export class categorias {
-  public response: any
-  public id_categoria: number = 0
-  public categoria:  string = ''
-  textContent: any
-}
-
-
-

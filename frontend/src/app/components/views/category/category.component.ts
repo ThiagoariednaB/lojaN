@@ -3,12 +3,15 @@ import { Component, OnInit, Input } from '@angular/core';
 import * as _ from 'lodash';
 import { ProductService } from '../../service/product.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { pairwise } from 'rxjs';
+import { CarrinhoService } from '../../service/carrinho.service';
+import { ShopComponent } from '../shop/shop.component';
+import { HomeComponent } from '../home/home.component';
 
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
-  styleUrls: ['./category.component.css']
+  styleUrls: ['./category.component.css'],
+  providers: [CarrinhoService , HomeComponent]
 })
 export class CategoryComponent {
   produtos: produtos[] = [];
@@ -31,6 +34,7 @@ export class CategoryComponent {
   ngOnInit() {
     this.getQuantidade();
     this.funcao();
+
   }
 
   getQuantidade = () => {

@@ -27,6 +27,7 @@ export class ProdutosComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.route.params.subscribe(params => {
       this.id = params['id_produto']
       this.produtos

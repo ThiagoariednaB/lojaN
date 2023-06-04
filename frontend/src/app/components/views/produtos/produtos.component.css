@@ -12,6 +12,7 @@ main {
 
 main::-webkit-scrollbar{
   display: none;
+  top: 0;
 }
 
 .todosProdutos {
@@ -33,7 +34,7 @@ main::-webkit-scrollbar{
 }
 
 .todosProdutos::-webkit-scrollbar {
-  width: 0px;
+  /*width: 0px;*/
 }
 
 .produto-single {

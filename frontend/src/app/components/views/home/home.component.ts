@@ -1,32 +1,37 @@
+import { CarrinhoService } from '../../service/carrinho.service';
+import { ShopComponent } from './../shop/shop.component';
+import { ProductServiceTotal } from './../../service/productTotal.service';
 import { categorias, produtos } from '../../model/model.component';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as _ from 'lodash';
 import { ProductService } from '../../service/product.service';
-import { ActivatedRoute, RouterLink } from '@angular/router';
-import { pairwise } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
+  providers: [CarrinhoService]
 })
+
 export class HomeComponent implements OnInit {
   produtos: produtos[] = [];
-  produtosT: produtos[] = [];
+  produto: number = 1
   page: number = 0;
-  totalProdutos: number = 62;
+  totalProdutos: number = 75
+  total: produtos[] = []
 
   cards: produtos[] = [];
   left: number = 0;
   width: number = 1260;
   categoria: categorias[] = [];
-  private _pager: number = 0;
   limite: number = 0
   offsete: number = 0
+  color: string = ''
 
-  constructor(public productService: ProductService, private route: ActivatedRoute) {
-
-  }
+  constructor(public productService: ProductService, public ProductServiceTotal: ProductServiceTotal, private route: ActivatedRoute, public CarrinhoService: CarrinhoService) { }
 
   ngOnInit() {
     this.getQuantidade();
@@ -34,7 +39,7 @@ export class HomeComponent implements OnInit {
   }
 
   getQuantidade = () => {
-    return this.produtos.length;
+    return this.totalProdutos
   }
 
   funcao = () => {
@@ -45,25 +50,36 @@ export class HomeComponent implements OnInit {
 
     const state: any = {
       maxVisibleButtons: 3,
-      limit: 15,
+      _pager: 1,
+      limit: 16,
       offset: 0,
-      limite: 4,
+      limite: 16,
       offsete: sort.aleatorio[Math.floor(Math.random() * sort.aleatorio.length)],
       pageC: 1,
+      id: 1,
     };
 
     const get: any = (): ((data: produtos) => any) => {
-      /*this.productService.getProdutoT().subscribe((data: produtos) => {
-        this.produtosT = data['response'].produtos;
-      });*/
       this.productService.getProdutos(listProducts.limit, paginasControl.offset).subscribe((data: produtos) => {
         this.produtos = data['response'].produtos;
       });
+      /*this.productService.getProductsid(state.id).subscribe((data: produtos) => {
+        this.produtos = data['produtos'];
+      });*/
       this.productService.getProdutsCar(state.limite, state.offsete).subscribe((data: produtos) => {
         this.cards = data['response'].produtos;
       });
       return get;
     };
+
+    const get2: any = (): ((data: produtos) => any) => {
+      this.ProductServiceTotal.ProductServiceTotal().subscribe((data: produtos) => {
+        this.total = data['response'].produtos;
+      });
+      return get2;
+    };
+
+    get2()
 
     const html: any = {
       get(element: any) {
@@ -101,7 +117,6 @@ export class HomeComponent implements OnInit {
     const buscar: any = ($event: { target: categorias; }): void => {
       const target = $event.target as categorias;
       const buscac = target.textContent;
-      console.log(buscac)
       this.produtos = this.produtos.filter((categoria) => {
         return categoria.categoria.toLocaleUpperCase().includes(buscac);
       });
@@ -110,30 +125,23 @@ export class HomeComponent implements OnInit {
       }
     };
 
-
     const events: any = {
+      limit: this.totalProdutos,
       listEventPagination() {
-        html.get('.inicio').addEventListener('click', () => {
-          buttonsPaginate.update()
-          paginasControl.goToPage(1);
-          listProducts.initList()
-        });
-        html.get('.final').addEventListener('click', () => {
-          buttonsPaginate.update()
-          paginasControl.goToPage(paginasControl.totalPager);
-          listProducts.finalList();
-        });
         html.get('.anterior').addEventListener('click', () => {
-          buttonsPaginate.update()
           paginasControl.prevPage();
         });
         html.get('.proximo').addEventListener('click', () => {
-          buttonsPaginate.update()
           paginasControl.nextPage();
         });
+        html.get('.inicio').addEventListener('click', () => {
+          paginasControl.goToPage(1);
+        });
+        html.get('.final').addEventListener('click', () => {
+          paginasControl.goToPage(paginasControl.totalPager - 1);
+        });
         html.get('#itensPagina').addEventListener('change', () => {
-          listProducts.whenList();
-          buttonsPaginate.updade()
+          listProducts.whenList()
         });
         html.get('#bt-1').addEventListener('click', () => {
           paginasControl.prevPageCar();
@@ -141,19 +149,23 @@ export class HomeComponent implements OnInit {
         html.get('#bt-4').addEventListener('click', () => {
           paginasControl.nextPageCar();
         });
-
       },
       listEventBusca() {
+        html.get('#busca').addEventListener('keyup', () => {
+          listProducts.limit = 62
+          buttonsPaginate.update();
+        });
         html.get('#busca').addEventListener('keyup', _.debounce(busca, 800));
         html.get('#busca').addEventListener('keyup', get())
         html.get('.atalhos').addEventListener('click', _.debounce(buscar, 800));
         html.get('.atalhos').addEventListener('click', get())
+
       }
     };
 
     const paginasControl: any = {
       totalPager: Math.ceil(this.totalProdutos / state.limit) + 1,
-      offset: (this._pager) * state.limit,
+      offset: (state._pager - 1) * state.limit,
       _pager: 1,
       pageC: 1,
 
@@ -161,30 +173,25 @@ export class HomeComponent implements OnInit {
       set pager(value) { this._pager = value },
 
       prevPage() {
+        if (this._pager <= 1) {
+          ++this._pager
+        }
         --this._pager;
         listProducts.prevList()
-        if (this._pager < 1) {
-          ++this._pager
-        }
-        buttonsPaginate.update()
+        console.log(this._pager)
       },
       nextPage() {
+        if (this._pager > (this.totalPager - 2)) {
+          --this._pager
+        }
         ++this._pager;
         listProducts.nextList()
-        if (this._pager > (this.totalPager - 1)) {
-          --this._pager
-        }
-        buttonsPaginate.update()
+        console.log(this._pager)
       },
       goToPage(_pager: number) {
-        if (this._pager < 1) {
-          ++this._pager
-        }
         this._pager = +_pager
-        if (this._pager > paginasControl.totalPager - 1) {
-          --this._pager
-        }
-        buttonsPaginate.update()
+        listProducts.goToList()
+        console.log(this._pager)
       },
       prevPageCar() {
         --this.pageC
@@ -212,38 +219,25 @@ export class HomeComponent implements OnInit {
         if (paginasControl._pager > 0) {
           paginasControl.offset = (paginasControl._pager - 1) * listProducts.limit
           baseBd.up()
+          buttonsPaginate.update()
         }
       },
       nextList() {
         if (paginasControl._pager < (paginasControl.totalPager)) {
           paginasControl.offset = (paginasControl._pager - 1) * listProducts.limit
           baseBd.up()
+          buttonsPaginate.update()
         }
       },
-      initList() {
-        if (paginasControl._pager > 0) {
+      goToList(paginasControl_pager: number) {
+        if (paginasControl_pager == 1) {
           paginasControl.offset = 0
           baseBd.up()
-        }
-      },
-      finalList() {
-        if (paginasControl._pager < (paginasControl.totalPager + 1)) {
-          paginasControl.offset = (listProducts.limit * paginasControl.totalPager) - (listProducts.limit * 2)
+          buttonsPaginate.update()
+        } else if (paginasControl._pager < (paginasControl.totalPager)) {
+          paginasControl.offset = ((paginasControl._pager - 1) * listProducts.limit);
           baseBd.up()
-        }
-      },
-      goToList(pager: number) {
-        if (pager < 1) {
-          pager++;
-        }
-        if (pager == 1) {
-          paginasControl.offset = (paginasControl._pager - 1) * listProducts.limit
-        } else if (pager < (paginasControl.totalPager)) {
-          paginasControl.offset = ((pager - 1) * listProducts.limit);
-          baseBd.up()
-        }
-        if (pager > paginasControl.totalPager) {
-          pager--;
+          buttonsPaginate.update()
         }
       },
       whenList() {
@@ -251,26 +245,18 @@ export class HomeComponent implements OnInit {
         const optionValue = select.options[select.selectedIndex];
         listProducts.limit = optionValue.text;
         paginasControl.totalPager = Math.ceil(listProducts.totalProdutos / listProducts.limit) + 1
-        buttonsPaginate.update();
         baseBd.up()
+        buttonsPaginate.update();
         return paginasControl.totalPager
       },
       prevListCar() {
         if (paginasControl.pageC > 0) {
           first()
-          setTimeout(function () {
-            state.limite -= 4
-            baseBd.up()
-          }, 3300)
         }
       },
       nextListCar() {
         if (paginasControl.pageC < 5) {
-          setTimeout(function () {
-            second()
-          }, 200)
-          state.limite += 4
-          baseBd.up()
+          second()
         }
       }
     };
@@ -334,6 +320,17 @@ export class HomeComponent implements OnInit {
     };
     init();
   }
+
+  homeAdd: any = (produto: number) => {
+    this.homeAdd(produto)
+
+  }
+
+  remover: any = () => {
+
+  }
 }
+
+
 
 

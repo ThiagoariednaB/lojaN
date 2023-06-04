@@ -15,11 +15,11 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  public getProdutos(itemsPerPager:number, first:number): Observable<produtos> {
+  public getProdutos(itemsPerPager: number, first: number): Observable<produtos> {
     return this.http.get<produtos>(`${this.SERVER_URL}/produtos?limit=${itemsPerPager}&offset=${first}`)
   }
 
-  public getProdutsCar(itemsPerPager:number, first:number): Observable<produtos> {
+  public getProdutsCar(itemsPerPager: number, first: number): Observable<produtos> {
     return this.http.get<produtos>(`${this.SERVER_URL}/produtos?limit=${itemsPerPager}&offset=${first}`)
   }
 

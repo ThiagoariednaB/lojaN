@@ -13,6 +13,7 @@ export class produtos {
   public estoque: number = 0
   static id_produto: number
   static categorias: any
+  public qItensIguais: number = 0
 }
 
 export class categorias {

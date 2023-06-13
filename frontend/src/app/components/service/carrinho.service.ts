@@ -1,51 +1,58 @@
-import { ShopComponent } from './../views/shop/shop.component';
-import { EventEmitter, Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { produtos } from '../model/model.component';
-import { ProductService } from './product.service';
+import { ProductService } from '../service/product.service';
 
 @Injectable({
   providedIn: 'root'
 })
+export class CarrinhoService {
+  public product: produtos[] = [];
 
-export class CarrinhoService implements OnInit {
-  produtos: produtos[] = [];
-  produto: number = 1
+  constructor(public ProductService: ProductService) { }
 
-  constructor(public productService: ProductService ) { }
+  adicionarItem(numberId: number) {
+    this.ProductService.getProductsid(numberId).subscribe((data: produtos) => {
+      const res = ((data));
+      const values: any = Object.values(res.produtos)
+      let i = this.product.findIndex((x) => x.id_produto == values[0].id_produto);
 
-  ngOnInit(): void {
-    
+      if (i > -1) {
+        this.product[i].quantidade++;
+      } else {
+        this.product.push({ ...values[0], quantidade: 1 });
+      }
+
+    })
   }
 
-
-
-  serviceAdd: any = (produto: number) => {
-    this.productService.getProductsid(produto).subscribe(resultado => {
-      const res = ((resultado));
-      const values: any = Object.values(res.produtos);
-      this.produtos.push(values[0]);
-    });
+  removerItem(index: number) {
+    if (this.product[index].quantidade > 1) {
+      this.product[index].quantidade--
+    } else {
+      this.product.splice(index, 1)
+    }
   }
 
-  remover: any = () => {
-
+  obterItens: any = (produto: number) => {
+    if (produto == 0) {
+      this.product = []
+    } else {
+      this.ProductService.getProductsid(produto).subscribe((data: produtos) => {
+        this.product = data['produtos'];
+      })
+    }
+    return this.product;
   }
 
-  removerItem: any = (index: number) => {
-    this.produtos.splice(index, 1);
+  obterTotalItens() {
+    return this.product.reduce((total, item) => total + item.quantidade, 0);
   }
 
-  obterItens: any = () => {
-    return this.produtos;
+  obterTotal() {
+    return this.product.reduce((total, item) => total + (item.preco * item.quantidade), 0);
   }
 
-  obterTotal: any = () => {
-    return this.produtos.reduce((total, item) => total + item.preco, 0);
+  limparCarrinho() {
+    this.product = [];
   }
-
-  limparCarrinho: any = () => {
-    this.produtos = [];
-  }
-
-
 }

@@ -1,17 +1,14 @@
 import { categorias, produtos } from '../../model/model.component';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import * as _ from 'lodash';
 import { ProductService } from '../../service/product.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { CarrinhoService } from '../../service/carrinho.service';
-import { ShopComponent } from '../shop/shop.component';
 import { HomeComponent } from '../home/home.component';
 
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
-  styleUrls: ['./category.component.css'],
-  providers: [CarrinhoService , HomeComponent]
+  styleUrls: ['./category.component.css']
 })
 export class CategoryComponent {
   produtos: produtos[] = [];

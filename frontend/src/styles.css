@@ -56,11 +56,6 @@
     transform: scale(0.8);
   }
 
-  #butto::before
-
-  #butto::selection {
-    color: blueviolet;
-  }
 
   .list {
     display: block;
@@ -81,3 +76,5 @@
     color: aliceblue;
     white-space: nowrap
   }
+
+

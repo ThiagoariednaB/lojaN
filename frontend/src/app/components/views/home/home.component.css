@@ -17,6 +17,104 @@ main::-webkit-scrollbar{
   scroll-snap-stop: 0;
 }
 
+.carrossel {
+  position: relative;
+  display: flex;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.carrossel1 {
+  position: relative;
+  display: flex;
+  left: 50%;
+  justify-content: center;
+  transform: translate(-50%);
+  width: 80vw;
+  height: 400px;
+}
+
+.protutos-carrossel1 {
+  position: absolute;
+  display: flex;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  width: 400%;
+  height: 400px;
+  transition: 1.8s;
+}
+
+.manual-bt1 {
+  border: transparent;
+  position: absolute;
+  width: 100px;
+  height: 200px;
+  top: 130px;
+  padding: 10px;
+  border-radius: 20px;
+  left: 2vw;
+  cursor: pointer;
+  transition: 1s;
+  background-color: transparent;
+}
+
+.manual-bt2 {
+  border: transparent;
+  position: absolute;
+  width: 100px;
+  height: 200px;
+  top: 130px;
+  padding: 10px;
+  border-radius: 20px;
+  right: 2vw;
+  cursor: pointer;
+  transition: 1s;
+  background-color: transparent;
+}
+
+#img{
+  width: 60%;
+  height: 80%;
+}
+
+.manual-bt1:hover, .manual-bt2:hover{
+  background-color: rgb(255, 234, 0);
+  transition: 0.9s;
+}
+
+.manual-bt1:active, .manual-bt2:active{
+  transform: scale(0.7);
+}
+
+.card1 {
+  position: relative;
+  display: flex;
+  flex: none;
+  padding: 0;
+  width: 220px;
+  height: 290px;
+  margin: 50px;
+  margin-top: 50px;
+  border-radius: 10px;
+  justify-content: space-between;
+  background-color: #ffffff;
+  color: rgb(89, 88, 88);
+  cursor: pointer;
+  border: 2px solid transparent;
+  box-shadow: #343434 0px 0.3px 10px 2px;
+  transition: 1.6s;
+}
+
+.card1:hover{
+  border: 2px solid #0040e2;
+  box-shadow: #0040e2 0px 0.3px 10px 2px;
+}
+
+#card1 {
+  margin-left: 40px;
+}
+
 .todosProdutos {
   /*Inicio da grade de produtos*/
   width: 90vw;
@@ -38,7 +136,6 @@ main::-webkit-scrollbar{
 }
 
 .produto-single {
-  /*Container com todos os dados do produto*/
   position: relative;
   display: flex;
   top: 25px;
@@ -115,42 +212,26 @@ a {
   left: 10px;
   bottom: 40px;
   display: block;
+  color: red;
 }
 
-.produto-adicionar {
+#produto-adicionar {
   position: absolute;
-  background-color: rgb(0, 119, 255);
   text-align: center;
-  width: 30px;
-  height: 20px;
+  width: 65px;
+  height: 45px;
   right: 5px;
   bottom: 36px;
-  border-radius: 10%;
+  padding: 0;
+  margin: 0;
+  font-size: 30px;
+  border: none;
+  background-color: transparent;
+  border-radius: 150%;
 }
 
-.produto-remover {
-  position: absolute;
-  background-color: rgb(0, 119, 255);
-  text-align: center;
-  width: 30px;
-  height: 20px;
-  right: 5px;
-  bottom: 12px;
-  border-radius: 10%;
-}
-
-.produto-adicionar:active {
-  box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
-  width: 26px;
-  height: 20px;
-  right: 7px;
-}
-
-.produto-remover:active {
-  box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
-  width: 26px;
-  height: 20px;
-  right: 7px;
+#produto-adicionar:active {
+ font-size: 20px;
 }
 
 .produto-quantidade {
@@ -199,95 +280,6 @@ a {
   bottom: 0px;
   left: 15px;
   font-size: 10px;
-}
-
-.manual-bt1 {
-  border: transparent;
-  position: absolute;
-  width: 100px;
-  height: 200px;
-  top: 130px;
-  padding: 10px;
-  border-radius: 20px;
-  left: 2vw;
-  cursor: pointer;
-  transition: 1s;
-  background-color: transparent;
-}
-
-.manual-bt2 {
-  border: transparent;
-  position: absolute;
-  width: 100px;
-  height: 200px;
-  top: 130px;
-  padding: 10px;
-  border-radius: 20px;
-  right: 2vw;
-  cursor: pointer;
-  transition: 1s;
-  background-color: transparent;
-}
-
-#img{
-  width: 60%;
-  height: 80%;
-}
-
-.manual-bt1:hover, .manual-bt2:hover{
-  background-color: rgb(255, 234, 0);
-  transition: 0.9s;
-}
-
-.manual-bt1:active, .manual-bt2:active{
-  transform: scale(0.7);
-}
-
-.carrossel1 {
-  position: relative;
-  display: flex;
-  left: 50%;
-  justify-content: center;
-  transform: translate(-50%);
-  width: 80vw;
-  height: 400px;
-}
-
-.protutos-carrossel1, .protutos-carrossel2, .protutos-carrossel3, .protutos-carrossel4 {
-  position: absolute;
-  display: flex;
-  box-sizing: border-box;
-  width: 80vw;
-  height: 400px;
-  transition: 1.8s;
-}
-
-.card1 {
-  position: relative;
-  display: flex;
-  flex: none;
-  width: 220px;
-  height: 290px;
-  margin: 50.8px;
-  margin-left: 0.4px;
-  margin-top: 50px;
-  border-radius: 10px;
-  justify-content: space-between;
-  background-color: #ffffff;
-  color: rgb(89, 88, 88);
-  cursor: pointer;
-  border: 2px solid transparent;
-  box-shadow: #343434 0px 0.3px 10px 2px;
-  transition: 1.6s;
-}
-
-.card1:hover{
-  border: 2px solid #0040e2;
-  box-shadow: #0040e2 0px 0.3px 10px 2px;
-}
-
-#card1 {
-  margin-left: 40px;
 }
 
 .QuantprodutosLoja {
@@ -451,4 +443,17 @@ option{
   align-items: center;
   justify-content: center;
   height: 50px;
+}
+
+.fundo {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+}
+
+
+@media screen and (max-width: 700px) {
+  .carrossel1{
+    display: none;
+  }
 }

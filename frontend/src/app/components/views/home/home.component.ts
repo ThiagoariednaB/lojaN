@@ -1,5 +1,4 @@
 import { CarrinhoService } from '../../service/carrinho.service';
-import { ShopComponent } from './../shop/shop.component';
 import { ProductServiceTotal } from './../../service/productTotal.service';
 import { categorias, produtos } from '../../model/model.component';
 import { Component, OnInit } from '@angular/core';
@@ -7,17 +6,15 @@ import * as _ from 'lodash';
 import { ProductService } from '../../service/product.service';
 import { ActivatedRoute } from '@angular/router';
 
-
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
-  providers: [CarrinhoService]
+  styleUrls: ['./home.component.css']
 })
 
 export class HomeComponent implements OnInit {
   produtos: produtos[] = [];
+  product: produtos[] = []
   produto: number = 1
   page: number = 0;
   totalProdutos: number = 75
@@ -159,7 +156,6 @@ export class HomeComponent implements OnInit {
         html.get('#busca').addEventListener('keyup', get())
         html.get('.atalhos').addEventListener('click', _.debounce(buscar, 800));
         html.get('.atalhos').addEventListener('click', get())
-
       }
     };
 
@@ -321,13 +317,8 @@ export class HomeComponent implements OnInit {
     init();
   }
 
-  homeAdd: any = (produto: number) => {
-    this.homeAdd(produto)
-
-  }
-
-  remover: any = () => {
-
+  adicionarAoCarrinho: any = (numberId: number) => {
+    this.CarrinhoService.adicionarItem(numberId);
   }
 }
 

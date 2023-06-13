@@ -1,6 +1,6 @@
 import { ProductService } from './../../service/product.service';
 import { produtos, categorias } from './../../model/model.component';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CarrinhoService } from '../../service/carrinho.service'
 
 @Component({
@@ -10,10 +10,11 @@ import { CarrinhoService } from '../../service/carrinho.service'
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public CarrinhoService: CarrinhoService, public ProductService: ProductService) { }
+  constructor(private CarrinhoService: CarrinhoService, public ProductService: ProductService) { }
 
   ngOnInit(): void {
     this.funcao();
+    this.produtos = this.CarrinhoService.obterItens(this.produtos);
   }
 
   categorias: categorias[] = []
@@ -37,8 +38,6 @@ export class HeaderComponent implements OnInit {
   width5: number = 0
 
   zindex: number = 0
-  fundo: string = '#000'
-  opacity: number = 0
 
   width6: number = 0.2
   backgroundcolor: string = ''
@@ -65,22 +64,13 @@ export class HeaderComponent implements OnInit {
       ativo() {
         html.get('.menuAtivo').addEventListener('click', () => {
           ativa()
-        });
-        html.get('#lupas').addEventListener('click', () => {
-          ativa2()
-        });
+        })
       },
       inativo() {
         html.get('.menuInativo').addEventListener('click', () => {
           desativar()
         });
         html.get('.atalhosFundo').addEventListener('click', () => {
-          desativar()
-        });
-        html.get('#lupa').addEventListener('click', () => {
-          desativa2()
-        });
-        html.get('.atalhos').addEventListener('click', () => {
           desativar()
         });
       }
@@ -106,8 +96,6 @@ export class HeaderComponent implements OnInit {
       this.width5 = 100
 
       this.zindex = 3
-      this.fundo = '#000'
-      this.opacity = 0.2
     };
 
     const desativar = () => {
@@ -130,36 +118,22 @@ export class HeaderComponent implements OnInit {
       this.width5 = 0
 
       this.zindex = 0
-      this.fundo = '#000'
-      this.opacity = 0
     };
-
-    const ativa2 = () => {
-      this.zindexMenuAtivo = 4
-      this.zindexMenuInativo = 5
-      this.transition = 0.3;
-
-      this.width6 = 28
-      this.backgroundcolor = 'rgb(255, 255, 255)';
-      this.border = 'transparent';
-      this.color = '#000'
-    }
-
-    const desativa2 = () => {
-      this.zindexMenuAtivo = 5
-      this.zindexMenuInativo = 4
-
-      this.width6 = 0.2
-      this.backgroundcolor = 'transparent';
-      this.transition = 0.3;
-      this.border = '2px solid white';
-      this.color = 'white'
-    }
 
     events.ativo()
     events.inativo()
   }
 
+  obterTotalItens() {
+    return this.produtos.length
+  }
 
+  removerItem(index: number) {
+    this.CarrinhoService.removerItem(index);
+  }
+
+  obterTotal() {
+    return this.CarrinhoService.obterTotal();
+  }
 
 }

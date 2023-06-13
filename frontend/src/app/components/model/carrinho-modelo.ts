@@ -3,9 +3,6 @@ import { produtos } from "./model.component";
 export class carrinho1 {
 constructor(public produtos: produtos, public quantidade: number = 1){}
 
-value(): number {
-  return this.produtos.preco * this.quantidade
-}
 }
 
 export class carrinho2 {
@@ -21,6 +18,7 @@ export class carrinho2 {
   public categoria:  string = ''
   public descricaoProduto: string = ''
   public estoque: number = 0
+  public count: number = 0
   static id_produto: any
   static categorias: any
 }

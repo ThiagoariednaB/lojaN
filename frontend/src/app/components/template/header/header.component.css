@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Oswald&family=Yanone+Kaffeesatz:wght@500&display=swap');
-
 header {
   background: linear-gradient(rgb(29, 29, 29), 12%, rgb(49, 58, 64), rgb(29, 29, 29));
   position: fixed;
@@ -105,6 +103,7 @@ header {
 }
 
 .atalhosFundo {
+  position: absolute;
   height: 100vw;
 }
 
@@ -129,7 +128,7 @@ header {
   text-decoration: none;
 }
 
-.li:checked~.atalhos{
+.li:checked~.atalhos {
   position: relative;
   transition: 30ms;
 }
@@ -137,7 +136,7 @@ header {
 .li .ul1:hover {
   background-color: #ffbb00;
   color: black;
-  transition: 0,3s;
+  transition: 0, 3s;
   word-break: keep-all;
 }
 
@@ -200,7 +199,7 @@ header {
   }
 }
 
-.boxPesquisa{
+.boxPesquisa {
   position: relative;
   display: flex;
   width: 70%;
@@ -209,12 +208,13 @@ header {
   transform: translate(-51vw);
 }
 
-.pesquisa::-webkit-input-placeholder{
+.pesquisa::-webkit-input-placeholder {
   color: rgba(215, 215, 215, 0.392);
 }
 
 .pesquisa {
   position: relative;
+  text-align: center;
   background-color: rgba(255, 255, 255, 0);
   color: #fff;
   top: 18px;
@@ -237,9 +237,11 @@ header {
   cursor: pointer;
   text-decoration: none;
   border-radius: 20px;
+  user-select:none;
 }
 
-#busca:focus, input:focus {
+#busca:focus,
+input:focus {
   box-shadow: 0 0 0 0;
   outline: 0;
 }
@@ -255,6 +257,7 @@ header {
   cursor: pointer;
   color: #ffffff;
   text-decoration: none;
+  user-select:none;
 }
 
 .login:hover {
@@ -267,9 +270,9 @@ header {
   display: flex;
   justify-content: center;
   top: 20px;
-  width: 30px;
+  width: 50px;
   height: 26px;
-  right: 25px;
+  right: 10px;
   cursor: pointer;
   color: #ffffff;
   text-decoration: none;
@@ -279,30 +282,20 @@ header {
   border-bottom: 3px solid rgb(255, 230, 0);
 }
 
-.compra {
+.qItens {
   position: absolute;
-  background-color: #fff;
-  top: 50px;
-  width: 30vw;
-  right: 0;
-  height: 100vh;
-  transition: 0.4s;
-}
-
-.carrinho:hover+.compra {
-  transition: 0.4s;
-  top: 50px;
-  width: 30vw;
-  height: 100vh;
-  z-index: -3;
-}
-
-.compra:hover {
-  transition: 0.4s;
-  top: 50px;
-  width: 30vw;
-  height: 100vh;
-  z-index: -3;
+  background-color: red;
+  width: auto;
+  left: 0px;
+  top: 3px;
+  height: auto;
+  padding: 2px;
+  text-align: center;
+  text-justify: auto;
+  align-self: center;
+  border-radius: 150px;
+  color: rgb(255, 255, 255);
+  font-size: 13px;
 }
 
 .compra #itens {
@@ -355,112 +348,13 @@ header {
   width: 30px;
 }
 
-.produto-single {
-  position: relative;
-  display: flex;
-  top: 5px;
-  width: 28vw;
-  height: 160px;
-  margin: 15px;
-  margin-top: 2px;
-  margin-bottom: 2px;
-  border-radius: 10px;
-  justify-content: space-between;
-  background-color: #ffffff;
-  overflow: hidden;
-  transition: 0.3s;
-  color: #000;
-  cursor: pointer;
-  border: 1px solid blue;
-}
-
-.produto-img img {
-border-radius: 08px;
-position: absolute;
-max-width: 100%;
-max-height: 94%;
-top: 5px;
-left: 5px;
-display: flex;
-transition: 0.8s;
-}
-
-.divisao {
-  position: absolute;
-  left: 2px;
-  top: 225px;
-  width: 100%;
-  height: 10px;
-  border-bottom: 1px solid rgb(251, 0, 0);
-}
-
-.produto-id{
-  position: absolute;
-  max-width: 100%;
-  max-height: 50%;
-  left: 170px;
-  top: 30px;
-  display: block;
-}
-
-.produto-descricao {
-  position: absolute;
-  max-width: 100%;
-  max-height: 50%;
-  left: 170px;
-  top: 50px;
-  display: block;
-}
-
-.produto-preco {
-  position: absolute;
-  max-width: 100%;
-  max-height: 50%;
-  left: 170px;
-  top: 100px;
-  font-size: 50px;
-  display: block;
-}
-
-a {
-  color: #2a2a2a;
-}
-
-.produto-adicionar {
-  position: absolute;
-  background-color: rgb(0, 119, 255);
-  text-align: center;
-  width: 30px;
-  height: 60px;
-  right: 10px;
-  top: 10px;
-  border-radius: 10%;
-  font-size: 25px;
-}
-
-.produto-remover {
-  position: absolute;
-  background-color: rgb(201, 201, 201);
-  text-align: center;
-  width: 30px;
-  height: 60px;
-  right: 10px;
-  top: 80px;
-  border-radius: 10%;
-  font-size: 25px;
-}
-
-.produto-quantidade {
-  position: absolute;
-  width: 150px;
-  height: 30px;
-  text-align: justify;
-  top: 80px;
-  left: 170px;
+#carrinho {
+  user-select:none;
+  text-decoration: none;
 }
 
 @media screen and (max-width: 700px) {
-  .logo{
+  .logo {
     display: none;
   }
 }

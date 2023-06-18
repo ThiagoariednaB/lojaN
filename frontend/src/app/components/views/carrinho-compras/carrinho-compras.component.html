@@ -1,8 +1,6 @@
-
-  <span class="fundo" [ngStyle]="{ 'width': this.width5 + '%' }"></span>
-  <div class="compra" [ngStyle]="{'width': width + 'vw' }">
-    <div id="itens">Total: {{ obterTotal() | currency:'BRL' }}</div>
-    <div class="qItens"> Itens: {{obterTotalItens()}}</div>
+<span class="fundo" [ngStyle]="{ 'width': this.width5 + '%' }"></span>
+<div class="compra" [ngStyle]="{'width': width + 'px' }">
+  <div class="gradeProdutos">
     <div class="produto-single" *ngFor="let produto of produtos; let i = index">
       <div class="produto-img">
         <img class="img" [attr.src]="'http://localhost:3000/' + produto.produto_imagem" alt="img" />
@@ -11,8 +9,28 @@
       <div class="produto-descricao">{{ produto.descricao }}</div>
       <div class="produto-preco">{{ produto.preco | currency : "BRL":'symbol':'1.2-2' }}</div>
       <span class="produto-quantidade">Quant: {{ produto.quantidade }} </span>
-      <button class="material-symbols-outlined" id="material" (click)="removerItem(i)">delete</button>
-
+      <button class="material-symbols-outlined" id="adicionar" (click)="adicionarAoCarrinho(produto['id_produto'])">
+        add_circle </button>
+      <button class="material-symbols-outlined" id="remover" (click)="removerItem(i)">remove_circle</button>
     </div>
-
   </div>
+  <input type="text" class="cep" placeholder="Cep">
+  <span class="material-symbols-outlined" id="limpar" (click)="limparCarrinho()">delete</span>
+  <span class="rua">Rua joão stella 300</span>
+  <span class="cidade">São Carlos - SP</span>
+  <span class="fpagamento">Forma de pagamento</span>
+  <select class="formasP">
+    <option value="prazo1" selected>Dinheiro</option>
+    <option value="prazo2">Cartão de Crédito</option>
+    <option value="prazo3">Cartão de Débito</option>
+    <option value="prazo4">Pix</option>
+  </select>
+  <select class="cartao">
+    <option value="1x" selected>1x</option>
+    <option value="2x">2x</option>
+    <option value="3x">3x</option>
+    <option value="4x">4x</option>
+  </select>
+  <span class="frete">Frete:  R$ 300,00</span>
+  <div id="itens">Total: {{ obterTotal() | currency:'BRL' }}</div>
+</div>

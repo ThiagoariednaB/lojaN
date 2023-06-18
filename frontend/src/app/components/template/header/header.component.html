@@ -9,13 +9,6 @@
     <div class="line3" [ngStyle]="{ 'top': this.top3 + 'px' , 'transition': transition + 's' , 'transform': transform3 , 'width': width3 + 'px'}"></div>
   </div>
 
-  <div class="atalhos" [ngStyle]="{ 'width': this.width4 + 'px' }">
-    <span class="categorias">CATEGORIAS</span>
-    <ul class="li" *ngFor="let categoria of categorias">
-      <li class="ul1" [routerLink]="['/categoria']" routerLinkActive="router-link-active">{{ categoria.categoria }}</li>
-    </ul>
-  </div>
-
   <a class="logo" [routerLink]="['/home']">
     <div class="logo">
       <img src="assets/img/LogoFundo.png" alt="Ello Cell" id="LogoFundo" />
@@ -28,11 +21,10 @@
     <span class="material-symbols-outlined" id="lupas">search</span>
   </span>
 
-
-
   <a class="login" [routerLink]="['/login']">
     <span class="material-symbols-outlined" id="login">person</span>
   </a>
+
   <a class="carrinho">
     <div class="qItens">{{obterTotalItens()}}</div>
     <span class="material-symbols-outlined" id="carrinho">shopping_cart_checkout</span>

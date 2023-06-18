@@ -1,10 +1,9 @@
+import { CarrinhoService } from './../../service/carrinho.service';
 import { categorias, produtos } from '../../model/model.component';
 import { Component, OnInit, Input } from '@angular/core';
 import * as _ from 'lodash';
 import { ProductService } from '../../service/product.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { pairwise } from 'rxjs';
-
 @Component({
   selector: 'app-produtos',
   templateUrl: './produtos.component.html',
@@ -22,7 +21,7 @@ export class ProdutosComponent implements OnInit {
   inscricao: any;
   id: any;
 
-  constructor(public productService: ProductService, private route: ActivatedRoute) {
+  constructor(public productService: ProductService, private route: ActivatedRoute, private CarrinhoService: CarrinhoService) {
     console.log(route)
   }
 
@@ -84,6 +83,10 @@ export class ProdutosComponent implements OnInit {
       get();
     };
     init();
+  }
+
+  adicionarAoCarrinho: any = (numberId: number) => {
+    this.CarrinhoService.adicionarItem(numberId);
   }
 }
 

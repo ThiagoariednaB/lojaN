@@ -11,7 +11,7 @@ import { produtos } from '../../model/model.component';
 })
 export class CarrinhoComprasComponent implements OnInit {
   produtos: produtos[] = []
-  width: number = 0
+  width: number = 300
   width5: number = 0
 
   constructor(private CarrinhoService: CarrinhoService, public ProductService: ProductService) { }
@@ -22,7 +22,7 @@ export class CarrinhoComprasComponent implements OnInit {
   }
 
   obterTotalItens() {
-    return this.produtos.length
+    return this.CarrinhoService.obterTotalItens()
   }
 
   removerItem(index: number) {
@@ -31,6 +31,10 @@ export class CarrinhoComprasComponent implements OnInit {
 
   obterTotal() {
     return this.CarrinhoService.obterTotal();
+  }
+
+  limparCarrinho() {
+    return this.CarrinhoService.limparCarrinho()
   }
 
   funcao3(){
@@ -52,7 +56,7 @@ export class CarrinhoComprasComponent implements OnInit {
     }
 
     const ativa = () => {
-      this.width = 30
+      this.width = 300
       this.width5 = 100
     }
 
@@ -62,5 +66,9 @@ export class CarrinhoComprasComponent implements OnInit {
     }
 
     events.ativaInativa()
+  }
+
+  adicionarAoCarrinho: any = (numberId: number) => {
+    this.CarrinhoService.adicionarItem(numberId);
   }
 }

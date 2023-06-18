@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { produtos } from '../model/model.component';
 import { ProductService } from '../service/product.service';
+import { forEach } from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -15,13 +16,11 @@ export class CarrinhoService {
       const res = ((data));
       const values: any = Object.values(res.produtos)
       let i = this.product.findIndex((x) => x.id_produto == values[0].id_produto);
-
       if (i > -1) {
         this.product[i].quantidade++;
       } else {
         this.product.push({ ...values[0], quantidade: 1 });
       }
-
     })
   }
 
@@ -45,7 +44,7 @@ export class CarrinhoService {
   }
 
   obterTotalItens() {
-    return this.product.reduce((total, item) => total + item.quantidade, 0);
+    return this.product.reduce((total, item) => total + (item.quantidade), 0);
   }
 
   obterTotal() {
@@ -53,6 +52,10 @@ export class CarrinhoService {
   }
 
   limparCarrinho() {
-    this.product = [];
+    this.product.splice(0, this.product.reduce((total, item) => total + (item.quantidade), 0))
+  }
+
+  obterFrete() {
+    
   }
 }

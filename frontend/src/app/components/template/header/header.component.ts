@@ -66,6 +66,7 @@ export class HeaderComponent implements OnInit {
           ativa()
         })
       },
+
       inativo() {
         html.get('.menuInativo').addEventListener('click', () => {
           desativar()
@@ -118,6 +119,7 @@ export class HeaderComponent implements OnInit {
       this.width5 = 0
 
       this.zindex = 0
+      console.log('clicou')
     };
 
     events.ativo()
@@ -125,15 +127,7 @@ export class HeaderComponent implements OnInit {
   }
 
   obterTotalItens() {
-    return this.produtos.length
-  }
-
-  removerItem(index: number) {
-    this.CarrinhoService.removerItem(index);
-  }
-
-  obterTotal() {
-    return this.CarrinhoService.obterTotal();
+    return this.CarrinhoService.obterTotalItens()
   }
 
 }

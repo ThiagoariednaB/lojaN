@@ -1,49 +1,7 @@
-<main>
- <span class="QuantprodutosLoja">
-   <span class="prod">{{ getQuantidade() + " Produtos" }}</span>
- </span>
+<div class="atalhos" [ngStyle]="{ 'width': this.width4 + 'px' }">
+  <span class="categorias">CATEGORIAS</span>
+  <ul class="li" *ngFor="let categoria of categorias">
+    <li class="ul1" [routerLink]="['/categoria']" routerLinkActive="router-link-active">{{ categoria.categoria }}</li>
+  </ul>
+</div>
 
- <!--inicio da div todosProdutos-->
- <div class="todosProdutos" id="single">
-   <div class="produto-single" *ngFor="let produto of produtos">
-     <a [routerLink]="['/produtos']">
-       <div class="produto-img">
-         <img class="img" [attr.src]="'http://localhost:3000/' + produto.produto_imagem" alt="img" />
-       </div>
-       <span class="divisao"></span>
-       <span class="produto-id" name="id">id: {{ produto.id_produto }}</span>
-       <div class="produto-descricao">{{ produto.descricao }}</div>
-       <div class="produto-preco">{{ produto.preco | currency : "BRL" }}</div>
-       <span class="produto-quantidade">Estoque: {{ produto.quantidade }}</span>
-     </a>
-     <button class="produto-adicionar">{{' + '}}</button>
-     <button class="produto-remover">{{' - '}}</button>
-   </div>
- </div>
- <!--fim da div todosProdutos-->
-
-   <span class="QuantprodutosLoja2">
-
-   <span class="prod">{{ getQuantidade() + " Produtos" }}</span>
-   <span class="porPagina">Por Pagina: </span>
-   <select name="itensPagina" id="itensPagina">
-     <option value="p1" selected>15</option>
-     <option value="p2">30</option>
-     <option value="p3">45</option>
-     <option value="p4">60</option>
-   </select>
-
-   <!--paginação de produtos-->
-   <section id="paginacao">
-     <div class="pagination">
-       <button class="inicio" id="button">&#171;</button>
-       <button class="anterior" id="button">&lt;</button>
-       <div class="numeros" id="button2"></div>
-       <button class="proximo" id="button">&gt;</button>
-       <button class="final" id="button">&#187;</button>
-     </div>
-   </section>
-   <!--paginação de produtos-->
- </span>
-
-</main>

@@ -6,10 +6,11 @@ main {
   display: block;
   top: 7vh;
   width: 100vw;
-  height: 2363px;
+  height: 2320px;
   padding: 0;
   margin: 0;
   margin-bottom: 10px;
+  user-select:none
 }
 
 main::-webkit-scrollbar{
@@ -22,6 +23,7 @@ main::-webkit-scrollbar{
   display: flex;
   width: 100vw;
   overflow: hidden;
+  user-select:none
 }
 
 .carrossel1 {
@@ -32,6 +34,7 @@ main::-webkit-scrollbar{
   transform: translate(-50%);
   width: 80vw;
   height: 400px;
+  user-select:none
 }
 
 .protutos-carrossel1 {
@@ -43,6 +46,7 @@ main::-webkit-scrollbar{
   width: 400%;
   height: 400px;
   transition: 1.8s;
+  user-select:none
 }
 
 .manual-bt1 {
@@ -57,6 +61,7 @@ main::-webkit-scrollbar{
   cursor: pointer;
   transition: 1s;
   background-color: transparent;
+  user-select:none
 }
 
 .manual-bt2 {
@@ -71,11 +76,13 @@ main::-webkit-scrollbar{
   cursor: pointer;
   transition: 1s;
   background-color: transparent;
+  user-select:none
 }
 
 #img{
   width: 60%;
   height: 80%;
+  user-select:none
 }
 
 .manual-bt1:hover, .manual-bt2:hover{
@@ -84,7 +91,7 @@ main::-webkit-scrollbar{
 }
 
 .manual-bt1:active, .manual-bt2:active{
-  transform: scale(0.7);
+  transform: scale(0.9);
 }
 
 .card1 {
@@ -104,6 +111,7 @@ main::-webkit-scrollbar{
   border: 2px solid transparent;
   box-shadow: #343434 0px 0.3px 10px 2px;
   transition: 1.6s;
+  user-select:none
 }
 
 .card1:hover{
@@ -113,6 +121,7 @@ main::-webkit-scrollbar{
 
 #card1 {
   margin-left: 40px;
+  user-select:none
 }
 
 .todosProdutos {
@@ -129,6 +138,7 @@ main::-webkit-scrollbar{
   flex-wrap: wrap;
   overflow-y: auto;
   color: white;
+  user-select:none
 }
 
 .todosProdutos::-webkit-scrollbar {
@@ -150,6 +160,7 @@ main::-webkit-scrollbar{
   color: #000;
   cursor: pointer;
   border: 1px solid transparent;
+  user-select:none
 }
 
 .produto-single:hover {
@@ -346,6 +357,13 @@ a {
   top: 8px;
 }
 
+.prod1{
+  display: flex;
+  position: relative;
+  left: 15px;
+  font-size: 20px;
+}
+
 .prod{
   display: flex;
   position: relative;
@@ -425,9 +443,13 @@ option{
 
 #button:active {
   transition: 0.3s;
-  transform: scale(0.8);
+  transform: scale(0.9);
 }
 
+#button2:active {
+  transition: 0.3s;
+  transform: scale(0.9);
+}
 
 #button::before
 
@@ -453,7 +475,53 @@ option{
 
 
 @media screen and (max-width: 700px) {
+
+  main {
+    height: 1920px;
+    color: rebeccapurple;
+  }
+
   .carrossel1{
     display: none;
   }
+
+  .prod {
+    display: none;
+  }
+
+  .porPagina{
+    display: none;
+  }
+
+  #itensPagina{
+    left: 20px;
+    font-size: 20px;
+  }
+
+  #paginacao{
+    position: absolute;
+    left: 80px;
+    width: 80%;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+  }
+
+  .pagination{
+    position: absolute;
+    display: flex;
+    width: 95%;
+    padding: 0;
+    margin: 0;
+  }
+
+  #button{
+    width: 35px;
+  }
+
+  #button2{
+    width: 135px;
+  }
+
+
 }

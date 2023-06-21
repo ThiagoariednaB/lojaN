@@ -9,13 +9,16 @@ exports.__esModule = true;
 exports.CarrinhoComprasComponent = void 0;
 var core_1 = require("@angular/core");
 var CarrinhoComprasComponent = /** @class */ (function () {
-    function CarrinhoComprasComponent(CarrinhoService, ProductService) {
+    function CarrinhoComprasComponent(CarrinhoService, ProductService, FreteService) {
         var _this = this;
         this.CarrinhoService = CarrinhoService;
         this.ProductService = ProductService;
+        this.FreteService = FreteService;
         this.produtos = [];
-        this.width = 300;
+        this.frete = [];
+        this.width = 0;
         this.width5 = 0;
+        this.cep = '';
         this.adicionarAoCarrinho = function (numberId) {
             _this.CarrinhoService.adicionarItem(numberId);
         };
@@ -35,6 +38,15 @@ var CarrinhoComprasComponent = /** @class */ (function () {
     };
     CarrinhoComprasComponent.prototype.limparCarrinho = function () {
         return this.CarrinhoService.limparCarrinho();
+    };
+    CarrinhoComprasComponent.prototype.getFrete = function () {
+        var _this = this;
+        this.FreteService.getFrete(this.cep = '13562-530').subscribe(function (dados) {
+            _this.frete = dados['logradouro'];
+            var rua = dados.logradouro;
+            console.log(rua);
+        });
+        return this.getFrete;
     };
     CarrinhoComprasComponent.prototype.funcao3 = function () {
         var _this = this;

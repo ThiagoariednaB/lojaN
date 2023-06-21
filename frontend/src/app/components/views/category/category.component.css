@@ -11,6 +11,32 @@
   border-right: solid 1px rgb(0, 115, 255);
 }
 
+.categorias {
+  position: relative;
+  top: 10px;
+  padding: 15px;
+  margin: 0;
+  left: 50px;
+  height: 100vh;
+  transition: 0.4s;
+}
+
+.li {
+  position: relative;
+  left: 10px;
+  padding: 10px;
+  cursor: pointer;
+  top: 20px;
+}
+
+.li:hover {
+  transform: scale(0.9);
+  transition: 1,9s;
+  border: solid 0.4px rgb(196, 196, 196);
+  border-radius: 15px;
+  background-color: rgb(255, 204, 0);
+}
+
 .fundoc  {
   position: fixed;
   top: 0px;

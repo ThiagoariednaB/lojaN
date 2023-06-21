@@ -41,14 +41,14 @@ export class CategoryComponent {
   }
 
   funcao = () => {
-    const get: any = (): ((data: categorias) => any) => {
+    const getCategory: any = (): ((data: categorias) => any) => {
       this.ProductService.getCategory().subscribe((data: categorias) => {
         this.categorias = data['response'].categoria
       });
-      return get;
+      return getCategory;
     };
 
-    get();
+    getCategory();
 
     const html: any = {
       get(element: any) {

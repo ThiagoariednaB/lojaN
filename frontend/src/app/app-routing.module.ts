@@ -5,6 +5,7 @@ import { HomeComponent } from './components/views/home/home.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { CategoryComponent } from './components/views/category/category.component';
 import { ProdutosComponent } from './components/views/produtos/produtos.component';
+import { CategoriaComponent } from './components/views/categoria/categoria.component';
 
 const routes: Routes = [
   {
@@ -19,7 +20,7 @@ const routes: Routes = [
         path: 'produtos/:id_produto', component: ProdutosComponent
       },
       {
-        path: 'categoria', component: CategoryComponent
+        path: 'categoria', component: CategoriaComponent
       },
       {
         path: 'login', component: LoginComponent

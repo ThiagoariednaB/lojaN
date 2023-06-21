@@ -13,6 +13,7 @@ import { ProdutosComponent } from './components/views/produtos/produtos.componen
 import { CarrinhoComprasComponent } from './components/views/carrinho-compras/carrinho-compras.component';
 import ptBr from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { CategoriaComponent } from './components/views/categoria/categoria.component';
 
 registerLocaleData(ptBr);
 
@@ -27,11 +28,13 @@ registerLocaleData(ptBr);
     CategoryComponent,
     ProdutosComponent,
     CarrinhoComprasComponent,
+    CategoriaComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+
   ],
   providers: [HttpClient, { provide: LOCALE_ID, useValue: 'pt' }],
   bootstrap: [AppComponent]

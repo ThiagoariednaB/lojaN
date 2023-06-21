@@ -24,4 +24,12 @@ export class categorias {
 }
 
 
+export class frete {
+  public cep: any
+  public uf: any
+  public cidade: any
+  public bairro: any
+  public logradouro: any
+}
+
 

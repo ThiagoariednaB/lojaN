@@ -1,34 +1,9 @@
 <app-header></app-header>
 <main>
-  <div class="carrossel">
-    <div class="carrossel1">
-      <span class="nomeProduto">Novidades</span>
-      <div class="protutos-carrossel1" [ngStyle]="{ 'left': left + 'px' , 'width': width + 'px' }">
-        <div class="card1" id="card1" *ngFor="let card1 of cards">
-          <a [routerLink]="['/produtos', this.card1.id_produto]" routerLinkActive="router-link-active">
-            <span class="produto-img"><img [attr.src]="'http://localhost:3000/' + card1.produto_imagem" alt="" /></span>
-            <span class="produto-descricao">{{ card1.descricao }}</span>
-            <span class="produto-id">{{card1.id_produto}}</span>
-            <span class="produto-preco">{{ card1.preco | currency : "BRL" }}</span>
-            <span class="produto-estoque">ESTOQUE: {{ card1.estoque }}</span>
-          </a>
-        </div>
-      </div>
-    </div>
-    <button class="manual-bt1" id="bt-1">
-      <img src="assets/img/esquerda.png" id="img" />
-    </button>
-    <button class="manual-bt2" id="bt-4">
-      <img src="assets/img/direita.png" id="img" />
-    </button>
-  </div>
-
   <app-category></app-category>
   <app-carrinho-compras></app-carrinho-compras>
 
-  <span class="QuantprodutosLoja">
-    <span class="prod1">{{ getQuantidade() }}</span>
-  </span>
+  <span class="fundoCategoria"></span>
 
   <div class="todosProdutos" id="single">
     <div class="produto-single" *ngFor="let produto of produtos">
@@ -70,3 +45,4 @@
   </span>
 </main>
 <app-footer></app-footer>
+

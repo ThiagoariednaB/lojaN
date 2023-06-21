@@ -14,7 +14,9 @@
       <button class="material-symbols-outlined" id="remover" (click)="removerItem(i)">remove_circle</button>
     </div>
   </div>
-  <input type="text" class="cep" placeholder="Cep">
+
+  <p class="cepText">Cep: </p>
+  <input type="text" class="cep">
   <span class="material-symbols-outlined" id="limpar" (click)="limparCarrinho()">delete</span>
   <span class="rua">Rua joão stella 300</span>
   <span class="cidade">São Carlos - SP</span>
@@ -31,6 +33,8 @@
     <option value="3x">3x</option>
     <option value="4x">4x</option>
   </select>
-  <span class="frete">Frete:  R$ 300,00</span>
-  <div id="itens">Total: {{ obterTotal() | currency:'BRL' }}</div>
+
+  <p class="frete">Valor do Frete: </p>
+
+  <p class="">Total: {{obterTotal() | currency : "BRL"}}</p>
 </div>

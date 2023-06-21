@@ -155,7 +155,7 @@
   border-radius: 5%;
   width: 40px;
   height: 40px;
-  top: -20px;
+  top: -45px;
   left: 230px;
   cursor: pointer;
   color: red;
@@ -166,13 +166,23 @@
   transform: scale(0.9);
 }
 
+.cepText {
+  position: relative;
+  display: inline-block;
+  width: 140px;
+  height: 20px;
+  top: 15px;
+  left: 5px;
+  color: rgb(52, 52, 52);
+}
+
 .cep {
   position: relative;
   display: block;
   width: 140px;
   height: 20px;
-  top: 15px;
-  left: 5px;
+  top: -10px;
+  left: 50px;
   color: rgb(52, 52, 52);
 }
 
@@ -182,7 +192,7 @@
   width: 140px;
   height: 20px;
   font-size: 10px;
-  top: -30px;
+  top: -50px;
   left: 5px;
   color: rgb(52, 52, 52);
 }
@@ -194,7 +204,7 @@
   height: 20px;
   font-size: 12px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  top: -35px;
+  top: -60px;
   left: 5px;
   color: rgb(52, 52, 52);
 }

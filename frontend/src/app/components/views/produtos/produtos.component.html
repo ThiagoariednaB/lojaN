@@ -1,18 +1,19 @@
+<app-header></app-header>
 <main>
+  <div class="produto-single" *ngFor="let produto of produtos">
+    <a [routerLink]="['/produtos', this.produto.id_produto]">
+      <div class="produto-img">
+        <img class="img" [attr.src]="'http://localhost:3000/' + produto.produto_imagem" alt="img" />
+      </div>
+      <span class="divisao"></span>
+      <span class="produto-id" name="id">id: {{ produto.id_produto }}</span>
+      <div class="produto-descricao">{{ produto.descricao }}</div>
+      <div class="produto-preco">{{ produto.preco | currency : "BRL" }}</div>
+      <span class="produto-quantidade">Estoque: {{ produto.quantidade }}</span>
+    </a>
+    <button class="material-symbols-outlined" id="produto-adicionar"
+      (click)="adicionarAoCarrinho(produto['id_produto'])"> add_circle </button>
+  </div>
 
-    <div class="produto-single" *ngFor="let produto of produtos">
-      <a [routerLink]="['/produtos', this.produto.id_produto]">
-        <div class="produto-img">
-          <img class="img" [attr.src]="'http://localhost:3000/' + produto.produto_imagem" alt="img" />
-        </div>
-        <span class="divisao"></span>
-        <span class="produto-id" name="id">id: {{ produto.id_produto }}</span>
-        <div class="produto-descricao">{{ produto.descricao }}</div>
-        <div class="produto-preco">{{ produto.preco | currency : "BRL" }}</div>
-        <span class="produto-quantidade">Estoque: {{ produto.quantidade }}</span>
-      </a>
-      <button class="material-symbols-outlined" id="produto-adicionar"
-        (click)="adicionarAoCarrinho(produto['id_produto'])"> add_circle </button>
-    </div>
-  
 </main>
+<app-footer></app-footer>

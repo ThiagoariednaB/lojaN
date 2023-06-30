@@ -16,18 +16,20 @@
   </div>
 
   <p class="cepText">Cep: </p>
-  <input type="text" class="cep">
+  <input type="text" class="cep" id="cep" autocomplete="additional-name">
   <span class="material-symbols-outlined" id="limpar" (click)="limparCarrinho()">delete</span>
-  <span class="rua">Rua joão stella 300</span>
-  <span class="cidade">São Carlos - SP</span>
+  <span class="endereco" >
+    <span class="rua" >Rua: {{ logradouro }}</span>
+    <span class="cidade" >Cidade: {{ localidade }}</span>
+  </span>
   <span class="fpagamento">Forma de pagamento</span>
-  <select class="formasP">
+  <select class="formasP" id="select-prazo">
     <option value="prazo1" selected>Dinheiro</option>
     <option value="prazo2">Cartão de Crédito</option>
     <option value="prazo3">Cartão de Débito</option>
     <option value="prazo4">Pix</option>
   </select>
-  <select class="cartao">
+  <select class="cartao" id="select-parcela">
     <option value="1x" selected>1x</option>
     <option value="2x">2x</option>
     <option value="3x">3x</option>

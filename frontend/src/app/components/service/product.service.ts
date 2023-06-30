@@ -15,12 +15,16 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
+  public getProdutsCar(itemsPerPager: number, first: number): Observable<produtos> {
+    return this.http.get<produtos>(`${this.SERVER_URL}/produtos?limit=${itemsPerPager}&offset=${first}`)
+  }
+
   public getProdutos(itemsPerPager: number, first: number): Observable<produtos> {
     return this.http.get<produtos>(`${this.SERVER_URL}/produtos?limit=${itemsPerPager}&offset=${first}`)
   }
 
-  public getProdutsCar(itemsPerPager: number, first: number): Observable<produtos> {
-    return this.http.get<produtos>(`${this.SERVER_URL}/produtos?limit=${itemsPerPager}&offset=${first}`)
+  public getProductsCat(categoria: string): Observable<produtos> {
+    return this.http.get<produtos>(`${this.SERVER_URL}/categorias/${categoria}`)
   }
 
   public getProductsid(id: number): Observable<produtos> {
@@ -30,4 +34,6 @@ export class ProductService {
   public getCategory(): Observable<categorias> {
     return this.http.get<categorias>(`${this.SERVER_URL}/categorias`)
   }
+
+
 }

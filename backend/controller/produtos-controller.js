@@ -1,54 +1,5 @@
 const { query } = require('express')
 const mysql = require('../mysql').pool
-const { error } = require('server/router')
-
-/*exports.getProdutos = (req, res, next) => {
-  mysql.execute("SELECT * FROM produtos;").then((result) => {
-    const response = {
-      quantidade: result.length,
-      produtos: result.map(prod => {
-        return {
-          id_produto: prod.id_produto,
-          descricao: prod.descricao,
-          un: prod.un,
-          preco: prod.preco,
-          produto_imagem: prod.produto_imagem,
-          categoria: prod.categoria,
-          descricaoProduto: prod.descricaoProduto,
-        }
-      })
-    }
-    return res.status(200).send(response)
-  }).catch((error) => {
-    return res.status(500).send({ error: error })
-  })
-}*/
-
-exports.getProdutosT = (req, res, next) => {
-  mysql.getConnection((error, conn) => {
-    if (error) {
-      return res.status(500).send({ error: error })
-    }
-    conn.query(
-      `SELECT count("id_produto") FROM mydb.produtos`,
-      (error, resultado, field) => {
-        conn.release()
-
-        if (error) {
-          return res.status(500).send({ error: error })
-        }
-        const response = {
-          produtos: resultado.map(prod => {
-            return {
-              id_produto: prod.id_produto
-            }
-          })
-        }
-        return res.status(200).send({ response })
-      }
-    )
-  })
-}
 
 exports.getProdutos = (req, res, next) => {
   mysql.getConnection((error, conn) => {
@@ -56,7 +7,7 @@ exports.getProdutos = (req, res, next) => {
       return res.status(500).send({ error: error })
     }
     conn.query(
-      `SELECT * FROM mydb.produtos  limit ?  offset ?`, (query, [parseInt(req.query.limit), parseInt(req.query.offset)]),
+      `SELECT * FROM mydb.produtos  limit ?  offset ?;`, (query, [parseInt(req.query.limit), parseInt(req.query.offset)]),
       (error, resultado, field) => {
         conn.release()
 
@@ -83,13 +34,57 @@ exports.getProdutos = (req, res, next) => {
   })
 }
 
-exports.getProdutosId = (req, res, next) => {
+exports.getProdutosCat = (req, res, next) => {
   mysql.getConnection((error, conn) => {
     if (error) {
       return res.status(500).send({ error: error })
     }
     conn.query(
-      `SELECT * FROM produtos WHERE id_produto = ?;`,
+      `SELECT * FROM mydb.produtos WHERE categoria = ?;`,
+      [req.params.categoria],
+      (error, resultado, field) => {
+        conn.release()
+        if (error) {
+          return res.status(500).send({ error: error })
+        }
+
+        if (resultado.length == 0) {
+          return res.status(404).send({
+            mensagem: 'Não foi encontrado produto com essa categoria'
+          })
+        }
+        const response = {
+          produtos: resultado.map(prod => {
+            return {
+              id_produto: prod.id_produto,
+              descricao: prod.descricao,
+              un: prod.un,
+              preco: prod.preco,
+              produto_imagem: prod.produto_imagem,
+              categoria: prod.categoria,
+              quantidade: prod.quantidade,
+              descricaoProduto: prod.descricaoProduto,
+              request: {
+                tipo: 'GET',
+                descricao: 'Retorna um produto e seus detalhes',
+                url: 'http://localhost:3000/produtos/id_produto'
+              }
+            }
+          })
+        }
+        return res.status(201).send(response)
+      }
+    )
+  })
+}
+
+exports.getProdutoId = (req, res, next) => {
+  mysql.getConnection((error, conn) => {
+    if (error) {
+      return res.status(500).send({ error: error })
+    }
+    conn.query(
+      `SELECT * FROM mydb.produtos WHERE id_produto = ?;`,
       [req.params.id_produto],
       (error, resultado, field) => {
         conn.release()
@@ -99,7 +94,7 @@ exports.getProdutosId = (req, res, next) => {
 
         if (resultado.length == 0) {
           return res.status(404).send({
-            mensagem: 'Não foi encontrado produto com esse ID'
+            mensagem: 'Não foi encontrado produto com essa categoria'
           })
         }
         const response = {

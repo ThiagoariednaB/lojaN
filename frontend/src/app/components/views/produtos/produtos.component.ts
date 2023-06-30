@@ -49,9 +49,8 @@ export class ProdutosComponent implements OnInit {
       id: this.id,
     };
 
-
     const get: any = (): ((data: produtos) => any) => {
-      this.productService.getProductsid(state.id).subscribe((data: produtos) => {
+      this.productService.getProductsid(this.id).subscribe((data: produtos) => {
         this.produtos = data['produtos'];
       });
       return get;

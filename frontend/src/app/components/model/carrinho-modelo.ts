@@ -2,7 +2,6 @@ import { produtos } from "./model.component";
 
 export class carrinho1 {
 constructor(public produtos: produtos, public quantidade: number = 1){}
-
 }
 
 export class carrinho2 {

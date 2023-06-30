@@ -1,5 +1,4 @@
 import { CarrinhoService } from '../../service/carrinho.service';
-import { ProductServiceTotal } from './../../service/productTotal.service';
 import { categorias, produtos } from '../../model/model.component';
 import { Component, OnInit } from '@angular/core';
 import * as _ from 'lodash';
@@ -28,7 +27,7 @@ export class HomeComponent implements OnInit {
   offsete: number = 0
   color: string = ''
 
-  constructor(public productService: ProductService, public ProductServiceTotal: ProductServiceTotal, private route: ActivatedRoute, public CarrinhoService: CarrinhoService) { }
+  constructor(public productService: ProductService, private route: ActivatedRoute, public CarrinhoService: CarrinhoService) { }
 
   ngOnInit() {
     this.getQuantidade();
@@ -60,23 +59,11 @@ export class HomeComponent implements OnInit {
       this.productService.getProdutos(listProducts.limit, paginasControl.offset).subscribe((data: produtos) => {
         this.produtos = data['response'].produtos;
       });
-      /*this.productService.getProductsid(state.id).subscribe((data: produtos) => {
-        this.produtos = data['produtos'];
-      });*/
       this.productService.getProdutsCar(state.limite, state.offsete).subscribe((data: produtos) => {
         this.cards = data['response'].produtos;
       });
       return get;
     };
-
-    const get2: any = (): ((data: produtos) => any) => {
-      this.ProductServiceTotal.ProductServiceTotal().subscribe((data: produtos) => {
-        this.total = data['response'].produtos;
-      });
-      return get2;
-    };
-
-    get2()
 
     const html: any = {
       get(element: any) {
@@ -107,17 +94,6 @@ export class HomeComponent implements OnInit {
         return produtos.descricao.toLowerCase().includes(busca) || produtos.descricao.toUpperCase().includes(busca) || produtos.categoria.toLocaleUpperCase().includes(busca);
       });
       if (busca == '') {
-        get();
-      }
-    };
-
-    const buscar: any = ($event: { target: categorias; }): void => {
-      const target = $event.target as categorias;
-      const buscac = target.textContent;
-      this.produtos = this.produtos.filter((categoria) => {
-        return categoria.categoria.toLocaleUpperCase().includes(buscac);
-      });
-      if (buscac == '') {
         get();
       }
     };
@@ -154,8 +130,7 @@ export class HomeComponent implements OnInit {
         });
         html.get('#busca').addEventListener('keyup', _.debounce(busca, 800));
         html.get('#busca').addEventListener('keyup', get())
-        html.get('.atalhos').addEventListener('click', _.debounce(buscar, 800));
-        html.get('.atalhos').addEventListener('click', get())
+
       }
     };
 

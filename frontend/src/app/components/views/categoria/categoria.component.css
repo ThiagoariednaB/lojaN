@@ -1,140 +1,46 @@
 *{
-  height: 100vh;
+  padding: 0;
+  margin: 0;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Oswald&family=Yanone+Kaffeesatz:wght@500&display=swap');
-
 main {
-  /*Personaliza a area main dos produtos*/
   position: relative;
   display: inline-block;
   top: 7vh;
   width: 100vw;
-  height: 2320px;
-  padding: 0;
-  margin: 0;
-  margin-bottom: 10px;
-  user-select:none
+  height: 1848px;
+  margin-bottom: 20px;
+  padding-bottom: 75px;
+  user-select:none;
+  bottom: 25vh;
 }
 
-main::-webkit-scrollbar{
-  display: none;
-  scroll-snap-stop: 0;
-}
-
-.carrossel {
+.fundoCategoria {
   position: relative;
   display: flex;
-  width: 100vw;
-  overflow: hidden;
-  user-select:none
-}
-
-.carrossel1 {
-  position: relative;
-  display: flex;
-  left: 50%;
-  justify-content: center;
-  transform: translate(-50%);
   width: 80vw;
-  height: 400px;
-  user-select:none
-}
-
-.protutos-carrossel1 {
-  position: absolute;
+  height: 55px;
+  left: 10vw;
+  color: rgb(255, 255, 255);
   display: flex;
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  width: 400%;
-  height: 400px;
-  transition: 1.8s;
-  user-select:none
-}
-
-.manual-bt1 {
+  align-items: center;
+  justify-content: left;
+  background-color: #272727;
   border: transparent;
-  position: absolute;
-  width: 100px;
-  height: 200px;
-  top: 130px;
-  padding: 10px;
-  border-radius: 20px;
-  left: 2vw;
-  cursor: pointer;
-  transition: 1s;
-  background-color: transparent;
-  user-select:none
-}
-
-.manual-bt2 {
-  border: transparent;
-  position: absolute;
-  width: 100px;
-  height: 200px;
-  top: 130px;
-  padding: 10px;
-  border-radius: 20px;
-  right: 2vw;
-  cursor: pointer;
-  transition: 1s;
-  background-color: transparent;
-  user-select:none
-}
-
-#img{
-  width: 60%;
-  height: 80%;
-  user-select:none
-}
-
-.manual-bt1:hover, .manual-bt2:hover{
-  background-color: rgb(255, 234, 0);
-  transition: 0.9s;
-}
-
-.manual-bt1:active, .manual-bt2:active{
-  transform: scale(0.9);
-}
-
-.card1 {
-  position: relative;
-  display: flex;
-  flex: none;
-  padding: 0;
-  width: 220px;
-  height: 290px;
-  margin: 50px;
-  margin-top: 50px;
-  border-radius: 10px;
-  justify-content: space-between;
-  background-color: #ffffff;
-  color: rgb(89, 88, 88);
-  cursor: pointer;
-  border: 2px solid transparent;
-  box-shadow: #343434 0px 0.3px 10px 2px;
-  transition: 1.6s;
-  user-select:none
-}
-
-.card1:hover{
-  border: 2px solid #0040e2;
-  box-shadow: #0040e2 0px 0.3px 10px 2px;
-}
-
-#card1 {
-  margin-left: 40px;
-  user-select:none
+  top: 50px;
+  border-radius: 4px;
+  border-bottom: 1px solid #0090e4;
+  box-shadow: 0px 15px 20px 1px rgb(0, 0, 255);
 }
 
 .todosProdutos {
-  /*Inicio da grade de produtos*/
   width: 90vw;
-  height: 1706px;
   position: relative;
   display: flex;
-  top: 90px;
+  padding: 15px;
+  padding-bottom: 35px;
+  margin: 0;
+  top: 150px;
   left: 50%;
   justify-content: center;
   transform: translate(-50%);
@@ -142,7 +48,8 @@ main::-webkit-scrollbar{
   flex-wrap: wrap;
   overflow-y: auto;
   color: white;
-  user-select:none
+  user-select:none;
+  background-color: #0090e4;
 }
 
 .todosProdutos::-webkit-scrollbar {
@@ -155,7 +62,7 @@ main::-webkit-scrollbar{
   top: 25px;
   width: 250px;
   height: 370px;
-  margin: 15px;
+  margin: 10px;
   border-radius: 10px;
   justify-content: space-between;
   background-color: #ffffff;
@@ -284,37 +191,9 @@ a {
   font-size: 10px;
 }
 
-.fundoCategoria {
-  position: relative;
-  display: flex;
-  width: 80vw;
-  height: 55px;
-  padding: 0;
-  margin: 0;
-  top: 50px;
-  left: 50%;
-  justify-content: center;
-  transform: translate(-50%);
-  color: rgb(255, 255, 255);
-  align-items: center;
-  background-color: #272727;
-  border: transparent;
-  border-radius: 4px;
-  border-bottom: 1px solid #0090e4;
-  box-shadow: 0px 15px 20px 1px rgb(0, 0, 255);
-}
-
-.categoria{
-  position: relative;
-  display: flex;
-  color: white;
-  padding: 0;
-  margin: 0;
-}
-
 .QuantprodutosLoja2 {
   position: relative;
-  display: flex;
+  display: block;
   width: 100vw;
   height: 55px;
   color: rgb(255, 255, 255);
@@ -327,7 +206,7 @@ a {
   border-bottom: 1px solid #008cff;
   box-shadow: 0px 15px 2px 10px rgb(0, 0, 255);
   z-index: 0;
-  bottom: -80px;
+  top: 120px;
 }
 
 #paginacao {
@@ -357,6 +236,13 @@ a {
   border: transparent;
   font-size: 20px;
   top: 8px;
+}
+
+.prod1{
+  display: flex;
+  position: relative;
+  left: 15px;
+  font-size: 20px;
 }
 
 .prod{
@@ -467,7 +353,6 @@ option{
   width: 100vw;
   height: 100vh;
 }
-
 
 @media screen and (max-width: 700px) {
 

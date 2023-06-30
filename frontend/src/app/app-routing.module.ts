@@ -6,6 +6,7 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { CategoryComponent } from './components/views/category/category.component';
 import { ProdutosComponent } from './components/views/produtos/produtos.component';
 import { CategoriaComponent } from './components/views/categoria/categoria.component';
+import { categorias } from './components/model/model.component';
 
 const routes: Routes = [
   {
@@ -20,7 +21,7 @@ const routes: Routes = [
         path: 'produtos/:id_produto', component: ProdutosComponent
       },
       {
-        path: 'categoria', component: CategoriaComponent
+        path: 'categoria/:categoria', component: CategoriaComponent
       },
       {
         path: 'login', component: LoginComponent
@@ -38,4 +39,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-

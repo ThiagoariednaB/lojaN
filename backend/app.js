@@ -9,7 +9,6 @@ const rotaCategorias = require('./routes/categorias')
 const rotaProdutos = require('./routes/produtos')
 const rotaPedidos = require('./routes/pedidos')
 const rotaUsuarios = require('./routes/usuarios')
-const rotaProdutosTotal = require('./routes/produtosTotal')
 
 app.use(morgan('dev'))
 app.use('/uploads/', express.static('uploads'))
@@ -29,7 +28,6 @@ app.use((req, res, next) => {
 
 app.use('/categorias', rotaCategorias)
 app.use('/produtos', rotaProdutos)
-app.use('/produtosTotal', rotaProdutosTotal)
 app.use('/pedidos', rotaPedidos)
 app.use('/usuarios', rotaUsuarios)
 

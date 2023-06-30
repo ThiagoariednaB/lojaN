@@ -2,6 +2,7 @@ import { ProductService } from './../../service/product.service';
 import { produtos, categorias } from './../../model/model.component';
 import { Component, OnInit } from '@angular/core';
 import { CarrinhoService } from '../../service/carrinho.service'
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-header',
@@ -61,13 +62,10 @@ export class HeaderComponent implements OnInit {
     };
 
     const events: any = {
-      ativo() {
+      ativaEventos() {
         html.get('.menuAtivo').addEventListener('click', () => {
           ativa()
         })
-      },
-
-      inativo() {
         html.get('.menuInativo').addEventListener('click', () => {
           desativar()
         });
@@ -75,6 +73,7 @@ export class HeaderComponent implements OnInit {
           desativar()
         });
       }
+
     }
 
     const ativa = () => {
@@ -119,11 +118,9 @@ export class HeaderComponent implements OnInit {
       this.width5 = 0
 
       this.zindex = 0
-      console.log('clicou')
     };
 
-    events.ativo()
-    events.inativo()
+    events.ativaEventos()
   }
 
   obterTotalItens() {

@@ -9,10 +9,30 @@ header {
   top: 0%;
   left: 0%;
   border-bottom: 1.5px solid rgb(255, 255, 255);
-  justify-content: center;
   z-index: 2;
   overflow: visible;
   box-shadow: 0px 5px 30px 5px #ffbb00;
+}
+
+.head {
+  position: relative;
+  display: flex;
+  width: 100vw;
+  height: 50px;
+  margin: 0%;
+  padding: 0%;
+  top: 0%;
+  left: 0%;
+}
+
+.menu2 {
+  position: relative;
+  display: block;
+  left: 0;
+  padding: 0;
+  margin: 0;
+  width: 65px;
+  height: 50px;
 }
 
 .menuAtivo {
@@ -33,14 +53,6 @@ header {
   height: 50px;
   z-index: 4;
   cursor: pointer;
-}
-
-.menu2 {
-  position: absolute;
-  left: 0;
-  width: 65px;
-  height: 50px;
-  z-index: 4;
 }
 
 .line1 {
@@ -89,22 +101,24 @@ header {
 }
 
 .atalhos {
-  position: absolute;
+  position: relative;
   top: 51px;
   left: 0;
   width: 0px;
-  height: 100vh;
+  height: 50px;
   background: linear-gradient(180deg, rgb(53, 53, 53), rgb(0, 0, 0), rgb(53, 53, 53));
   text-align: left;
   color: aliceblue;
   z-index: 4;
   transition: 0.6s;
   box-shadow: 2px 0px 0px 0px rgb(0, 21, 255);
+
 }
 
 .atalhosFundo {
   position: absolute;
   height: 100vw;
+  background-color: #000000c7;
 }
 
 .categorias {
@@ -152,12 +166,13 @@ header {
 }
 
 .logo {
+  position: relative;
   height: 50px;
-  position: fixed;
   margin: 0px;
   padding: 0px;
-  left: 7%;
+  left: 5%;
   overflow: hidden;
+  z-index: 1;
 }
 
 #LogoFundo {
@@ -202,10 +217,11 @@ header {
 .boxPesquisa {
   position: relative;
   display: flex;
-  width: 70%;
-  left: 49vw;
+  width: 50%;
+  left: 54vw;
   justify-content: center;
-  transform: translate(-51vw);
+  transform: translate(-46vw);
+  z-index: 0;
 }
 
 .pesquisa::-webkit-input-placeholder {
@@ -237,7 +253,7 @@ header {
   cursor: pointer;
   text-decoration: none;
   border-radius: 20px;
-  user-select:none;
+  user-select: none;
 }
 
 #busca:focus,
@@ -257,7 +273,7 @@ input:focus {
   cursor: pointer;
   color: #ffffff;
   text-decoration: none;
-  user-select:none;
+  user-select: none;
 }
 
 .login:hover {
@@ -349,12 +365,19 @@ input:focus {
 }
 
 #carrinho {
-  user-select:none;
+  user-select: none;
   text-decoration: none;
 }
 
 @media screen and (max-width: 700px) {
   .logo {
     display: none;
+  }
+
+  .boxPesquisa {
+    left: 54vw;
+    justify-content: center;
+    transform: translate(-46vw);
+    z-index: 0;
   }
 }

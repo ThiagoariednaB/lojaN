@@ -13,31 +13,12 @@ import { HomeComponent } from '../home/home.component';
 export class CategoryComponent {
   categorias: categorias[] = []
   produtos: produtos[] = []
-  width4: number = 0
-  width5: number = 0;
-  page: number = 130;
-  totalProdutos: number = 62;
+  width: number = 0
 
-  cards: produtos[] = [];
-  left: number = 0;
-  width: number = 1260;
-  categoria: categorias[] = [];
-  private _pager: number = 0;
-  limite: number = 0
-  offsete: number = 0
-
-
-  constructor(public ProductService: ProductService, private route: ActivatedRoute) {
-
-  }
+  constructor(public ProductService: ProductService, private route: ActivatedRoute) {  }
 
   ngOnInit() {
-    this.getQuantidade();
     this.funcao();
-  }
-
-  getQuantidade = () => {
-    return this.produtos.length;
   }
 
   funcao = () => {
@@ -48,8 +29,6 @@ export class CategoryComponent {
       return getCategory;
     };
 
-    getCategory();
-
     const html: any = {
       get(element: any) {
         return document.querySelector(element);
@@ -57,7 +36,7 @@ export class CategoryComponent {
     };
 
     const events: any = {
-      ativaInativaC() {
+      ativaEventos() {
         html.get('.menuAtivo').addEventListener('click', () => {
           ativa()
         });
@@ -67,20 +46,19 @@ export class CategoryComponent {
         html.get('.atalhosFundo').addEventListener('click', () => {
           desativa()
         });
+        html.get('.categorias').addEventListener('click', getCategory())
       }
     }
 
     const ativa = () => {
-      this.width4 = 300
-      this.width5 = 100
+      this.width = 300
     }
 
     const desativa = () => {
-      this.width4 = 0
-      this.width5 = 0
+      this.width = 0
     }
 
-    events.ativaInativaC()
+    events.ativaEventos()
   }
 }
 

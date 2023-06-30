@@ -1,10 +1,11 @@
-import { frete } from './../../model/model.component';
+import { ceps } from './../../model/model.component';
 import { FreteService } from './../../service/frete.service';
 import { ProductService } from './../../service/product.service';
 import { Component, OnInit } from '@angular/core';
 import { CarrinhoService } from '../../service/carrinho.service';
 import { produtos } from '../../model/model.component';
-import {  calcularPrecoPrazo, consultarCep, rastrearEncomendas } from 'correios-brasil';
+import { calcularPrecoPrazo, consultarCep, rastrearEncomendas } from 'correios-brasil';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-carrinho-compras',
@@ -13,12 +14,15 @@ import {  calcularPrecoPrazo, consultarCep, rastrearEncomendas } from 'correios-
 })
 export class CarrinhoComprasComponent implements OnInit {
   produtos: produtos[] = []
-  frete: frete[] = []
+  logradouro: any
+  localidade: any
+
   width: number = 0
   width5: number = 0
   cep: string = ''
 
-  constructor(private CarrinhoService: CarrinhoService, public ProductService: ProductService, private FreteService: FreteService ) { }
+
+  constructor(private CarrinhoService: CarrinhoService, public ProductService: ProductService, private FreteService: FreteService) { }
 
   ngOnInit() {
     this.funcao3()
@@ -41,16 +45,23 @@ export class CarrinhoComprasComponent implements OnInit {
     return this.CarrinhoService.limparCarrinho()
   }
 
-  getFrete() {
-   this.FreteService.getFrete(this.cep='13562-530').subscribe((dados) => {
-    this.frete = dados['logradouro']
-      let rua = dados.logradouro
-      console.log(rua)
-   })
-   return this.getFrete
-  }
 
-  funcao3(){
+
+  funcao3() {
+
+    const getFrete = async () => {
+      this.FreteService.getFrete(this.cep).subscribe((dados) => {
+        this.logradouro = dados.logradouro
+        this.localidade = dados.localidade
+      })
+      return getFrete
+    }
+
+    const busca: any = (e: Event): void => {
+      const target = e.target as HTMLInputElement;
+      this.cep = target.value;
+    };
+
     const html: any = {
       get(element: any) {
         return document.querySelector(element);
@@ -65,6 +76,8 @@ export class CarrinhoComprasComponent implements OnInit {
         html.get('.fundo').addEventListener('click', () => {
           desativa()
         });
+        html.get('.cep').addEventListener('focusout', _.debounce(getFrete, 800))
+        html.get('.cep').addEventListener('keyup', busca)
       }
     }
 
@@ -77,6 +90,8 @@ export class CarrinhoComprasComponent implements OnInit {
       this.width = 0
       this.width5 = 0
     }
+
+
 
     events.ativaInativa()
   }

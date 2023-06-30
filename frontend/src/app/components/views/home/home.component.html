@@ -1,11 +1,10 @@
-<app-header></app-header>
 <main>
   <div class="carrossel">
     <div class="carrossel1">
       <span class="nomeProduto">Novidades</span>
       <div class="protutos-carrossel1" [ngStyle]="{ 'left': left + 'px' , 'width': width + 'px' }">
         <div class="card1" id="card1" *ngFor="let card1 of cards">
-          <a [routerLink]="['/produtos', this.card1.id_produto]" routerLinkActive="router-link-active">
+          <a [routerLink]="['/produtos', card1.id_produto]" routerLinkActive="router-link-active">
             <span class="produto-img"><img [attr.src]="'http://localhost:3000/' + card1.produto_imagem" alt="" /></span>
             <span class="produto-descricao">{{ card1.descricao }}</span>
             <span class="produto-id">{{card1.id_produto}}</span>
@@ -31,8 +30,8 @@
   </span>
 
   <div class="todosProdutos" id="single">
-    <div class="produto-single" *ngFor="let produto of produtos">
-      <a [routerLink]="['/produtos', this.produto.id_produto]">
+    <div class="produto-single" *ngFor="let produto of produtos" >
+      <a [routerLink]="['/produtos', produto.id_produto]" routerLinkActive="router-link-active">
         <div class="produto-img">
           <img class="img" [attr.src]="'http://localhost:3000/' + produto.produto_imagem" alt="img" />
         </div>

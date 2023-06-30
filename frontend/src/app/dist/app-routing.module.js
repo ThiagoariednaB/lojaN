@@ -27,7 +27,7 @@ var routes = [
                 path: 'produtos/:id_produto', component: produtos_component_1.ProdutosComponent
             },
             {
-                path: 'categoria', component: categoria_component_1.CategoriaComponent
+                path: 'categoria/:categoria', component: categoria_component_1.CategoriaComponent
             },
             {
                 path: 'login', component: login_component_1.LoginComponent

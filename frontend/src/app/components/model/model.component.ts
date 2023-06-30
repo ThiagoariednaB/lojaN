@@ -24,12 +24,14 @@ export class categorias {
 }
 
 
-export class frete {
+export class ceps {
   public cep: any
   public uf: any
   public cidade: any
   public bairro: any
   public logradouro: any
+  public localidade: any
+  public response: any
 }
 
 

@@ -28,7 +28,7 @@ const upload = multer({ storage: storage, limits: { fileSize: 1024 * 1024 * 5 }}
 router.get('/', ProdutosController.getProdutos)
 
 //RETORNA UM PRODUTO
-router.get('/:id_produto', ProdutosController.getProdutosId)
+router.get('/:id_produto', ProdutosController.getProdutoId)
 
 //INSERE UM PRODUTO
 router.post('/', upload.single('produto_imagem'), ProdutosController.postProdutos)

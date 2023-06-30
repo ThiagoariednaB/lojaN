@@ -15,20 +15,7 @@ var CategoryComponent = /** @class */ (function () {
         this.route = route;
         this.categorias = [];
         this.produtos = [];
-        this.width4 = 0;
-        this.width5 = 0;
-        this.page = 130;
-        this.totalProdutos = 62;
-        this.cards = [];
-        this.left = 0;
-        this.width = 1260;
-        this.categoria = [];
-        this._pager = 0;
-        this.limite = 0;
-        this.offsete = 0;
-        this.getQuantidade = function () {
-            return _this.produtos.length;
-        };
+        this.width = 0;
         this.funcao = function () {
             var getCategory = function () {
                 _this.ProductService.getCategory().subscribe(function (data) {
@@ -36,14 +23,13 @@ var CategoryComponent = /** @class */ (function () {
                 });
                 return getCategory;
             };
-            getCategory();
             var html = {
                 get: function (element) {
                     return document.querySelector(element);
                 }
             };
             var events = {
-                ativaInativaC: function () {
+                ativaEventos: function () {
                     html.get('.menuAtivo').addEventListener('click', function () {
                         ativa();
                     });
@@ -53,21 +39,19 @@ var CategoryComponent = /** @class */ (function () {
                     html.get('.atalhosFundo').addEventListener('click', function () {
                         desativa();
                     });
+                    html.get('.categorias').addEventListener('click', getCategory());
                 }
             };
             var ativa = function () {
-                _this.width4 = 300;
-                _this.width5 = 100;
+                _this.width = 300;
             };
             var desativa = function () {
-                _this.width4 = 0;
-                _this.width5 = 0;
+                _this.width = 0;
             };
-            events.ativaInativaC();
+            events.ativaEventos();
         };
     }
     CategoryComponent.prototype.ngOnInit = function () {
-        this.getQuantidade();
         this.funcao();
     };
     CategoryComponent = __decorate([

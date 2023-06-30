@@ -1,3 +1,4 @@
+import { HomeComponent } from './../../views/home/home.component';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -10,6 +11,10 @@ export class FooterComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
+  }
+  getQuantidade = () => {
+    
   }
 
 }

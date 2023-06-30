@@ -16,7 +16,7 @@ exports.getCategorias = (req, res, next) => {
         const response = {
           categoria: resultado.map(prod => {
             return {
-              id_categorias: prod.id_categorias,
+              id_categoria: prod.id_categoria,
               categoria: prod.categoria,
             }
           })

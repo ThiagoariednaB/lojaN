@@ -15,7 +15,7 @@ export class CarrinhoService {
     this.ProductService.getProductsid(numberId).subscribe((data: produtos) => {
       const res = ((data));
       const values: any = Object.values(res.produtos)
-      let i = this.product.findIndex((x) => x.id_produto == values[0].id_produto);
+      let i = this.product.findIndex((produto) => produto.id_produto == values[0].id_produto);
       if (i > -1) {
         this.product[i].quantidade++;
       } else {
@@ -56,6 +56,6 @@ export class CarrinhoService {
   }
 
   obterFrete() {
-    
+
   }
 }

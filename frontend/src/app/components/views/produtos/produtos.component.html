@@ -1,5 +1,6 @@
-<app-header></app-header>
 <main>
+  <app-category></app-category>
+  <app-carrinho-compras></app-carrinho-compras>
   <div class="produto-single" *ngFor="let produto of produtos">
     <a [routerLink]="['/produtos', this.produto.id_produto]">
       <div class="produto-img">

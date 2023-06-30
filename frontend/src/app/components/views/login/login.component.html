@@ -1,4 +1,7 @@
+<app-header></app-header>
 <main>
+  <app-category></app-category>
+  <app-carrinho-compras></app-carrinho-compras>
     <div class="login">
       <h1>Login</h1>
       <form id="form-login">
@@ -9,6 +12,7 @@
             name="login-email"
             id="login-email"
             placeholder="Digite seu E-mail"
+            autocomplete="email"
           />
         </div>
         <div class="container-senha">
@@ -29,7 +33,7 @@
             placeholder="Confirme sua Senha"
           />
         </div>
-  
+
         <div class="logar">
           <input type="submit" id="btb-submit" value="Entrar" />
         </div>
@@ -38,4 +42,3 @@
       </form>
     </div>
   </main>
-  

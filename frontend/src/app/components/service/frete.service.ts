@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { HttpClient } from '@angular/common/http';
-import { frete } from '../model/model.component';
+import { ceps } from '../model/model.component';
 
 
 @Injectable({
@@ -11,9 +11,9 @@ export class FreteService {
 
   constructor(private http: HttpClient) { }
 
-  url = `https://api.correios.com.br/token/v1/autentica`
+  url = `https://viacep.com.br/ws`
 
-  public getFrete(cep: string): Observable<frete> {
-    return this.http.get<frete>(`${this.url}/${cep}`);
+  public getFrete(cep: string): Observable<ceps> {
+    return this.http.get<ceps>(`${this.url}/${cep}/json`);
   }
 }

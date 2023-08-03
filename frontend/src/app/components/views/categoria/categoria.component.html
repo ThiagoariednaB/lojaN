@@ -1,3 +1,4 @@
+<app-header></app-header>
 <main>
   <app-category></app-category>
   <app-carrinho-compras></app-carrinho-compras>
@@ -6,7 +7,7 @@
 
   <div class="todosProdutos" id="single">
     <div class="produto-single" *ngFor="let produto of produtos">
-      <a [routerLink]="['/produtos', produto.categoria]">
+      <a [routerLink]="['/produtos', produto]">
         <div class="produto-img">
           <img class="img" [attr.src]="'http://localhost:3000/' + produto.produto_imagem" alt="img" />
         </div>
@@ -19,27 +20,5 @@
       <button class="material-symbols-outlined" id="produto-adicionar" (click)="adicionarAoCarrinho(produto['id_produto'])"> add_circle </button>
     </div>
   </div>
-
-  <span class="QuantprodutosLoja2">
-
-    <span class="porPagina">Por Pagina: </span>
-
-    <select name="itensPagina" id="itensPagina">
-      <option value="p1" selected>16</option>
-      <option value="p2">32</option>
-      <option value="p3">48</option>
-      <option value="p4">64</option>
-    </select>
-
-    <section id="paginacao">
-      <div class="pagination">
-        <button class="inicio" id="button">&#171;</button>
-        <button class="anterior" id="button">&lt;</button>
-        <div class="numeros" id="button2"></div>
-        <button class="proximo" id="button">&gt;</button>
-        <button class="final" id="button">&#187;</button>
-      </div>
-    </section>
-  </span>
 </main>
 <app-footer></app-footer>

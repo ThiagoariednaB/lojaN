@@ -3,7 +3,7 @@
 footer {
   position: relative;
   width: 100vw;
-  height: 310px;
+  height: 365px;
   left: 0;
   bottom: 0;
   border-top: 1px solid rgba(255, 255, 255, 0.675);
@@ -248,3 +248,204 @@ footer {
   }
 }
 
+.QuantprodutosLoja2 {
+  position: relative;
+  display: flex;
+  width: 100vw;
+  height: 55px;
+  color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  background-color: #272727;
+  border: transparent;
+  border-radius: 4px;
+  border-bottom: 1px solid #008cff;
+  z-index: 0;
+  bottom: 0px;
+}
+
+#paginacao {
+  position: absolute;
+  display: flex;
+  left: 67%;
+  justify-content: center;
+  width: 25vw;
+  height: 55px;
+  border-radius: 150px;
+  z-index: 3;
+}
+
+#itensPagina{
+  cursor: pointer;
+  position: absolute;
+  display: flex;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  height: 45px;
+  width: 55px;
+  right: 0px;
+  right: 35%;
+  background-color: #272727;
+  color: #ffffff;
+  border: transparent;
+  font-size: 20px;
+  top: 8px;
+}
+
+.prod1{
+  display: flex;
+  position: relative;
+  left: 15px;
+  font-size: 20px;
+}
+
+.prod{
+  display: flex;
+  position: relative;
+  left: 15px;
+  font-size: 20px;
+}
+
+.porPagina{
+  cursor: pointer;
+  position: absolute;
+  display: flex;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  height: 25px;
+  right: 44%;
+  font-size: 20px;
+  top: 18px;
+}
+
+#itensPagina:focus, input:focus {
+  box-shadow: 0 0 0 0;
+  outline: 0;
+}
+
+option{
+  background-color: #1d1d1d;
+}
+
+#button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Roboto', sans-serif;
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 4vw;
+  height: 35px;
+  border-radius: 250px;
+  color: #9f9f9f;
+  border: solid wheat 0.5px;
+  border-color: #9f9f9f;
+  font-size: 20px;
+  top: 3px;
+  transition: 0.7s;
+}
+
+#button2 {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Roboto', sans-serif;
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 20vw;
+  height: 37px;
+  border-radius: 250px;
+  color: #9f9f9f;
+  border: solid wheat 0.5px;
+  border-color: #9f9f9f00;
+  font-size: 20px;
+  top: 3px;
+  transition: 0.7s;
+}
+
+#button:hover {
+  background-color: rgb(0, 119, 255);
+  transition: 0.7s;
+  color: white;
+}
+
+#button:active {
+  transition: 0.3s;
+  transform: scale(0.9);
+}
+
+#button2:active {
+  transition: 0.3s;
+  transform: scale(0.9);
+}
+
+#button::before
+
+.list {
+  display: block;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+#paginacao .pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+}
+
+.fundo {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+}
+
+@media screen and (max-width: 700px) {
+  .prod {
+    display: none;
+  }
+
+  .porPagina{
+    display: none;
+  }
+
+  #itensPagina{
+    left: 20px;
+    font-size: 20px;
+  }
+
+  #paginacao{
+    position: absolute;
+    left: 80px;
+    width: 80%;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+  }
+
+  .pagination{
+    position: absolute;
+    display: flex;
+    width: 95%;
+    padding: 0;
+    margin: 0;
+  }
+
+  #button{
+    width: 35px;
+  }
+
+  #button2{
+    width: 135px;
+  }
+}

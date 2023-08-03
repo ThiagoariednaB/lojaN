@@ -9,11 +9,12 @@ import { LayoutComponent } from './components/layout/layout.component'
 import { HomeComponent } from './components/views/home/home.component'
 import { LoginComponent } from './components/views/login/login.component'
 import { CategoryComponent } from './components/views/category/category.component';
-import { ProdutosComponent } from './components/views/produtos/produtos.component';
 import { CarrinhoComprasComponent } from './components/views/carrinho-compras/carrinho-compras.component';
 import ptBr from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { CategoriaComponent } from './components/views/categoria/categoria.component';
+import { RouterModule } from '@angular/router';
+import { HomeProdutoComponent } from './components/views/home-produto/home-produto.component'
 
 registerLocaleData(ptBr);
 
@@ -26,15 +27,14 @@ registerLocaleData(ptBr);
     LayoutComponent,
     LoginComponent,
     CategoryComponent,
-    ProdutosComponent,
     CarrinhoComprasComponent,
     CategoriaComponent,
+    HomeProdutoComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-
   ],
   providers: [HttpClient, { provide: LOCALE_ID, useValue: 'pt' }],
   bootstrap: [AppComponent]

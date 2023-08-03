@@ -47,3 +47,11 @@
   z-index: 94;
   background-color: rgba(255, 99, 71, 0.514);
 }
+
+.active {
+  transform: scale(0.9);
+  transition: 1,9s;
+  border: solid 0.4px rgb(196, 196, 196);
+  border-radius: 15px;
+  background-color: rgb(255, 204, 0);
+}

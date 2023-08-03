@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { produtos } from '../model/model.component';
 import { ProductService } from '../service/product.service';
-import { forEach } from 'lodash';
+import { forEach, join, values } from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -57,5 +57,22 @@ export class CarrinhoService {
 
   obterFrete() {
 
+  }
+
+  salvar() {
+    localStorage.setItem('product', JSON.stringify(this.product))
+  }
+
+  busca() {
+    if(localStorage['product']){
+      const res = localStorage['id_produto'];
+      const values: any = Object.values(res)
+      let i = this.product.findIndex((produto) => produto.id_produto == values[0].id_produto);
+      if (i == -1) {
+        this.product[i].quantidade++;
+      } else {
+        this.product.push({ ...values[0], quantidade: 1 });
+      }
+    }
   }
 }

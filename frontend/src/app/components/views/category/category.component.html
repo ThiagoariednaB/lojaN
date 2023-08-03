@@ -1,7 +1,6 @@
 <div class="categorias" [ngStyle]="{ 'width': this.width + 'px' }">
   <span class="infoCategoria">CATEGORIAS</span>
-  <ul class="li" *ngFor="let categoria of categorias">
-    <li class="ul1" [routerLink]="['/categoria', categoria.categoria]" routerLinkActive="router-link-active">{{ categoria.categoria }}</li>
+  <ul class="li" *ngFor="let categoria of categorias" routerLinkActive="active" >
+    <li class="ul1" [routerLink]="['/categoria', categoria.categoria]">{{ categoria.categoria }}</li>
   </ul>
 </div>
-

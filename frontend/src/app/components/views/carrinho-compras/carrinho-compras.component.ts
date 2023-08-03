@@ -45,8 +45,6 @@ export class CarrinhoComprasComponent implements OnInit {
     return this.CarrinhoService.limparCarrinho()
   }
 
-
-
   funcao3() {
 
     const getFrete = async () => {

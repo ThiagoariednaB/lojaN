@@ -1,10 +1,11 @@
+<app-header></app-header>
 <main>
   <div class="carrossel">
     <div class="carrossel1">
       <span class="nomeProduto">Novidades</span>
       <div class="protutos-carrossel1" [ngStyle]="{ 'left': left + 'px' , 'width': width + 'px' }">
         <div class="card1" id="card1" *ngFor="let card1 of cards">
-          <a [routerLink]="['/produtos', card1.id_produto]" routerLinkActive="router-link-active">
+          <a [routerLink]="['/home-produto', card1.id_produto]" routerLinkActive="router-link-active">
             <span class="produto-img"><img [attr.src]="'http://localhost:3000/' + card1.produto_imagem" alt="" /></span>
             <span class="produto-descricao">{{ card1.descricao }}</span>
             <span class="produto-id">{{card1.id_produto}}</span>
@@ -26,12 +27,12 @@
   <app-carrinho-compras></app-carrinho-compras>
 
   <span class="QuantprodutosLoja">
-    <span class="prod1">{{ getQuantidade() }}</span>
+    <span class="prod1">Categorias</span>
   </span>
 
   <div class="todosProdutos" id="single">
     <div class="produto-single" *ngFor="let produto of produtos" >
-      <a [routerLink]="['/produtos', produto.id_produto]" routerLinkActive="router-link-active">
+      <a [routerLink]="['/home-produto', produto.id_produto]" routerLinkActive="active" ariaCurrentWhenActive="page">
         <div class="produto-img">
           <img class="img" [attr.src]="'http://localhost:3000/' + produto.produto_imagem" alt="img" />
         </div>
@@ -46,26 +47,6 @@
     </div>
   </div>
 
-  <span class="QuantprodutosLoja2">
 
-    <span class="prod">{{ getQuantidade() + " Produtos" }}</span>
-    <span class="porPagina">Por Pagina: </span>
-    <select name="itensPagina" id="itensPagina">
-      <option value="p1" selected>16</option>
-      <option value="p2">32</option>
-      <option value="p3">48</option>
-      <option value="p4">64</option>
-    </select>
-
-    <section id="paginacao">
-      <div class="pagination">
-        <button class="inicio" id="button">&#171;</button>
-        <button class="anterior" id="button">&lt;</button>
-        <div class="numeros" id="button2"></div>
-        <button class="proximo" id="button">&gt;</button>
-        <button class="final" id="button">&#187;</button>
-      </div>
-    </section>
-  </span>
 </main>
 <app-footer></app-footer>

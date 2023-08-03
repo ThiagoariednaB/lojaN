@@ -7,14 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
+  totalProdutos: number = 75
 
   constructor() { }
 
   ngOnInit(): void {
-
+    this.getQuantidade();
   }
+
   getQuantidade = () => {
-    
+    return this.totalProdutos
   }
-
 }

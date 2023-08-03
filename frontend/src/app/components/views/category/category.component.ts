@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import * as _ from 'lodash';
 import { ProductService } from '../../service/product.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { HomeComponent } from '../home/home.component';
+import { HeaderComponent } from '../../template/header/header.component';
 
 @Component({
   selector: 'app-category',
@@ -12,12 +12,17 @@ import { HomeComponent } from '../home/home.component';
 })
 export class CategoryComponent {
   categorias: categorias[] = []
-  produtos: produtos[] = []
   width: number = 0
+  width5: number = 0;
+  zindex: number = 0;
 
-  constructor(public ProductService: ProductService, private route: ActivatedRoute) {  }
+  constructor(public ProductService: ProductService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.categorias = params['response']
+    })
+
     this.funcao();
   }
 
@@ -46,19 +51,25 @@ export class CategoryComponent {
         html.get('.atalhosFundo').addEventListener('click', () => {
           desativa()
         });
-        html.get('.categorias').addEventListener('click', getCategory())
+        html.get('.categorias').addEventListener('click', getCategory());
+        html.get('.categorias').addEventListener('click', () => {
+          desativa()
+        })
       }
     }
+    events.ativaEventos()
 
     const ativa = () => {
       this.width = 300
+      this.width5 = 100
+      this.zindex = 3
     }
 
     const desativa = () => {
       this.width = 0
+      this.width5 = 0
+      this.zindex = 0
     }
-
-    events.ativaEventos()
   }
 }
 

@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import * as _ from 'lodash';
 import { ProductService } from '../../service/product.service';
 import { ActivatedRoute } from '@angular/router';
+import { param } from 'jquery';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +19,7 @@ export class HomeComponent implements OnInit {
   page: number = 0;
   totalProdutos: number = 75
   total: produtos[] = []
+  id: any
 
   cards: produtos[] = [];
   left: number = 0;
@@ -30,15 +32,14 @@ export class HomeComponent implements OnInit {
   constructor(public productService: ProductService, private route: ActivatedRoute, public CarrinhoService: CarrinhoService) { }
 
   ngOnInit() {
-    this.getQuantidade();
-    this.funcao();
+    this.route.params.subscribe(params => {
+      this.id = params['id_produto']
+    })
+
+    this.funcaoHome();
   }
 
-  getQuantidade = () => {
-    return this.totalProdutos
-  }
-
-  funcao = () => {
+  funcaoHome = () => {
 
     const sort: any = {
       aleatorio: [0, 4, 8, 12, 16, 20, 24, 28, 32, 36]
@@ -283,13 +284,12 @@ export class HomeComponent implements OnInit {
       this.width += 1260;
     };
 
-    const init = () => {
-      buttonsPaginate.update();
-      events.listEventPagination();
-      events.listEventBusca();
-      get();
-    };
-    init();
+
+    buttonsPaginate.update();
+    events.listEventPagination();
+    events.listEventBusca();
+    get();
+
   }
 
   adicionarAoCarrinho: any = (numberId: number) => {

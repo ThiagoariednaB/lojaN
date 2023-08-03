@@ -5,7 +5,28 @@
   href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 <footer>
+  <span class="QuantprodutosLoja2">
 
+    <span class="prod">{{ getQuantidade() + " Produtos" }}</span>
+    <span class="porPagina">Por Pagina: </span>
+    <select name="itensPagina" id="itensPagina">
+      <option value="p1" selected>16</option>
+      <option value="p2">32</option>
+      <option value="p3">48</option>
+      <option value="p4">64</option>
+    </select>
+
+    <section id="paginacao">
+      <div class="pagination">
+        <button class="inicio" id="button">&#171;</button>
+        <button class="anterior" id="button">&lt;</button>
+        <div class="numeros" id="button2"></div>
+        <button class="proximo" id="button">&gt;</button>
+        <button class="final" id="button">&#187;</button>
+      </div>
+    </section>
+  </span>
+  
   <div class="main-content">
     <div class="left box">
       <h2>Sobre nós</h2>

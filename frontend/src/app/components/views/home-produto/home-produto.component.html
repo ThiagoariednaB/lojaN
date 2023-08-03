@@ -1,0 +1,15 @@
+<app-header></app-header>
+<main>
+  <app-category></app-category>
+  <app-carrinho-compras></app-carrinho-compras>
+  <div class="home-produto" *ngFor="let produto of produtos">
+    <div class="produto-img">
+      <img class="img" [attr.src]="'http://localhost:3000/' + produto.produto_imagem" alt="img" />
+    </div>
+    <span class="divisao"></span>
+    <span class="produto-id" name="id">id: {{ produto.id_produto }}</span>
+    <div class="produto-descricao">{{ produto.descricao }}</div>
+    <div class="produto-preco">{{ produto.preco | currency : "BRL" }}</div>
+    <span class="produto-quantidade">Estoque: {{ produto.quantidade }}</span>
+  </div>
+</main>

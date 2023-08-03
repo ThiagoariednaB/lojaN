@@ -39,43 +39,50 @@ exports.getProdutosCat = (req, res, next) => {
     if (error) {
       return res.status(500).send({ error: error })
     }
-    conn.query(
-      `SELECT * FROM mydb.produtos WHERE categoria = ?;`,
-      [req.params.categoria],
-      (error, resultado, field) => {
-        conn.release()
-        if (error) {
-          return res.status(500).send({ error: error })
-        }
-
-        if (resultado.length == 0) {
-          return res.status(404).send({
-            mensagem: 'Não foi encontrado produto com essa categoria'
-          })
-        }
-        const response = {
-          produtos: resultado.map(prod => {
-            return {
-              id_produto: prod.id_produto,
-              descricao: prod.descricao,
-              un: prod.un,
-              preco: prod.preco,
-              produto_imagem: prod.produto_imagem,
-              categoria: prod.categoria,
-              quantidade: prod.quantidade,
-              descricaoProduto: prod.descricaoProduto,
-              request: {
-                tipo: 'GET',
-                descricao: 'Retorna um produto e seus detalhes',
-                url: 'http://localhost:3000/produtos/id_produto'
+    try {
+      conn.query(
+        `SELECT * FROM mydb.produtos WHERE categoria = ?;`,
+        [req.params.categoria],
+        (error, resultado, field) => {
+          conn.release()
+          if (error) {
+            return res.status(500).send({ error: error })
+          }
+  
+          if (resultado.length == 0) {
+            return res.status(404).send({
+              mensagem: 'Não foi encontrado produto com essa categoria'
+            })
+          }
+          const response = {
+            produtos: resultado.map(prod => {
+              return {
+                id_produto: prod.id_produto,
+                descricao: prod.descricao,
+                un: prod.un,
+                preco: prod.preco,
+                produto_imagem: prod.produto_imagem,
+                categoria: prod.categoria,
+                quantidade: prod.quantidade,
+                descricaoProduto: prod.descricaoProduto,
+                request: {
+                  tipo: 'GET',
+                  descricao: 'Retorna um produto e seus detalhes',
+                  url: 'http://localhost:3000/produtos/id_produto'
+                }
               }
-            }
-          })
+            })
+          }
+          return res.status(201).send(response)
         }
-        return res.status(201).send(response)
-      }
-    )
+      )
+    } catch (error) {
+      return res.status(401).json(error)
+    }
+    
   })
+
+
 }
 
 exports.getProdutoId = (req, res, next) => {
@@ -94,7 +101,7 @@ exports.getProdutoId = (req, res, next) => {
 
         if (resultado.length == 0) {
           return res.status(404).send({
-            mensagem: 'Não foi encontrado produto com essa categoria'
+            mensagem: 'Não foi encontrado produto com essa id'
           })
         }
         const response = {

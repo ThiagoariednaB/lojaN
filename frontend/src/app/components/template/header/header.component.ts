@@ -72,6 +72,9 @@ export class HeaderComponent implements OnInit {
         html.get('.atalhosFundo').addEventListener('click', () => {
           desativar()
         });
+        html.get('.categorias').addEventListener('click', () => {
+          desativar()
+        });
       }
 
     }

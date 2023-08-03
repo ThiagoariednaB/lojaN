@@ -49,7 +49,6 @@ main {
   overflow-y: auto;
   color: white;
   user-select:none;
-  background-color: #0090e4;
 }
 
 .todosProdutos::-webkit-scrollbar {
